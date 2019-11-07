@@ -15,7 +15,8 @@ import {connect} from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 345,
+    width: '20%',
+      height: '15%',
     margin: 10
   },
   media: {
@@ -72,7 +73,7 @@ function TableCard(props) {
         /> */}
         <CardContent>
             <Typography variant="body2" color="textSecondary" component="p" onChange>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos error excepturi natus quod, tempore veritatis! Alias asperiores atque commodi debitis eius facere iure maiores numquam officia repudiandae saepe soluta, voluptates.
+                Capacity: {props.dataTables.capacity}
             </Typography>
         </CardContent>
         <CardActions disableSpacing>

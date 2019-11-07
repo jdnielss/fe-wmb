@@ -13,10 +13,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import TableContainer from '../tableComponents/TableContainer';
+import TableMenu from '../menuComponents/MenuList'
 import { createStore } from 'redux';
 import {addTable} from "../tableComponents/reducerTable/TableReducer";
-import Box from '@material-ui/core/Box';
-
+import MenuList from '@material-ui/icons/FastfoodRounded';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -73,6 +73,13 @@ function SideBar(props) {
         <MenuItem component={Link} to="/table">
             Table
         </MenuItem>
+        </ListItem>
+
+        <ListItem>
+          <ListItemIcon> <MenuList/></ListItemIcon>
+          <MenuItem component={Link} to="/menu">
+            Menu
+          </MenuItem>
         </ListItem>
 
         <ListItem>
@@ -151,6 +158,7 @@ function SideBar(props) {
             <Provider store={createStore(addTable,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
               <Route path="/table"><TableContainer/></Route>
             </Provider>
+            <Route path="/menu" ><TableMenu/></Route>
           </Switch>
         </main>
 

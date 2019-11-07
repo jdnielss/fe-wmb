@@ -25,7 +25,7 @@ class TableContainer extends Component {
         console.log(this.props);
         return (
             <div>
-                <IconButton aria-label="settings" className="addTable">
+                <IconButton aria-label="settings" >
                     <AddTable />
                 </IconButton>
                 <Grid container spacing={3}>
