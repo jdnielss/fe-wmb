@@ -10,15 +10,16 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import ShoppingCart from '@material-ui/icons/Send'
-import AddTableIcon from '@material-ui/icons/LibraryAdd'
+import Chip from '@material-ui/core/Chip';
+import {connect} from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    display: 'inline-block',
     maxWidth: 345,
     margin: 10
   },
   media: {
+      display: 'inline-block',
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
@@ -28,98 +29,50 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const handleinputNoTable = () => {
-    
+
 }
 
 const handleInputCapacity = () => {
 
 }
 const handleSetStatus = () =>{
-    
+
 }
 
 const handleSubmitTable = () =>{
 
 }
 
-function TableCard() {
+function TableCard(props) {
   const classes = useStyles();
 
   return (
-    <div>
-        <div className="custom-modal">
-                <div className="modal fade" id="modalTableCard" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-lg" role="document">
-                <div className="modal-content">
-                <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Add Table</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div className="modal-body">
-                <form>
-                    <div className="form-group row">
-                        <label htmlFor="inputName" className="col-sm-2 col-form-label">No Table.</label>
-                        <div className="col-sm-5">
-                        <input type="text" className="form-control" placeholder="No Table"/>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Capacity</label>
-                        <div className="col-sm-5">
-                        <input type="number" className="form-control"  placeholder="Capacity"/>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                    <label htmlFor="inputName" className="col-sm-2 col-form-label">Status Table</label>
-                        <div className="col-auto my-1">
-                            <label className="mr-sm-5 sr-only" htmlFor="inlineFormCustomSelect">Preference</label>
-                            <select className="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                <option option>Choose...</option>
-                                <option defaultValue="1">Available</option>
-                                <option defaultValue="2">Dinning</option>
-                            </select>
-                        </div>
-                    </div>
-                    </form>
-                </div>
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" className="btn btn-primary">Save changes</button>
-                </div>
-                </div>
-            </div>
-        </div>
-            </div>
-        <IconButton aria-label="cart" data-toggle="modal" data-target="#modalTableCard">
-            <AddTableIcon/>
-        </IconButton>
-        <div className="custom-card">
         <Card className={classes.card}>
         <CardHeader
             avatar={
             <Avatar aria-label="recipe" className={classes.avatar}>
-                1
+                {props.dataTables.numberTable}
             </Avatar>
+
             }
             // action={
             //   <IconButton aria-label="settings">
             //     <MoreVertIcon />
             //   </IconButton>
             // }
-            title="PIC Name"
-            subheader="September 14, 2016"
+            title={props.dataTables.status}
+            subheader=""
         />
+
+
         {/* <CardMedia
             className={classes.media}
             image="/static/images/cards/paella.jpg"
             title="Paella dish"
         /> */}
         <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-            This impressive paella is a perfect party dish and a fun meal to cook together with your
-            guests. Add 1 cup of frozen peas along with the mussels, if you like.
+            <Typography variant="body2" color="textSecondary" component="p" onChange>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos error excepturi natus quod, tempore veritatis! Alias asperiores atque commodi debitis eius facere iure maiores numquam officia repudiandae saepe soluta, voluptates.
             </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -128,12 +81,7 @@ function TableCard() {
             </IconButton>
         </CardActions>
         </Card>
-        </div>
-    </div>
-    
   );
-  
 }
 
-
-export default TableCard
+export default connect()(TableCard)

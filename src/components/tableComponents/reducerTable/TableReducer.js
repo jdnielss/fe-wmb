@@ -8,7 +8,7 @@ export function addTable (state=dataTable, action) {
     switch (action.type) {
         case 'FETCHING_SUCCESS':
             return{
-                ...state, fetchResult: action.payload
+                ...state.fetchResult, fetchResult: action.payload
             }
         case 'ADD_NEW_TABLE':
                 return {

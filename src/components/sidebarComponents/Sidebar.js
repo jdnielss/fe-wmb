@@ -12,16 +12,16 @@ import ListItem from '@material-ui/core/ListItem';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import TableCard from '../tableComponents/TableCard';
 import TableContainer from '../tableComponents/TableContainer';
 import { createStore } from 'redux';
-import addTable from '../tableComponents/reducerTable/TableReducer'
+import {addTable} from "../tableComponents/reducerTable/TableReducer";
+import Box from '@material-ui/core/Box';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -46,7 +46,8 @@ const useStyles = makeStyles(theme => ({
     width: drawerWidth,
   },
   content: {
-    flexGrow: 1,
+    display: 'inline-block',
+    flexWrap: 'wrap',
     padding: theme.spacing(3),
   },
 }));
@@ -64,15 +65,6 @@ function SideBar(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-        {/* <Divider />
-        <List>
-            <ListItem>
-            <ListItemIcon> <HomeIcon/></ListItemIcon>
-            <MenuItem component={Link} to="/home">
-                Home
-            </MenuItem>
-            </ListItem>
-        </List> */}
       <Divider />
       <List>
           
@@ -152,14 +144,16 @@ function SideBar(props) {
           </Drawer>
         </Hidden>
       </nav>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Switch>
-          <Provider store={createStore(addTable)}>
-            <Route path="/table"><TableContainer/></Route>
-          </Provider>
-        </Switch>
-      </main>
+
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Switch>
+            <Provider store={createStore(addTable,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
+              <Route path="/table"><TableContainer/></Route>
+            </Provider>
+          </Switch>
+        </main>
+
     </div>
     </Router>
   );
