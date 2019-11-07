@@ -48,7 +48,7 @@ class TableContainer extends Component {
     render() {
         console.log(this.props.tableFormData);
         return (
-            <div>
+            <div className="container-fluid">
                 <IconButton aria-label="settings" className="addTable">
                     <AddTable data-toggle="modal" data-target="#exampleModal"/>
                 </IconButton>
