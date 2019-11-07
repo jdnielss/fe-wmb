@@ -1,8 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
-// import TableCard from '../tableCard/TableCard'
-// import Home from '../home/Home'
-// import History from '../transactionHistory/TransactionHistory'
+import {Provider} from 'react-redux'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import {AppBar , CssBaseline, Divider, Drawer, Hidden, IconButton, ListItemIcon, List, MenuItem} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -14,6 +13,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import TableCard from '../tableComponents/TableCard';
+import TableContainer from '../tableComponents/TableContainer';
+import { createStore } from 'redux';
+import addTable from '../tableComponents/reducerTable/TableReducer'
 
 const drawerWidth = 240;
 
@@ -153,10 +155,9 @@ function SideBar(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Switch>
-            {/* <Route exact path="/"><Home/></Route> */}
-            <Route path="/table"><TableCard/></Route>
-            {/* <Route path="/purchase"></Route> */}
-            {/* <Route path="/history"><History/></Route> */}
+          <Provider store={createStore(addTable)}>
+            <Route path="/table"><TableContainer/></Route>
+          </Provider>
         </Switch>
       </main>
     </div>
@@ -172,4 +173,5 @@ SideBar.propTypes = {
   container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
 };
 
-export default SideBar;
+// export default connect()(SideBar)
+export default SideBar

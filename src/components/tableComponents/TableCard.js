@@ -27,57 +27,72 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const handleinputNoTable = () => {
+    
+}
+
+const handleInputCapacity = () => {
+
+}
+const handleSetStatus = () =>{
+    
+}
+
+const handleSubmitTable = () =>{
+
+}
+
 function TableCard() {
   const classes = useStyles();
 
   return (
     <div>
         <div className="custom-modal">
-            <div className="modal fade" id="exampleModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog modal-lg" role="document">
-            <div className="modal-content">
-            <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Add Table</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div className="modal-body">
-            <form>
-                <div class="form-group row">
-                    <label for="inputName" class="col-sm-2 col-form-label">No Table.</label>
-                    <div class="col-sm-5">
-                    <input type="text" class="form-control" placeholder="No Table"/>
-                    </div>
+                <div className="modal fade" id="modalTableCard" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-lg" role="document">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">Add Table</h5>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Capacity</label>
-                    <div class="col-sm-10">
-                    <input type="number" class="form-control"  placeholder="Capacity"/>
+                <div className="modal-body">
+                <form>
+                    <div className="form-group row">
+                        <label htmlFor="inputName" className="col-sm-2 col-form-label">No Table.</label>
+                        <div className="col-sm-5">
+                        <input type="text" className="form-control" placeholder="No Table"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                <label for="inputName" class="col-sm-2 col-form-label">Status Table</label>
-                    <div class="col-auto my-1">
-                        <label class="mr-sm-5 sr-only" for="inlineFormCustomSelect">Preference</label>
-                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                            <option selected>Choose...</option>
-                            <option value="1">Available</option>
-                            <option value="2">Dinning</option>
-                        </select>
+                    <div className="form-group row">
+                        <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Capacity</label>
+                        <div className="col-sm-5">
+                        <input type="number" className="form-control"  placeholder="Capacity"/>
+                        </div>
                     </div>
+                    <div className="form-group row">
+                    <label htmlFor="inputName" className="col-sm-2 col-form-label">Status Table</label>
+                        <div className="col-auto my-1">
+                            <label className="mr-sm-5 sr-only" htmlFor="inlineFormCustomSelect">Preference</label>
+                            <select className="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                <option option>Choose...</option>
+                                <option defaultValue="1">Available</option>
+                                <option defaultValue="2">Dinning</option>
+                            </select>
+                        </div>
+                    </div>
+                    </form>
                 </div>
-                </form>
-            </div>
-            <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary">Save changes</button>
-            </div>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-primary">Save changes</button>
+                </div>
+                </div>
             </div>
         </div>
-        </div>
             </div>
-        <IconButton aria-label="cart" data-toggle="modal" data-target="#exampleModal">
+        <IconButton aria-label="cart" data-toggle="modal" data-target="#modalTableCard">
             <AddTableIcon/>
         </IconButton>
         <div className="custom-card">
@@ -85,7 +100,7 @@ function TableCard() {
         <CardHeader
             avatar={
             <Avatar aria-label="recipe" className={classes.avatar}>
-                12
+                1
             </Avatar>
             }
             // action={
@@ -117,6 +132,8 @@ function TableCard() {
     </div>
     
   );
+  
 }
+
 
 export default TableCard
