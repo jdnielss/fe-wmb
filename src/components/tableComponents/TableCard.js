@@ -16,10 +16,7 @@ import {connect} from "react-redux";
 const useStyles = makeStyles(theme => ({
   card: {
     width: '20%',
-<<<<<<< HEAD
       height: '15%',
-=======
->>>>>>> 9d475ae0dceb756fe3e56d345419afcabbe5be96
     margin: 10
   },
   media: {
