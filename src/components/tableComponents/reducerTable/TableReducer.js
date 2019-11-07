@@ -1,33 +1,32 @@
 const dataTable = {
     fetchResult: [],
-    table: []
+    tableFormData: {
+        numberTable: null,
+        status: '',
+        capacity: null
+    }
 }
 
 
-export function addTable (state=dataTable, action) {
+export function addTable(state = dataTable, action) {
     switch (action.type) {
         case 'FETCHING_SUCCESS':
-            return{
+            return {
                 ...state.fetchResult, fetchResult: action.payload
             }
-        case 'ADD_NEW_TABLE':
-                return {
-                    ...state,
-                table: state.table.concat([0])
-                }
         case 'HANDLE_NO_TABLE':
             return {
-                ...state
+                ...state, tableFormData: {...state.tableFormData, numberTable: action.payload}
             }
         case 'HANDLE_CAPACITY_TABLE':
             return {
-                ...state
+                ...state,tableFormData: {...state.tableFormData,capacity: action.payload}
             }
         case 'HANDLE_STATUS_TABLE':
             return {
-                ...state
+                ...state,tableFormData: {...state.tableFormData,status: action.payload}
             }
         default:
-            return state;
+            return {...state};
     }
 }

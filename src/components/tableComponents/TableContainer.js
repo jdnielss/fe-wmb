@@ -1,8 +1,15 @@
  import React, { Component } from 'react'
 import './TableCard.scss'
-import { fetchDataTable } from './tableService/TableService'
+import {fetchDataTable, saveDataTable} from './tableService/TableService'
 import { connect } from 'react-redux'
-import {fetchingSuccess} from "./constants/TableConstanta";
+import {
+    fetchingSuccess,
+    handleInputCapacity,
+    handleInputNumber,
+    handleInputStatus,
+    status1,
+    status2
+} from "./constants/TableConstanta";
 import Grid from '@material-ui/core/Grid'
 import TableCard from "./TableCard";
 import AddTable from '@material-ui/icons/AddBox'
@@ -20,9 +27,26 @@ class TableContainer extends Component {
         console.log(resultData)
         this.props.dispatch({...fetchingSuccess, payload:resultData})
     };
+    handleTableNumber=(event)=>{
+        let data=event.target.value
+        this.props.dispatch({...handleInputNumber, payload: data})
+    }
+    handleTableStatus=(event)=>{
+        let data=event.target.value
+        this.props.dispatch({...handleInputStatus, payload: data})
+    }
+    handleTableCapacity=(event)=>{
+        let data=event.target.value
+        this.props.dispatch({...handleInputCapacity, payload: data})
+    }
+    handleButtonSubmit=()=>{
+        let formdata= this.props.tableFormData
+        saveDataTable(formdata);
+        this.fetchingData()
+    }
 
     render() {
-        console.log(this.props);
+        console.log(this.props.tableFormData);
         return (
             <div>
                 <IconButton aria-label="settings" className="addTable">
@@ -44,24 +68,24 @@ class TableContainer extends Component {
                                         <label htmlFor="inputNumber"
                                                className="col-sm-4 col-form-label">Number Table</label>
                                         <div className="col-sm-8">
-                                            <input type="text" className="form-control" id="inputNumber" required/>
+                                            <input type="number" className="form-control" id="inputNumber"  onChange={this.handleTableNumber} required/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label htmlFor="inputCapacity"
                                                className="col-sm-4 col-form-label">Capacity</label>
                                         <div className="col-sm-8">
-                                            <input type="number" className="form-control" id="inputCapacity" required/>
+                                            <input type="number" className="form-control" id="inputCapacity" onChange={this.handleTableCapacity} required/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label htmlFor="selectStatus"
                                                className="col-sm-4 col-form-label">Status</label>
                                         <div className="col-sm-8">
-                                            <select name="selectStatus" id="selectStatus" class="custom-select custom-select-md mb-3">
+                                            <select name="selectStatus" id="selectStatus" class="custom-select custom-select-md mb-3" onChange={this.handleTableStatus}>
                                                 <option value="null">....</option>
-                                                <option value="AVALIABLE">Avaliable</option>
-                                                <option value="DINING">Dining</option>
+                                                <option value={status1}>Avaliable</option>
+                                                <option value={status2}>Dining</option>
                                             </select>
                                         </div>
                                     </div>
@@ -69,7 +93,7 @@ class TableContainer extends Component {
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary">Save changes</button>
+                                <button type="button" className="btn btn-primary" onClick={this.handleButtonSubmit}>Save changes</button>
                             </div>
                         </div>
                     </div>
