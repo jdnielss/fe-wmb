@@ -14,6 +14,8 @@ import Grid from '@material-ui/core/Grid'
 import TableCard from "./TableCard";
 import AddTable from '@material-ui/icons/AddBox'
 import IconButton from "@material-ui/core/IconButton";
+import Swal from 'sweetalert2'
+
 
 class TableContainer extends Component {
 
@@ -43,6 +45,7 @@ class TableContainer extends Component {
         let formdata= this.props.tableFormData
         saveDataTable(formdata);
         this.fetchingData()
+        alert()
     }
 
     render() {
@@ -115,6 +118,9 @@ const mapStateToProps = (state)  => {
     return {
         ...state
     }
+}
+const alert = () => {
+    Swal.fire('Any fool can use a computer')
 }
 
 export default connect(mapStateToProps)(TableContainer)

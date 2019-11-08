@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './custom-table.css'
+import './menuAssets/MenuTable.css'
 class TableMenu extends Component {
     render() {
         return (
@@ -14,30 +14,19 @@ class TableMenu extends Component {
                             <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>Menu</th>
+                                    <th>Photos</th>
+                                    <th>Type Food</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                                </tfoot>
                                 <tbody>
                                 <tr>
-                                    <td>Tiger Nixon</td>
+                                    <td>Kangkung</td>
                                     <td>System Architect</td>
                                     <td>Edinburgh</td>
-                                    <td>61</td>
                                     <td>2011/04/25</td>
                                     <td>$320,800</td>
                                 </tr>
