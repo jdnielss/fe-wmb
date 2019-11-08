@@ -1,6 +1,6 @@
- import React, { Component } from 'react'
-import './TableCard.scss'
-import {fetchDataTable, saveDataTable} from './tableService/TableService'
+import React, { Component } from 'react'
+import '../tableAssets/TableCard.scss'
+import {fetchDataTable, saveDataTable} from '../tableService/TableService'
 import { connect } from 'react-redux'
 import {
     fetchingSuccess,
@@ -9,24 +9,40 @@ import {
     handleInputStatus,
     status1,
     status2
-} from "./constants/TableConstanta";
+} from '../constants/TableConstanta'
 import Grid from '@material-ui/core/Grid'
-import TableCard from "./TableCard";
 import AddTable from '@material-ui/icons/AddBox'
-import IconButton from "@material-ui/core/IconButton";
-import Swal from 'sweetalert2'
+import TableComponent from '../TableCard'
+const required = value => value ? undefined : 'Required'
 
 
 class TableContainer extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            fetchResult:
+                {content: [],
+                    total: null,
+                    per_page: null,
+                    current_page: 0
+                }
+        }
+    }
 
     componentDidMount(){
-        this.fetchingData();
+        this.fetchingData(0);
         console.log(this.fetchingData)
     }
 
-    fetchingData = async () => {
-        const resultData = await fetchDataTable();
-        console.log(resultData)
+    fetchingData = async (pageNumbers) => {
+        const resultData = await fetchDataTable(pageNumbers);
+        if(!(resultData === undefined)){
+            this.setState({
+                fetchResult: {content: resultData.content}, total: resultData.totalElements,
+                per_page: resultData.size,
+                current_page: resultData.number
+            })
+        }
         this.props.dispatch({...fetchingSuccess, payload:resultData})
     };
     handleTableNumber=(event)=>{
@@ -41,74 +57,91 @@ class TableContainer extends Component {
         let data=event.target.value
         this.props.dispatch({...handleInputCapacity, payload: data})
     }
-    handleButtonSubmit=()=>{
-        let formdata= this.props.tableFormData
-        saveDataTable(formdata);
-        this.fetchingData()
-        alert()
+    handleButtonSubmit=(event)=>{
+        // let formdata= this.props.tableFormData
+        event.preventDefault()
+        saveDataTable({...this.props.addTable.tableFormData});
+        this.fetchingData(0);
     }
 
     render() {
-        console.log(this.props.tableFormData);
+        let dataTables, renderPageNumbers;
+        if(this.state.fetchResult.content !== null){
+            dataTables = this.state.fetchResult.content.map((dataTables) => {
+                return <TableComponent dataTables={dataTables}/>
+            })
+        }
+        const pageNumbers = [];
+        if(this.state.total !== null){
+            for(let i = 0; i <= Math.ceil(this.state.total / this.state.per_page -1); i++){
+                pageNumbers.push(i);
+                console.log('Data',pageNumbers)
+            }
+
+            renderPageNumbers = pageNumbers.map(numbers => {
+                let page = this.state.current_page === numbers ? 'active' : '';
+                console.log(pageNumbers + 'Data')
+                return(
+                    <span key={numbers} className={page} onClick={() => this.fetchingData(numbers)}>
+                            {numbers+1}
+                    </span>
+                )
+            })
+        }
+
         return (
             <div className="container-fluid">
-                <IconButton aria-label="settings" className="addTable">
-                    <AddTable data-toggle="modal" data-target="#exampleModal"/>
-                </IconButton>
+                <div className="custom-btn">
+                    <button className="btn btn-primary btn-circle" data-toggle="modal" data-target="#exampleModal">
+                        <AddTable/>
+                    </button>
+                </div>
+                    {/*<AddTable data-toggle="modal" data-target="#exampleModal"/>*/}
                 <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog " role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 className="modal-title" id="exampleModalLabel">Add New Table</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div className="modal-body">
-                                <form>
-                                    <div className="form-group row">
-                                        <label htmlFor="inputNumber"
-                                               className="col-sm-4 col-form-label">Number Table</label>
-                                        <div className="col-sm-8">
-                                            <input type="number" className="form-control" id="inputNumber"  onChange={this.handleTableNumber} required/>
-                                        </div>
+                                <form className="user">
+                                    <div className="form-group">
+                                        <input type="number" className="form-control"
+                                               id="exampleInputEmail" placeholder="No. Table" onChange={this.handleTableNumber} required={true}/>
                                     </div>
-                                    <div className="form-group row">
-                                        <label htmlFor="inputCapacity"
-                                               className="col-sm-4 col-form-label">Capacity</label>
-                                        <div className="col-sm-8">
-                                            <input type="number" className="form-control" id="inputCapacity" onChange={this.handleTableCapacity} required/>
-                                        </div>
+                                    <div className="form-group">
+                                        <input type="number" className="form-control"
+                                               id="exampleInputEmail" placeholder="Capacity" onChange={this.handleTableCapacity}/>
                                     </div>
-                                    <div className="form-group row">
-                                        <label htmlFor="selectStatus"
-                                               className="col-sm-4 col-form-label">Status</label>
-                                        <div className="col-sm-8">
-                                            <select name="selectStatus" id="selectStatus" class="custom-select custom-select-md mb-3" onChange={this.handleTableStatus}>
-                                                <option value="null">....</option>
-                                                <option value={status1}>Avaliable</option>
+                                        <div className="form-group">
+                                            <select name="selectStatus" id="selectStatus" className="custom-select custom-select-md mb-3" onChange={this.handleTableStatus}>
+                                                <option value="null">STATUS</option>
+                                                <option value={status1}>Available</option>
                                                 <option value={status2}>Dining</option>
                                             </select>
                                         </div>
-                                    </div>
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="button" className="btn btn-primary" onClick={this.handleButtonSubmit}>Save changes</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <Grid container spacing={3}>
-                    {
-                        this.props.fetchResult.map((element, index) => {
-                            // return ( <h1>{element.numberTable}</h1>)
-                            return <TableCard dataTables={element} key={index}/>
-                        })
-                    }
+                    {dataTables}
                 </Grid>
+                <div>
+                    <div className="pagination fixed-sticky">
+                        <span onClick={() => this.fetchingData(0)}>&laquo;</span>
+                        {renderPageNumbers}
+                        <span onClick={() =>  this.fetchingData(0)} >&raquo;</span>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -118,9 +151,6 @@ const mapStateToProps = (state)  => {
     return {
         ...state
     }
-}
-const alert = () => {
-    Swal.fire('Any fool can use a computer')
 }
 
 export default connect(mapStateToProps)(TableContainer)

@@ -1,19 +1,63 @@
-.modal-dialog {
-    min-height: calc(100vh - 60px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: auto;
-    @media(max-width: 768px) {
-      min-height: calc(100vh - 20px);
-    }
-  }
+element.style{
+  border-radius: 5px;
+}
 
+.custom-btn{
+  margin-bottom: 10px;
+}
 .custom-card{
     display: inline-block;
   flex-direction: column;
 }
+.custom-select{
+  border-radius: 5px;
+}
+.modal-dialog {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: auto;
+  @media(max-width: 768px) {
+    min-height: calc(100vh - 20px);
+  }
+}
+.modal-body{
+  margin: 5px;
+}
+
+form.user .form-control-user {
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding: 1.5rem 1rem;
+}
+
+form.user .btn-user {
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding: 0.75rem 1rem;
+}
 
 .addTable{
   margin: 10px;
+}
+.pagination {
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.pagination span {
+  cursor: pointer;
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination span.active {
+  background-color: #0099FF;
+  color: white;
+  border: 1px solid #0099FF;
 }

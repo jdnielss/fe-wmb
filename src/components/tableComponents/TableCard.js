@@ -1,5 +1,5 @@
 import React from 'react';
-import './TableCard.scss'
+import './tableAssets/TableCard.scss'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -9,8 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import ShoppingCart from '@material-ui/icons/Send'
-import Chip from '@material-ui/core/Chip';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
 import {connect} from "react-redux";
 
 const useStyles = makeStyles(theme => ({
@@ -29,21 +28,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const handleinputNoTable = () => {
-
-}
-
-const handleInputCapacity = () => {
-
-}
-const handleSetStatus = () =>{
-
-}
-
-const handleSubmitTable = () =>{
-
-}
-
 function TableCard(props) {
   const classes = useStyles();
 
@@ -56,31 +40,20 @@ function TableCard(props) {
             </Avatar>
 
             }
-            // action={
-            //   <IconButton aria-label="settings">
-            //     <MoreVertIcon />
-            //   </IconButton>
-            // }
+            action={
+              <IconButton aria-label="settings">
+                <ErrorOutlineIcon />
+              </IconButton>
+            }
             title={props.dataTables.status}
-            subheader=""
+            subheader={props.dataTables.capacity}
         />
 
-
-        {/* <CardMedia
-            className={classes.media}
-            image="/static/images/cards/paella.jpg"
-            title="Paella dish"
-        /> */}
         <CardContent>
             <Typography variant="body2" color="textSecondary" component="p" onChange>
                 <b>Capacity : {props.dataTables.capacity}</b>
             </Typography>
         </CardContent>
-        <CardActions disableSpacing>
-            <IconButton aria-label="cart">
-            <ShoppingCart/>
-            </IconButton>
-        </CardActions>
         </Card>
   );
 }

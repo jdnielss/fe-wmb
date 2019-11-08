@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import '../../App.css'
 import TableIcon from '@material-ui/icons/TableChart'
-import MenuListIcon from '@material-ui/icons/Fastfood'
-
+import HomeIcon from '@material-ui/icons/HomeRounded'
 class Sidebar extends Component {
     render() {
         return (
@@ -16,6 +15,11 @@ class Sidebar extends Component {
                   <div className="sidebar-brand-text mx-3">Warung Makan Bahari</div>
                 </a>
 
+               <li className="nav-item active">
+                  <Link to="/" className="nav-link">
+                      <HomeIcon/><span className="text-uppercase"> Home</span>
+                  </Link>
+               </li>
                 <hr className="sidebar-divider my-0"/>
 
                   <li className="nav-item active">
@@ -23,11 +27,28 @@ class Sidebar extends Component {
                       <TableIcon/><span className="text-uppercase"> Table</span>
                     </Link>
                   </li>
-                <li className="nav-item active">
-                  <Link to="/menu" className="nav-link">
-                    <MenuListIcon/><span className="text-uppercase"> Menu</span>
-                  </Link>
-                </li>
+
+                  <li className="nav-item">
+                  <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                      <i className="fa fa-fw fa-cog"/>
+                      <span>Menu</span>
+                  </a>
+                  <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                      <div className="bg-white py-2 collapse-inner rounded">
+                          <h6 className="collapse-header">Menu</h6>
+                          <li className="nav-item active">
+                              <Link to="/menu" className="collapse-item">
+                                 <span> Menu List</span>
+                              </Link>
+                          </li>
+                          <li className="nav-item active">
+                              <Link to="/menu-table" className="collapse-item">
+                                  <span> Menu Table</span>
+                              </Link>
+                          </li>
+                      </div>
+                  </div>
+              </li>
 
               </ul>
         );

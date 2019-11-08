@@ -1,29 +1,28 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
+import '../menuAssets/MenuTable.scss'
 import {fetchDataMenu} from "../menuService/MenuService";
-import {fetchingSuccess} from '../constants/MenuConstanta'
-class MenuContainer extends Component {
+import {connect} from 'react-redux'
+import {fetchingSuccess} from "../constants/MenuConstanta";
 
+class MenuCardContainer extends Component {
     componentDidMount() {
         this.fetchingData()
     }
 
     fetchingData = async () => {
-        const resultData = await fetchDataMenu();
-        console.log(resultData, 'Ini Result Data')
+        const resultData = await fetchDataMenu()
+        console.log('Data',resultData)
         this.props.dispatch({...fetchingSuccess, payload:resultData})
     }
-
     render() {
-        console.log(this.props, 'ini props')
+        console.log(this.props)
         return (
             <div>
-                {/*{*/}
-                {/*    this.props.fetchResultMenu.map((element, index) => {*/}
-                {/*        return ( <h1>{element.foodName}</h1>)*/}
-                {/*        // return <TableCard dataTables={element} key={index}/>*/}
-                {/*    })*/}
-                {/*}*/}
+                {
+                    this.props.addMenu.fetchResultMenu.map((element, index) => {
+                        return <h1>{element.foodName}</h1>
+                    })
+                }
             </div>
         );
     }
@@ -33,6 +32,6 @@ const mapStateToProps = (state) => {
     return{
         ...state
     }
-};
+}
 
-export default connect(mapStateToProps)(MenuContainer)
+export default connect(mapStateToProps)(MenuCardContainer)

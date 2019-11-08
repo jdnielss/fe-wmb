@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import SideBar from './components/sidebarComponents/Sidebar'
+import './App.css'
 import {Provider} from "react-redux";
 import {createStore} from "redux";
-import {addTable} from "./components/tableComponents/reducerTable/TableReducer";
-import TableContainer from "./components/tableComponents/TableContainer";
+import TableContainer from "./components/tableComponents/tableContainer/TableContainer";
 import Header from "./components/sidebarComponents/Header";
-import TableMenu from './components/menuComponents/TableMenu'
-import './App.css'
+import reducer from './components/combineReducer/CombineReducers'
+import MenuContainer from "./components/menuComponents/menuContainer/MenuCardContainer";
+import MenuTableContainer from "./components/menuComponents/menuContainer/MenuTableContainer";
+
 class App extends Component {
     render() {
         return (
@@ -20,11 +22,12 @@ class App extends Component {
                                 <Header/>
                                 <div className="container-fluid">
                                     <Switch>
-                                        <Provider store={createStore(addTable)}>
+                                        <Provider store={createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
                                             <Route path="/table">
                                                 <TableContainer/>
                                             </Route>
-                                            <Route path="/menu"><TableMenu/></Route>
+                                            <Route path="/menu"><MenuContainer/></Route>
+                                            <Route path="/menu-table"><MenuTableContainer/></Route>
                                         </Provider>
                                     </Switch>
                                 </div>
