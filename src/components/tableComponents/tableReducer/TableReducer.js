@@ -8,9 +8,9 @@ const dataTable = {
 }
 
 
-export function addTable(state = dataTable, action) {
+export default function addTable(state = dataTable, action) {
     switch (action.type) {
-        case 'FETCHING_SUCCESS':
+        case 'FETCHING_TABLE_SUCCESS':
             return {
                 ...state.fetchResult, fetchResult: action.payload
             }

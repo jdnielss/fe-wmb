@@ -1,11 +1,9 @@
-export async function fetchDataTable(){
-    const data = await fetch(`http://localhost:9090/table`, {
-        method:'GET',})
-    .then((response) => {
-        console.log(response)
-        return response.json()
-    })
-    console.log(data)
+export async function fetchDataTable(pagination){
+    const data = await fetch(`http://localhost:9090/getTable?size=12&page=${pagination}`, {method:'GET',})
+        .then((response) => {
+            console.log(response)
+            return response.json()
+        })
     return data;
 }
 export async function saveDataTable(dataTable) {
