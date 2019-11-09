@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import './menuAssets/MenuTable.scss'
 class MenuTableContainer extends Component {
+
     render() {
         return (
             <div className="container-fluid">
