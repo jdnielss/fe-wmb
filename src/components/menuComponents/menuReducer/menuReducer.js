@@ -1,47 +1,45 @@
 const dataMenu = {
     fetchResultMenu: [],
-    menuFormData: {
-        foodName: '',
+    menuForm: {
         typeFood: '',
-        price: '',
-        quantity: ''
+        price: null,
+        quantity: null,
+        foodName: ''
     }
 }
 
 
-export default function addMenu(state=dataMenu, action){
+export default function addMenu(state = dataMenu, action) {
     switch (action.type) {
         case 'FETCHING_MENU_SUCCESS':
-            return{
+            return {
                 ...state.fetchResultMenu, fetchResultMenu: action.payload
-            }
+            };
         case 'HANDLE_FOOD_NAME':
             return {
-                ...state, menuFormData: {
-                    ...state.menuFormData, foodName: action.payload
+                ...state, menuForm: {
+                    ...state.menuForm, foodName: action.payload
                 }
             }
         case 'HANDLE_TYPE_FOOD':
             return {
-                ...state, menuFormData: {
-                    ...state.menuFormData, typeFood: action.payload
+                ...state, menuForm: {
+                    ...state.menuForm, typeFood: action.payload
                 }
             }
         case 'HANDLE_PRICE_FOOD':
             return {
-                ...state, menuFormData: {
-                    ...state.menuFormData, price: action.payload
+                ...state, menuForm: {
+                    ...state.menuForm, price: action.payload
                 }
             }
         case 'HANDLE_QUANTITY_FOOD':
             return {
-                ...state, menuFormData: {
-                    ...state.menuFormData, quantity: action.payload
+                ...state, menuForm: {
+                    ...state.menuForm, quantity: action.payload
                 }
             }
         default:
-            return {
-                ...state
-            }
+            return {...state}
     }
 }

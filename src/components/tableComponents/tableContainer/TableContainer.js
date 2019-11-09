@@ -126,7 +126,7 @@ class TableContainer extends Component {
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={this.handleButtonSubmit}>Save changes</button>
+                                <button type="button" className="btn btn-primary" onClick={this.handleButtonSubmit} data-dismiss="modal">Save changes</button>
                             </div>
                         </div>
                     </div>

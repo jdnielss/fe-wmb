@@ -13,23 +13,11 @@ class MenuTableContainer extends Component {
                         <form className="user">
                             <div className="form-group">
                                 <input type="email" className="form-control form-control-user" id="exampleInputEmail"
-                                       placeholder="Email Address"/>
+                                       placeholder="PIC Name"/>
                             </div>
                             <div className="form-group">
                                 <input type="email" className="form-control form-control-user" id="exampleInputEmail"
-                                       placeholder="Email Address"/>
-                            </div>
-                            <div className="form-group">
-                                <input type="email" className="form-control form-control-user" id="exampleInputEmail"
-                                       placeholder="Email Address"/>
-                            </div>
-                            <div className="form-group">
-                                <input type="email" className="form-control form-control-user" id="exampleInputEmail"
-                                       placeholder="Email Address"/>
-                            </div>
-                            <div className="form-group">
-                                <input type="email" className="form-control form-control-user" id="exampleInputEmail"
-                                       placeholder="Email Address"/>
+                                       placeholder="Capacity Customer"/>
                             </div>
                             <div className="form-group">
                                 <select id="inputState" className="form-control">
@@ -37,7 +25,7 @@ class MenuTableContainer extends Component {
                                     <option>...</option>
                                 </select>
                             </div>
-                            <div>
+                            <div className="form-group col-md-4">
                                 <button className="btn-order btn btn-primary btn-user">Order Menu</button>
                             </div>
                             <button className="btn btn-primary btn-block btn-user">ORDER</button>
