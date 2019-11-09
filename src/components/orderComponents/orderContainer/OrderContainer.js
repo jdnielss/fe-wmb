@@ -11,22 +11,41 @@ class MenuTableContainer extends Component {
                     </div>
                     <div className="card-body">
                         <form className="user">
-                            <div className="form-group">
-                                <input type="email" className="form-control form-control-user" id="exampleInputEmail"
-                                       placeholder="PIC Name"/>
+                            <div className="form-group row">
+                                <div className="form-group col-md-12">
+                                    <label htmlFor="PIC Name">PIC Name</label>
+                                    <input type="text" className="form-control" />
+                                </div>
                             </div>
-                            <div className="form-group">
-                                <input type="email" className="form-control form-control-user" id="exampleInputEmail"
-                                       placeholder="Capacity Customer"/>
+                            <div className="form-group row">
+                                <div className="form-group col-md-12">
+                                    <label htmlFor="PIC Name">Customer Capacity</label>
+                                    <input type="number" className="form-control" />
+                                </div>
                             </div>
-                            <div className="form-group">
-                                <select id="inputState" className="form-control">
-                                    <option selected>Available Table</option>
-                                    <option>...</option>
-                                </select>
+                            <div className="form-group row">
+                                <div className="col-md-12">
+                                    <select id="inputState" className="form-control">
+                                        <option selected>Available Table</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div className="form-group col-md-4">
+                            <div >
                                 <button className="btn-order btn btn-primary btn-user">Order Menu</button>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="inputState">FOOD</label>
+                                    <select id="inputState" className="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="inputCity">Quantity</label>
+                                    <input type="number" className="form-control" id="inputCity"/>
+                                </div>
                             </div>
                             <button className="btn btn-primary btn-block btn-user">ORDER</button>
 
