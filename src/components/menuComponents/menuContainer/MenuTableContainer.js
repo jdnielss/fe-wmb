@@ -5,7 +5,6 @@ import {fetchDataMenu, saveFoodWithImage} from "../menuService/MenuService";
 import MenuTable from "../MenuTable";
 import {status1, status2} from "../../tableComponents/constants/TableConstanta";
 import {
-    handleInputMenu,
     fetchingSuccess,
     handleInputPrice,
     handleInputQuantity,
@@ -32,7 +31,7 @@ class MenuTableContainer extends Component {
         this.props.dispatch({...fetchingSuccess, payload:resultData})
         console.log(resultData, 'Data Menu')
     }
-    handleFoodName = (event) =>{
+    handleInputFoodName = (event) =>{
         let data = event.target.value
         this.props.dispatch({...handleInputMenuName, payload: data})
     }
@@ -59,8 +58,8 @@ class MenuTableContainer extends Component {
     }
 
     render() {
-        console.log(this.props.addMenu.menuForm, 'menuform')
-        console.log(this.state.foodPicture,'ini images')
+        console.log(this.props, 'menuform')
+        // console.log(this.state.foodPicture,'ini images')
         return (
             <div className="container-fluid">
                 <div className="btn-add-table">
@@ -82,7 +81,7 @@ class MenuTableContainer extends Component {
                                 <form className="user">
                                     <div className="form-group">
                                         <input type="text" className="form-control"
-                                               placeholder="Food Name" onChange={this.handleFoodName} required={true}/>
+                                               placeholder="Name Food" onChange={this.handleInputFoodName}/>
                                     </div>
                                     <div className="form-group">
                                         <input type="number" className="form-control"
@@ -105,7 +104,7 @@ class MenuTableContainer extends Component {
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={this.handleSubmitMenu}>Save changes</button>
+                                <button type="button" className="btn btn-primary" onClick={this.handleSubmitMenu} data-dismis="modal">Save changes</button>
                             </div>
                         </div>
                     </div>

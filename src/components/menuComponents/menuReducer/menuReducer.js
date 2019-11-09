@@ -1,6 +1,6 @@
 const dataMenu = {
     fetchResultMenu: [],
-    menuForm: {
+    menuFormData: {
         foodName: '',
         typeFood: '',
         price: '',
@@ -17,32 +17,31 @@ export default function addMenu(state=dataMenu, action){
             }
         case 'HANDLE_FOOD_NAME':
             return {
-                ...state,
-                menuForm: {
-                    ...state.menuForm, foodName: action.payload
+                ...state, menuFormData: {
+                    ...state.menuFormData, foodName: action.payload
                 }
             }
         case 'HANDLE_TYPE_FOOD':
             return {
-                ...state,
-                menuForm: {
-                    ...state.menuForm, typeFood: action.payload
+                ...state, menuFormData: {
+                    ...state.menuFormData, typeFood: action.payload
                 }
             }
         case 'HANDLE_PRICE_FOOD':
             return {
-                ...state,
-                menuForm: {
-                    ...state.menuForm, price: action.payload
+                ...state, menuFormData: {
+                    ...state.menuFormData, price: action.payload
                 }
             }
         case 'HANDLE_QUANTITY_FOOD':
             return {
-                ...state,
-                menuForm: {
-                    ...state, quantity: action.payload
+                ...state, menuFormData: {
+                    ...state.menuFormData, quantity: action.payload
                 }
             }
+        default:
+            return {
+                ...state
+            }
     }
-    return {...state}
 }
