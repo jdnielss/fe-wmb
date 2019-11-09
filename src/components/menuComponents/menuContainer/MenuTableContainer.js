@@ -3,9 +3,7 @@ import {connect} from 'react-redux'
 import '../menuAssets/MenuTable.scss'
 import {fetchDataMenu, saveFoodWithImage} from "../menuService/MenuService";
 import MenuTable from "../MenuTable";
-import {status1, status2} from "../../tableComponents/constants/TableConstanta";
 import {
-    handleInputMenu,
     fetchingSuccess,
     handleInputPrice,
     handleInputQuantity,
@@ -52,8 +50,7 @@ class MenuTableContainer extends Component {
         let images=event.target.files[0]
         this.setState({foodPicture:images})
     }
-    handleSubmitMenu = (event) => {
-        event.preventDefault()
+    handleSubmitMenu = () => {
         saveFoodWithImage(this.props.addMenu.menuForm,this.state.foodPicture)
         this.fetchDataMenu()
     }
