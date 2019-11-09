@@ -17,11 +17,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     width: '20%',
       height: '15%',
-<<<<<<< HEAD
-    margin: 10
-=======
     margin: 10,
->>>>>>> 05003d46d2967ec251bda34fced31b99fc0c6150
   },
   media: {
       display: 'inline-block',
