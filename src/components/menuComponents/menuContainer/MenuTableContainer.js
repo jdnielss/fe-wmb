@@ -38,7 +38,7 @@ class MenuTableContainer extends Component {
     }
 
     render() {
-        console.log(this.props, 'props')
+        console.log(this.props.addMenu.menuForm, 'menuform')
         return (
             <div className="container-fluid">
                 <div className="btn-add-table">
@@ -78,7 +78,7 @@ class MenuTableContainer extends Component {
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <input type="file" className="form-control-file" onChange={this.handleTableNumber} required={true}/>
+                                        <input type="file" className="form-control-file" name="file" onChange={this.handleTableNumber} required={true}/>
                                     </div>
                                 </form>
                             </div>

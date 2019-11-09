@@ -4,8 +4,7 @@ const dataMenu = {
         foodName: '',
         typeFood: '',
         price: '',
-        quantity: '',
-        imageFile: ''
+        quantity: ''
     }
 }
 
@@ -20,21 +19,21 @@ export default function addMenu(state=dataMenu, action){
             return {
                 ...state,
                 menuForm: {
-                    ...state, foodName: action.payload
+                    ...state.menuForm, foodName: action.payload
                 }
             }
         case 'HANDLE_TYPE_FOOD':
             return {
                 ...state,
                 menuForm: {
-                    ...state, typeFood: action.payload
+                    ...state.menuForm, typeFood: action.payload
                 }
             }
         case 'HANDLE_PRICE_FOOD':
             return {
                 ...state,
                 menuForm: {
-                    ...state, price: action.payload
+                    ...state.menuForm, price: action.payload
                 }
             }
         case 'HANDLE_QUANTITY_FOOD':
