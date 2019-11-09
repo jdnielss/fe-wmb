@@ -50,15 +50,13 @@ class MenuTableContainer extends Component {
         let images=event.target.files[0]
         this.setState({foodPicture:images})
     }
-    handleSubmitMenu = () => {
+    handleSubmitMenu = (event) => {
+        event.preventDefault()
         saveFoodWithImage(this.props.addMenu.menuForm,this.state.foodPicture)
-        setInterval(this.fetchDataMenu(),100 )
         this.fetchDataMenu()
     }
 
     render() {
-        console.log(this.props, 'menuform')
-        // console.log(this.state.foodPicture,'ini images')
         return (
             <div className="container-fluid">
                 <div className="btn-add-table">
