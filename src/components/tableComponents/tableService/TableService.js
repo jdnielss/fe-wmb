@@ -1,5 +1,5 @@
 export async function fetchDataTable(pagination){
-    const data = await fetch(`http://localhost:9090/getTable?size=12&page=${pagination}`, {method:'GET',})
+    const data = await fetch(`http://10.10.13.150:9090/getTable?size=12&page=${pagination}`, {method:'GET',})
         .then((response) => {
             console.log(response)
             return response.json()
@@ -7,7 +7,7 @@ export async function fetchDataTable(pagination){
     return data;
 }
 export async function saveDataTable(dataTable) {
-    return await fetch('http://localhost:9090/table', {
+    return await fetch('http://10.10.13.150:9090/table', {
         method: 'POST',
         headers: {
             Accept: 'application/json',

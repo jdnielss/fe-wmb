@@ -9,5 +9,13 @@ describe('Header Component', () => {
             const wrapper = shallow(<Header/>)
             expect(wrapper.find('div'))
         });
+        it('should have a one nav', () => {
+            const wrapper = shallow(<Header/>)
+            expect(wrapper.find('div').children('nav'))
+        });
+        it('should have one ul', () => {
+            const wrapper = shallow(<Header/>)
+            expect(wrapper.find('div').children('nav').children('ul'))
+        });
     });
 })

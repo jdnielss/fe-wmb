@@ -1,5 +1,5 @@
 export async function fetchDataMenu(){
-    const data = await fetch('http://localhost:9090/food', {method:'GET',})
+    const data = await fetch('http://10.10.13.150:9090/food', {method:'GET',})
         .then((response) => {
             console.log(response)
             return response.json()
@@ -8,7 +8,7 @@ export async function fetchDataMenu(){
     return data;
 }
 export async function saveDataMenu(dataMenu) {
-    return await fetch('http://localhost:9090/food', {
+    return await fetch('http://10.10.13.150:9090/food', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -27,7 +27,7 @@ export async function saveFoodWithImage(foodFormData, foodImage){
     data.append('file', foodImage)
     data.append('foodFormData', dataMenu)
 
-    fetch("http://localhost:9090/saveFood", {
+    fetch("http://10.10.13.150:9090/saveFood", {
         method: 'POST',
         body: data,
         mode: "no-cors",
