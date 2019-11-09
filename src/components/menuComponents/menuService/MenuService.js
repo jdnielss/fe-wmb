@@ -20,3 +20,17 @@ export async function saveDataMenu(dataMenu) {
             return res.json()
         }).catch(err => err);
 }
+
+export async function saveFoodImage(foodFormData, imagefile){
+    const data = new FormData();
+    let dataMenu = JSON.stringify(foodFormData)
+    data.append('file', imagefile)
+    data.append('artist', dataMenu)
+
+    fetch("http://localhost:9090/saveFood", {
+        method: 'POST',
+        body: data,
+        mode: "no-cors",
+    });
+    return data ;
+}

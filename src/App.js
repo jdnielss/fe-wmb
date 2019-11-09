@@ -9,6 +9,8 @@ import Header from "./components/sidebarComponents/Header";
 import reducer from './components/combineReducer/CombineReducers'
 import MenuContainer from "./components/menuComponents/menuContainer/MenuCardContainer";
 import MenuTableContainer from "./components/menuComponents/menuContainer/MenuTableContainer";
+import OrderContainer from "./components/orderComponents/orderContainer/OrderContainer";
+import MenuCard from "./components/menuComponents/MenuCard";
 
 class App extends Component {
     render() {
@@ -28,6 +30,7 @@ class App extends Component {
                                             </Route>
                                             <Route path="/menu"><MenuContainer/></Route>
                                             <Route path="/menu-table"><MenuTableContainer/></Route>
+                                            <Route path="/order"><OrderContainer/></Route>
                                         </Provider>
                                     </Switch>
                                 </div>

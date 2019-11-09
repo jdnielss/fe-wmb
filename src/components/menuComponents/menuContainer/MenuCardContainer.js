@@ -3,7 +3,9 @@ import '../menuAssets/MenuTable.scss'
 import {fetchDataMenu} from "../menuService/MenuService";
 import {connect} from 'react-redux'
 import {fetchingSuccess} from "../constants/MenuConstanta";
-
+import MenuCard from "../MenuCard";
+import '../menuAssets/MenuTable.scss'
+import Grid from "@material-ui/core/Grid";
 class MenuCardContainer extends Component {
     componentDidMount() {
         this.fetchingData()
@@ -15,15 +17,14 @@ class MenuCardContainer extends Component {
         this.props.dispatch({...fetchingSuccess, payload:resultData})
     }
     render() {
-        console.log(this.props)
         return (
-            <div>
+            <Grid container spacing={5} alignItems="center">
                 {
                     this.props.addMenu.fetchResultMenu.map((element, index) => {
-                        return <h1>{element.foodName}</h1>
+                        return <MenuCard dataMenu={element}/>
                     })
                 }
-            </div>
+            </Grid>
         );
     }
 }

@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 import '../../App.css'
 import TableIcon from '@material-ui/icons/TableChart'
 import HomeIcon from '@material-ui/icons/HomeRounded'
+import HistoryIcon from '@material-ui/icons/History'
+import OrderIcon from  '@material-ui/icons/ShoppingBasket'
 class Sidebar extends Component {
     render() {
         return (
@@ -27,6 +29,13 @@ class Sidebar extends Component {
                       <TableIcon/><span className="text-uppercase"> Table</span>
                     </Link>
                   </li>
+                  <hr className="sidebar-divider my-0"/>
+
+                  <li className="nav-item active">
+                      <Link to="/order" className="nav-link">
+                          <OrderIcon/><span className="text-uppercase"> Order</span>
+                      </Link>
+                  </li>
 
                   <li className="nav-item">
                   <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -49,6 +58,11 @@ class Sidebar extends Component {
                       </div>
                   </div>
               </li>
+                  <li className="nav-item active">
+                      <Link to="/history" className="nav-link">
+                          <HistoryIcon/><span className="text-uppercase"> Transaction History</span>
+                      </Link>
+                  </li>
 
               </ul>
         );

@@ -12,9 +12,7 @@ import {
 } from '../constants/TableConstanta'
 import Grid from '@material-ui/core/Grid'
 import AddTable from '@material-ui/icons/AddBox'
-import TableComponent from '../TableCard'
-const required = value => value ? undefined : 'Required'
-
+import TableCard from '../TableCard'
 
 class TableContainer extends Component {
     constructor(props){
@@ -31,7 +29,6 @@ class TableContainer extends Component {
 
     componentDidMount(){
         this.fetchingData(0);
-        console.log(this.fetchingData)
     }
 
     fetchingData = async (pageNumbers) => {
@@ -59,28 +56,30 @@ class TableContainer extends Component {
     }
     handleButtonSubmit=(event)=>{
         // let formdata= this.props.tableFormData
-        event.preventDefault()
+        // event.preventDefault()
         saveDataTable({...this.props.addTable.tableFormData});
+        setInterval(this.fetchingData(0), 100 )
         this.fetchingData(0);
+
+
     }
 
     render() {
         let dataTables, renderPageNumbers;
         if(this.state.fetchResult.content !== null){
-            dataTables = this.state.fetchResult.content.map((dataTables) => {
-                return <TableComponent dataTables={dataTables}/>
+            dataTables = this.state.fetchResult.content.map((dataTables, index) => {
+                return <TableCard dataTables={dataTables} key={index} number={index}/>
             })
+
         }
         const pageNumbers = [];
         if(this.state.total !== null){
             for(let i = 0; i <= Math.ceil(this.state.total / this.state.per_page -1); i++){
                 pageNumbers.push(i);
-                console.log('Data',pageNumbers)
             }
 
             renderPageNumbers = pageNumbers.map(numbers => {
                 let page = this.state.current_page === numbers ? 'active' : '';
-                console.log(pageNumbers + 'Data')
                 return(
                     <span key={numbers} className={page} onClick={() => this.fetchingData(numbers)}>
                             {numbers+1}

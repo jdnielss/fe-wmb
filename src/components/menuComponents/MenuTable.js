@@ -16,6 +16,7 @@ class MenuTableContainer extends Component {
                                 <tr>
                                     <th>Food</th>
                                     <th>Quantity</th>
+                                    <th>Type Food</th>
                                     <th>Price</th>
                                     <th>Action</th>
                                 </tr>
@@ -28,6 +29,7 @@ class MenuTableContainer extends Component {
                                                 <td>{element.foodName}</td>
                                                 <td>{element.quantity}</td>
                                                 <td>{element.typeFood}</td>
+                                                <td>Rp. {element.price}</td>
                                                 <td>
                                                     <span className="btn-table"><button className="btn btn-primary btn-sm">Update</button></span>
                                                     <span className="btn-table"><button className="btn btn-danger btn-sm">Delete</button></span>
