@@ -20,21 +20,21 @@ class Sidebar extends Component {
 
                 <li className="nav-item active">
                     <Link to="/" className="nav-link">
-                        <HomeIcon/><span className="text-uppercase"> Home</span>
+                        <HomeIcon/><span className="text-uppercase">Home</span>
                     </Link>
                 </li>
                 <hr className="sidebar-divider my-0"/>
 
                 <li className="nav-item active">
                     <Link to="/table" className="nav-link">
-                        <TableIcon/><span className="text-uppercase"> Table</span>
+                        <TableIcon/><span className="text-uppercase">Table</span>
                     </Link>
                 </li>
                 <hr className="sidebar-divider my-0"/>
 
                 <li className="nav-item active">
                     <Link to="/order" className="nav-link">
-                        <OrderIcon/><span className="text-uppercase"> Order</span>
+                        <OrderIcon/><span className="text-uppercase">Order</span>
                     </Link>
                 </li>
 
@@ -50,12 +50,12 @@ class Sidebar extends Component {
                             <h6 className="collapse-header">Menu</h6>
                             <li className="nav-item active">
                                 <Link to="/menu" className="collapse-item">
-                                    <span> Menu List</span>
+                                    <span>Menu List</span>
                                 </Link>
                             </li>
                             <li className="nav-item active">
                                 <Link to="/menu-table" className="collapse-item">
-                                    <span> Menu Table</span>
+                                    <span>Menu Table</span>
                                 </Link>
                             </li>
                         </div>
@@ -63,7 +63,7 @@ class Sidebar extends Component {
                 </li>
                 <li className="nav-item active">
                     <Link to="/history" className="nav-link">
-                        <HistoryIcon/><span className="text-uppercase"> Transaction History</span>
+                        <HistoryIcon/><span className="text-uppercase">Transaction History</span>
                     </Link>
                 </li>
 
