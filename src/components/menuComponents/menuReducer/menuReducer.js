@@ -43,13 +43,6 @@ export default function addMenu(state=dataMenu, action){
                     ...state, quantity: action.payload
                 }
             }
-        case 'HANDLE_UPLOAD_IMAGE':
-            return {
-                ...state,
-                menuForm: {
-                    ...state, imageFile: action.payload
-                }
-            }
     }
     return {...state}
 }

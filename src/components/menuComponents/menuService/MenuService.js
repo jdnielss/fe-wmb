@@ -21,11 +21,11 @@ export async function saveDataMenu(dataMenu) {
         }).catch(err => err);
 }
 
-export async function saveFoodImage(foodFormData, imagefile){
+export async function saveFoodWithImage(foodFormData, foodImage){
     const data = new FormData();
     let dataMenu = JSON.stringify(foodFormData)
-    data.append('file', imagefile)
-    data.append('artist', dataMenu)
+    data.append('file', foodImage)
+    data.append('foodFormData', dataMenu)
 
     fetch("http://localhost:9090/saveFood", {
         method: 'POST',

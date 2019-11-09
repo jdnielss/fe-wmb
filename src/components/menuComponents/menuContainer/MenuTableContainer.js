@@ -1,12 +1,28 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import '../menuAssets/MenuTable.scss'
-import {fetchDataMenu, saveDataMenu} from "../menuService/MenuService";
+import {fetchDataMenu, saveFoodWithImage} from "../menuService/MenuService";
 import MenuTable from "../MenuTable";
 import {status1, status2} from "../../tableComponents/constants/TableConstanta";
-import {handleInputMenu, fetchingSuccess, handleInputPrice, handleInputQuantity, handleTypeFood, typeDrink, typeFood} from "../constants/MenuConstanta";
+import {
+    handleInputMenu,
+    fetchingSuccess,
+    handleInputPrice,
+    handleInputQuantity,
+    handleTypeFood,
+    typeDrink,
+    typeFood,
+    handleInputMenuName
+} from "../constants/MenuConstanta";
 
 class MenuTableContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            foodPicture:''
+        }
+    }
+
     componentDidMount() {
         this.fetchDataMenu()
     }
@@ -18,7 +34,7 @@ class MenuTableContainer extends Component {
     }
     handleFoodName = (event) =>{
         let data = event.target.value
-        this.props.dispatch({...handleInputMenu, payload: data})
+        this.props.dispatch({...handleInputMenuName, payload: data})
     }
     handleInputQuantity = (event) => {
         let data = event.target.value
@@ -28,17 +44,23 @@ class MenuTableContainer extends Component {
         let data = event.target.value
         this.props.dispatch({...handleInputPrice, payload: data})
     }
-    handleUploadImage = () => {
-
+    handleInputType = (event) =>{
+        let data = event.target.value
+        this.props.dispatch({...handleTypeFood, payload: data})
+    }
+    handleUploadImage = (event) => {
+        let images=event.target.files[0]
+        this.setState({foodPicture:images})
     }
     handleSubmitMenu = (event) => {
         event.preventDefault()
-        saveDataMenu({...this.props.addMenu.menuForm})
+        saveFoodWithImage(this.props.addMenu.menuForm,this.state.foodPicture)
         this.fetchDataMenu()
     }
 
     render() {
         console.log(this.props.addMenu.menuForm, 'menuform')
+        console.log(this.state.foodPicture,'ini images')
         return (
             <div className="container-fluid">
                 <div className="btn-add-table">
@@ -60,30 +82,30 @@ class MenuTableContainer extends Component {
                                 <form className="user">
                                     <div className="form-group">
                                         <input type="text" className="form-control"
-                                               placeholder="Food Name" onChange={this.handleTableNumber} required={true}/>
+                                               placeholder="Food Name" onChange={this.handleFoodName} required={true}/>
                                     </div>
                                     <div className="form-group">
                                         <input type="number" className="form-control"
-                                                placeholder="Quantity" onChange={this.handleTableCapacity}/>
+                                                placeholder="Quantity" onChange={this.handleInputQuantity}/>
                                     </div>
                                     <div className="form-group">
                                         <input type="number" className="form-control"
-                                                placeholder="Price" onChange={this.handleTableCapacity}/>
+                                                placeholder="Price" onChange={this.handleInputPrice}/>
                                     </div>
                                     <div className="form-group">
-                                        <select name="selectStatus" id="selectStatus" className="custom-select custom-select-md mb-3" onChange={this.handleTableStatus}>
+                                        <select name="selectStatus" id="selectStatus" className="custom-select custom-select-md mb-3" onChange={this.handleInputType}>
                                             <option value="null">TYPE FOOD</option>
-                                            <option value={status1}>FOOD</option>
-                                            <option value={status2}>DRINK</option>
+                                            <option value={typeFood}>FOOD</option>
+                                            <option value={typeDrink}>DRINK</option>
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <input type="file" className="form-control-file" name="file" onChange={this.handleTableNumber} required={true}/>
+                                        <input type="file" className="form-control-file" name="file" onChange={this.handleUploadImage} required={true}/>
                                     </div>
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={this.handleButtonSubmit}>Save changes</button>
+                                <button type="button" className="btn btn-primary" onClick={this.handleSubmitMenu}>Save changes</button>
                             </div>
                         </div>
                     </div>
