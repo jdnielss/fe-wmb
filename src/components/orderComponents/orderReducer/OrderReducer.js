@@ -41,16 +41,28 @@ export function addOrder(state = dataOrder, action) {
             return {
                 ...state, formOrder: {
                     ...state.formOrder,
-                    orderDetails: state.formOrder.orderDetails.concat([{foodId:'',quantity:null}])
+                    orderDetails: state.formOrder.orderDetails.concat([{foodId: '', quantity: null}])
                 }
             }
         case 'HANDLE_FOOD_ID':
             return {
-                ...state,formOrder: {
-                    ...state.formOrder,orderDetails:state.formOrder.orderDetails.map((element,index)=>{
-                        if (index ===action.index){
-                            return{...element,foodId:action.payload}
-                        }else{
+                ...state, formOrder: {
+                    ...state.formOrder, orderDetails: state.formOrder.orderDetails.map((element, index) => {
+                        if (index === action.index) {
+                            return {...element, foodId: action.payload}
+                        } else {
+                            return {...state}
+                        }
+                    })
+                }
+            }
+        case 'HANDLE_FOOD_QUANTITY':
+            return {
+                ...state, formOrder: {
+                    ...state.formOrder, orderDetails: state.formOrder.orderDetails.map((element, index) => {
+                        if (index === action.index) {
+                            return {...element, quantity: action.payload}
+                        } else {
                             return {...state}
                         }
                     })
