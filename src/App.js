@@ -10,8 +10,8 @@ import reducer from './components/combineReducer/CombineReducers'
 import MenuContainer from "./components/menuComponents/menuContainer/MenuCardContainer";
 import MenuTableContainer from "./components/menuComponents/menuContainer/MenuTableContainer";
 import OrderContainer from "./components/orderComponents/orderContainer/OrderContainer";
-import MenuCard from "./components/menuComponents/MenuCard";
-import OrderHistory from "./components/orderComponents/OrderHistory";
+
+import OrderHistoryContainer from "./components/orderComponents/orderContainer/OrderHistoryContainer";
 
 class App extends Component {
     render() {
@@ -32,7 +32,7 @@ class App extends Component {
                                             <Route path="/menu"><MenuContainer/></Route>
                                             <Route path="/menu-table"><MenuTableContainer/></Route>
                                             <Route path="/order"><OrderContainer/></Route>
-                                            <Route path="/order-history"><OrderHistory/></Route>
+                                            <Route path="/order-history"><OrderHistoryContainer/></Route>
                                         </Provider>
                                     </Switch>
                                 </div>

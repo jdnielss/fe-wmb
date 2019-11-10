@@ -18,25 +18,26 @@ class OrderHistory extends Component {
                                     <th>Customer Capacity</th>
                                     <th>Table</th>
                                     <th>Menu</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {/*{*/}
-                                {/*    this.props.dataMenu.map((element, index) =>{*/}
-                                {/*        return (*/}
-                                {/*            <tr>*/}
-                                {/*                <td>{element.foodName}</td>*/}
-                                {/*                <td>{element.quantity}</td>*/}
-                                {/*                <td>{element.typeFood}</td>*/}
-                                {/*                <td>Rp. {element.price}</td>*/}
-                                {/*                <td>*/}
-                                {/*                    <span className="btn-table"><button className="btn btn-primary btn-sm">Update</button></span>*/}
-                                {/*                    <span className="btn-table"><button className="btn btn-danger btn-sm">Delete</button></span>*/}
-                                {/*                </td>*/}
-                                {/*            </tr>*/}
-                                {/*        )*/}
-                                {/*    })*/}
-                                {/*}*/}
+                                {
+                                    this.props.dataOrder.map((element, index) =>{
+                                        return (
+                                            <tr>
+                                                <td>{element.picCustomer}</td>
+                                                <td>{element.manyCustomers}</td>
+                                                <td>{element.table.numberTable}</td>
+                                                <td>{element.orderDetails.foodName}</td>
+                                                <td>
+                                                    <span className="btn-table"><button className="btn btn-primary btn-sm">Update</button></span>
+                                                    <span className="btn-table"><button className="btn btn-danger btn-sm">Delete</button></span>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
                                 </tbody>
                             </table>
                         </div>

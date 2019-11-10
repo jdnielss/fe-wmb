@@ -58,8 +58,6 @@ class TableContainer extends Component {
         saveDataTable({...this.props.addTable.tableFormData});
         setInterval(this.fetchingData(0), 100 )
         this.fetchingData(0);
-
-
     }
 
     render() {
