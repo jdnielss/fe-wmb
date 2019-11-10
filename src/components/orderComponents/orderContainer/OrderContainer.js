@@ -6,6 +6,7 @@ import { fetchTableAvailable, fetchFoodMenu, PICHandler, customerQuantityHandler
 import {fetchDataMenu} from "../../menuComponents/menuService/MenuService";
 import {fetchDataTableAvailable} from "../../tableComponents/tableService/TableService";
 import {fetchDataOrder} from "../orderService/OrderService";
+import OrderMenu from "./OrderMenu";
 
 class MenuTableContainer extends Component {
 
@@ -39,6 +40,7 @@ class MenuTableContainer extends Component {
         this.props.dispatch({...foodQuantityHandler, payload:data})
     }
     handleAddMenu=(event)=>{
+        event.preventDefault()
         this.props.dispatch({...addOrderMenu})
     }
 
@@ -46,7 +48,7 @@ class MenuTableContainer extends Component {
 
 
     render() {
-        console.log(this.props, 'Order Container')
+        console.log(this.props.addOrder.formOrder, 'Order Container')
         return (
             <div className="container-fluid">
                 <div className="card shadow mb-4">
@@ -58,39 +60,31 @@ class MenuTableContainer extends Component {
                             <div className="form-group row">
                                 <div className="form-group col-md-12">
                                     <label htmlFor="PIC Name">PIC Name</label>
-                                    <input type="text" className="form-control" />
+                                    <input type="text" className="form-control"  onChange={this.handlePICName}/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <div className="form-group col-md-12">
                                     <label htmlFor="PIC Name">Customer Capacity</label>
-                                    <input type="number" className="form-control" />
+                                    <input type="number" className="form-control" onChange={this.handleCustomerQuantity}/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <div className="col-md-12">
-                                    <select id="inputState" className="form-control">
-                                        <option selected>Available Table</option>
-                                        <option>...</option>
+                                    <select id="inputState" className="form-control" onChange={this.handleTableId}>
+                                        <option selected value={null}>Available Table</option>
+                                        {this.props.addOrder.tableAvailable.map((element,index)=>{
+                                            return <option key={index} value={element.idTable}>No.Tble :{element.numberTable} , capacity: {element.capacity}</option>
+                                        })}
                                     </select>
                                 </div>
                             </div>
                             <div >
-                                <button className="btn-order btn btn-primary btn-user">Order Menu</button>
+                                <button className="btn-order btn btn-primary btn-user" onClick={this.handleAddMenu}>Order Menu</button>
                             </div>
-                            <div className="form-row">
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="inputState">FOOD</label>
-                                    <select id="inputState" className="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="inputCity">Quantity</label>
-                                    <input type="number" className="form-control" id="inputCity"/>
-                                </div>
-                            </div>
+                            {this.props.addOrder.formOrder.orderDetails.map((element,index)=>{
+                                return <OrderMenu  key={index} food={this.props.addOrder.dataMenu}/>
+                            })}
                             <button className="btn btn-primary btn-block btn-user">ORDER</button>
 
                         </form>
