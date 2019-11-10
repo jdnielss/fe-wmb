@@ -8,7 +8,7 @@ const dataOrder = {
         idTable: '',
         orderDetails: []
     }
-}
+};
 
 
 export default function addOrder(state = dataOrder, action) {

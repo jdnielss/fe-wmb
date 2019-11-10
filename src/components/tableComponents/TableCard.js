@@ -34,19 +34,21 @@ function TableCard(props) {
   const classes = useStyles();
   return (
           <Card className={classes.card}>
+              <div className="card border-left-primary shadow h-100 py-2">
+
               <CardHeader
                   avatar={
                       <Avatar aria-label="recipe" className={classes.avatar}>
                           {props.dataTables.numberTable}
                       </Avatar>
                   }
-                  action={
-                      <IconButton aria-label="settings">
-                          <ErrorOutlineIcon data-target="#modalMenu" data-toggle="modal" />
-                      </IconButton>
-                  }
+                  // action={
+                  //     <IconButton aria-label="settings">
+                  //         <ErrorOutlineIcon data-target="#modalMenu" data-toggle="modal" />
+                  //     </IconButton>
+                  // }
                   title={props.dataTables.status}
-                  subheader={props.dataTables.capacity}
+                  // subheader={props.dataTables.capacity}
               />
 
               <CardContent>
@@ -98,6 +100,7 @@ function TableCard(props) {
                           </div>
                       </div>
                   </div>
+              </div>
               </div>
           </Card>
 
