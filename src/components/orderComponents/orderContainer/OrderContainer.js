@@ -2,11 +2,20 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import '../orderAssets/Custom-Order.scss'
 
-import { fetchTableAvailable, fetchFoodMenu, PICHandler, customerQuantityHandler, tableIdHandler, addOrderMenu, foodIdHandler, foodQuantityHandler, fetchOrder} from "../constants/OrderAction";
+import {
+    fetchTableAvailable,
+    fetchFoodMenu,
+    PICHandler,
+    customerQuantityHandler,
+    tableIdHandler,
+    addOrderMenu,
+    foodIdHandler,
+    foodQuantityHandler,
+    fetchOrder
+} from "../constants/OrderAction";
 import {fetchDataMenu} from "../../menuComponents/menuService/MenuService";
 import {fetchDataTableAvailable} from "../../tableComponents/tableService/TableService";
-import {fetchDataOrder} from "../orderService/OrderService";
-import OrderMenu from "./OrderMenu";
+import {fetchDataOrder, saveDataOrder} from "../orderService/OrderService";
 
 class MenuTableContainer extends Component {
 
@@ -16,35 +25,34 @@ class MenuTableContainer extends Component {
 
     fetchingData = async () => {
         const resultDataMenu = await fetchDataMenu()
-        this.props.dispatch({...fetchFoodMenu, payload:resultDataMenu})
+        this.props.dispatch({...fetchFoodMenu, payload: resultDataMenu})
         const resultDataTableAvailable = await fetchDataTableAvailable()
-        this.props.dispatch({...fetchTableAvailable, payload:resultDataTableAvailable})
+        this.props.dispatch({...fetchTableAvailable, payload: resultDataTableAvailable})
         const resultDataOrder = await fetchDataOrder()
-        this.props.dispatch({...fetchOrder, payload:resultDataOrder})
+        this.props.dispatch({...fetchOrder, payload: resultDataOrder})
     }
 
-    handlePICName = (event) =>{
+    handlePICName = (event) => {
         let data = event.target.value
         this.props.dispatch({...PICHandler, payload: data})
     }
-    handleCustomerQuantity=(event)=>{
+    handleCustomerQuantity = (event) => {
         let data = event.target.value
         this.props.dispatch({...customerQuantityHandler, payload: data})
     }
-    handleTableId=(event)=>{
+    handleTableId = (event) => {
         let data = event.target.value
-        this.props.dispatch({...tableIdHandler, payload:data})
+        this.props.dispatch({...tableIdHandler, payload: data})
     }
-    handleFoodQuantity=(event)=>{
-        let data = event.target.value
-        this.props.dispatch({...foodQuantityHandler, payload:data})
-    }
-    handleAddMenu=(event)=>{
+    handleAddMenu = (event) => {
         event.preventDefault()
         this.props.dispatch({...addOrderMenu})
     }
-
-
+    handleOrderSubmit =(event)=>{
+        event.preventDefault()
+        saveDataOrder(this.props.addOrder.formOrder)
+        this.fetchingData()
+    }
 
 
     render() {
@@ -60,7 +68,7 @@ class MenuTableContainer extends Component {
                             <div className="form-group row">
                                 <div className="form-group col-md-12">
                                     <label htmlFor="PIC Name">PIC Name</label>
-                                    <input type="text" className="form-control"  onChange={this.handlePICName}/>
+                                    <input type="text" className="form-control" onChange={this.handlePICName}/>
                                 </div>
                             </div>
                             <div className="form-group row">
@@ -73,19 +81,50 @@ class MenuTableContainer extends Component {
                                 <div className="col-md-12">
                                     <select id="inputState" className="form-control" onChange={this.handleTableId}>
                                         <option selected value={null}>Available Table</option>
-                                        {this.props.addOrder.tableAvailable.map((element,index)=>{
-                                            return <option key={index} value={element.idTable}>No.Tble :{element.numberTable} , capacity: {element.capacity}</option>
+                                        {this.props.addOrder.tableAvailable.map((element, index) => {
+                                            return <option key={index} value={element.idTable}>No.Tble
+                                                :{element.numberTable} , capacity: {element.capacity}</option>
                                         })}
                                     </select>
                                 </div>
                             </div>
-                            <div >
-                                <button className="btn-order btn btn-primary btn-user" onClick={this.handleAddMenu}>Order Menu</button>
+                            <div>
+                                <button className="btn-order btn btn-primary btn-user"
+                                        onClick={this.handleAddMenu}>Order Menu
+                                </button>
                             </div>
-                            {this.props.addOrder.formOrder.orderDetails.map((element,index)=>{
-                                return <OrderMenu  key={index} food={this.props.addOrder.dataMenu}/>
+                            {this.props.addOrder.formOrder.orderDetails.map((element, index) => {
+                                return <div className="form-row" key={index}>
+                                    <div className="form-group col-md-6">
+                                        <label htmlFor="inputState">FOOD</label>
+                                        <select id="inputState" className="form-control" onChange={(event) => {
+                                            this.props.dispatch({
+                                                ...foodIdHandler,
+                                                index: index,
+                                                payload: event.target.value
+                                            })
+                                        }}>
+                                            <option value={null} selected>Choose...</option>
+                                            {this.props.addOrder.dataMenu.map((element, index) => {
+                                                return <option value={element.idFood}
+                                                               key={index}>{element.foodName}</option>
+                                            })}
+                                        </select>
+                                    </div>
+                                    <div className="form-group col-md-6">
+                                        <label htmlFor="inputCity">Quantity</label>
+                                        <input type="number" className="form-control" id="inputCity"
+                                               onChange={(event) => {
+                                                   this.props.dispatch({
+                                                       ...foodQuantityHandler,
+                                                       index: index,
+                                                       payload: event.target.value
+                                                   })
+                                               }}/>
+                                    </div>
+                                </div>
                             })}
-                            <button className="btn btn-primary btn-block btn-user">ORDER</button>
+                            <button className="btn btn-primary btn-block btn-user" onClick={this.handleOrderSubmit}>ORDER</button>
 
                         </form>
                     </div>
@@ -97,8 +136,8 @@ class MenuTableContainer extends Component {
     }
 }
 
-const mapStateToProps = (state) =>{
-    return{
+const mapStateToProps = (state) => {
+    return {
         ...state
     }
 }

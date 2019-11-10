@@ -49,9 +49,9 @@ export default function addOrder(state = dataOrder, action) {
                 ...state, formOrder: {
                     ...state.formOrder, orderDetails: state.formOrder.orderDetails.map((element, index) => {
                         if (index === action.index) {
-                            return {...element, foodId: action.payload}
+                            return {...element,foodId:action.payload}
                         } else {
-                            return {...state}
+                            return {...element}
                         }
                     })
                 }
@@ -63,7 +63,7 @@ export default function addOrder(state = dataOrder, action) {
                         if (index === action.index) {
                             return {...element, quantity: action.payload}
                         } else {
-                            return {...state}
+                            return {...element}
                         }
                     })
                 }
