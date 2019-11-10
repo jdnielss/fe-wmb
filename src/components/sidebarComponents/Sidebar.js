@@ -20,23 +20,29 @@ class Sidebar extends Component {
 
                 <li className="nav-item active">
                     <Link to="/" className="nav-link">
-                        <HomeIcon/><span className="text-uppercase">Home</span>
+                        <HomeIcon/><span className="text-uppercase"> Home</span>
                     </Link>
                 </li>
                 <hr className="sidebar-divider my-0"/>
 
                 <li className="nav-item active">
                     <Link to="/table" className="nav-link">
-                        <TableIcon/><span className="text-uppercase">Table</span>
+                        <TableIcon/><span className="text-uppercase"> Table</span>
                     </Link>
                 </li>
                 <hr className="sidebar-divider my-0"/>
 
                 <li className="nav-item active">
                     <Link to="/order" className="nav-link">
-                        <OrderIcon/><span className="text-uppercase">Order</span>
+                        <OrderIcon/><span className="text-uppercase"> Order</span>
                     </Link>
                 </li>
+                <li className="nav-item active">
+                    <Link to="/order-history" className="nav-link">
+                        <HistoryIcon/><span className="text-uppercase"> Order History</span>
+                    </Link>
+                </li>
+                <hr className="sidebar-divider my-0"/>
 
                 <li className="nav-item">
                     <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -61,6 +67,7 @@ class Sidebar extends Component {
                         </div>
                     </div>
                 </li>
+                <hr className="sidebar-divider my-0"/>
                 <li className="nav-item active">
                     <Link to="/history" className="nav-link">
                         <HistoryIcon/><span className="text-uppercase">Transaction History</span>

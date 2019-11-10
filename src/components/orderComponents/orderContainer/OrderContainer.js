@@ -4,7 +4,6 @@ import '../orderAssets/Custom-Order.scss'
 
 import { fetchTableAvailable, fetchFoodMenu, PICHandler, customerQuantityHandler, tableIdHandler, addOrderMenu, foodIdHandler, foodQuantityHandler, fetchOrder} from "../constants/OrderAction";
 import {fetchDataMenu} from "../../menuComponents/menuService/MenuService";
-import {fetchingSuccess} from "../../menuComponents/constants/MenuConstanta";
 import {fetchDataTableAvailable} from "../../tableComponents/tableService/TableService";
 import {fetchDataOrder} from "../orderService/OrderService";
 
