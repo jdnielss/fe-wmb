@@ -19,3 +19,12 @@ export async function saveDataTable(dataTable) {
             return res.json()
         }).catch(err => err);
 }
+export async function fetchDataTableAvailable(){
+    const data = await fetch('http://10.10.13.150:9090/tableAvailable', {method:'GET',})
+        .then((response) => {
+            console.log(response)
+            return response.json()
+        })
+    console.log(data)
+    return data;
+}

@@ -11,7 +11,7 @@ const dataOrder = {
 }
 
 
-export function addOrder(state = dataOrder, action) {
+export default function addOrder(state = dataOrder, action) {
     switch (action.type) {
         case 'FETCH_ORDER_SUCCES':
             return {
