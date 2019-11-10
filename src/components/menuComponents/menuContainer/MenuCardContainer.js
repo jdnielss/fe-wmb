@@ -13,7 +13,6 @@ class MenuCardContainer extends Component {
 
     fetchingData = async () => {
         const resultData = await fetchDataMenu()
-        console.log('Data',resultData)
         this.props.dispatch({...fetchingSuccess, payload:resultData})
     }
     render() {

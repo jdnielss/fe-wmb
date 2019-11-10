@@ -129,7 +129,6 @@ class MenuTableContainer extends Component {
                         </form>
                     </div>
                 </div>
-
             </div>
 
         );

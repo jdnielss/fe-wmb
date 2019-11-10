@@ -54,9 +54,7 @@ class TableContainer extends Component {
         let data=event.target.value
         this.props.dispatch({...handleInputCapacity, payload: data})
     }
-    handleButtonSubmit=(event)=>{
-        // let formdata= this.props.tableFormData
-        // event.preventDefault()
+    handleButtonSubmit=()=>{
         saveDataTable({...this.props.addTable.tableFormData});
         setInterval(this.fetchingData(0), 100 )
         this.fetchingData(0);
@@ -91,8 +89,8 @@ class TableContainer extends Component {
         return (
             <div className="container-fluid">
                 <div className="custom-btn">
-                    <button className="btn btn-primary btn-circle" data-toggle="modal" data-target="#exampleModal">
-                        <AddTable/>
+                    <button className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <AddTable/> <span>Add Table</span>
                     </button>
                 </div>
                     {/*<AddTable data-toggle="modal" data-target="#exampleModal"/>*/}
