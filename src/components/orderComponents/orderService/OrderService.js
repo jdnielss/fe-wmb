@@ -9,7 +9,7 @@ export async function fetchDataOrder(){
 }
 
 export async function saveDataOrder(orderForm) {
-    return await fetch('http://10.10.13.150:9090/saveOrder', {
+    return await fetch('http://10.10.13.150:9090/order', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
