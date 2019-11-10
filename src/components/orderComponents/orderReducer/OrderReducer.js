@@ -13,7 +13,7 @@ const dataOrder = {
 
 export default function addOrder(state = dataOrder, action) {
     switch (action.type) {
-        case 'FETCH_ORDER_SUCCES':
+        case 'FETCH_ORDER_SUCCESS':
             return {
                 ...state, dataFetchOrder: action.payload
             }

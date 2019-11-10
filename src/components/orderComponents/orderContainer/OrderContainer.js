@@ -1,7 +1,51 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import '../orderAssets/Custom-Order.scss'
+
+import { fetchTableAvailable, fetchFoodMenu, PICHandler, customerQuantityHandler, tableIdHandler, addOrderMenu, foodIdHandler, foodQuantityHandler, fetchOrder} from "../constants/OrderAction";
+import {fetchDataMenu} from "../../menuComponents/menuService/MenuService";
+import {fetchingSuccess} from "../../menuComponents/constants/MenuConstanta";
+import {fetchDataTableAvailable} from "../../tableComponents/tableService/TableService";
+import {fetchDataOrder} from "../orderService/OrderService";
+
 class MenuTableContainer extends Component {
+
+    componentDidMount() {
+        this.fetchingData()
+    }
+
+    fetchingData = async () => {
+        const resultDataMenu = await fetchDataMenu()
+        this.props.dispatch({...fetchFoodMenu, payload:resultDataMenu})
+        const resultDataTableAvailable = await fetchDataTableAvailable()
+        this.props.dispatch({...fetchTableAvailable, payload:resultDataTableAvailable})
+        const resultDataOrder = await fetchDataOrder()
+        this.props.dispatch({...fetchOrder, payload:resultDataOrder})
+    }
+
+    handlePICName = (event) =>{
+        let data = event.target.value
+        this.props.dispatch({...PICHandler, payload: data})
+    }
+    handleCustomerQuantity=(event)=>{
+        let data = event.target.value
+        this.props.dispatch({...customerQuantityHandler, payload: data})
+    }
+    handleTableId=(event)=>{
+        let data = event.target.value
+        this.props.dispatch({...tableIdHandler, payload:data})
+    }
+    handleFoodQuantity=(event)=>{
+        let data = event.target.value
+        this.props.dispatch({...foodQuantityHandler, payload:data})
+    }
+    handleAddMenu=(event)=>{
+        this.props.dispatch({...addOrderMenu})
+    }
+
+
+
+
     render() {
         return (
             <div className="container-fluid">
@@ -59,4 +103,10 @@ class MenuTableContainer extends Component {
     }
 }
 
-export default connect()(MenuTableContainer)
+const mapStateToProps = (state) =>{
+    return{
+        ...state
+    }
+}
+
+export default connect(mapStateToProps)(MenuTableContainer)

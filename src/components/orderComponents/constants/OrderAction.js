@@ -1,4 +1,4 @@
-export const fetchOrder ={type:'FETCH_ORDER_SUCCES'};
+export const fetchOrder ={type:'FETCH_ORDER_SUCCESS'};
 export const fetchTableAvailable ={type:'FETCH_TABLE_AVAILABLE'};
 export const fetchFoodMenu ={type:'FETCH_DATA_MENU'};
 export const PICHandler ={type:'HANDLE_PIC_CUSTOMER'};
