@@ -47,6 +47,7 @@ class MenuTableContainer extends Component {
 
 
     render() {
+        console.log(this.props, 'Order Container')
         return (
             <div className="container-fluid">
                 <div className="card shadow mb-4">
