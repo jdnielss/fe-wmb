@@ -1,20 +1,20 @@
 const dataOrder = {
-    dataFetchOrder:[],
+    dataFetchOrder: [],
     tableAvailable: [],
     dataMenu: [],
     formOrder: {
         picCustomer: '',
         manyCustomers: null,
-        idTable:'',
-        orderDetails:[]
+        idTable: '',
+        orderDetails: []
     }
 }
 
 
-export function addOrder(state=dataOrder, action) {
+export function addOrder(state = dataOrder, action) {
     switch (action.type) {
         case 'FETCH_ORDER_SUCCES':
-            return{
+            return {
                 ...state, dataFetchOrder: action.payload
             }
         case 'FETCH_TABLE_AVAILABLE':
@@ -27,8 +27,37 @@ export function addOrder(state=dataOrder, action) {
             }
         case 'HANDLE_PIC_CUSTOMER':
             return {
-                ...state
+                ...state, formOrder: {...state.formOrder, picCustomer: action.payload}
             }
+        case'HANDLE_MANY_CUSTOMERS':
+            return {
+                ...state, formOrder: {...state.formOrder, manyCustomers: action.payload}
+            }
+        case 'HANDLE_ID_TABLE':
+            return {
+                ...state, formOrder: {...state.formOrder, idTable: action.payload}
+            }
+        case 'ADD_ORDERS':
+            return {
+                ...state, formOrder: {
+                    ...state.formOrder,
+                    orderDetails: state.formOrder.orderDetails.concat([{foodId:'',quantity:null}])
+                }
+            }
+        case 'HANDLE_FOOD_ID':
+            return {
+                ...state,formOrder: {
+                    ...state.formOrder,orderDetails:state.formOrder.orderDetails.map((element,index)=>{
+                        if (index ===action.index){
+                            return{...element,foodId:action.payload}
+                        }else{
+                            return {...state}
+                        }
+                    })
+                }
+            }
+        default:
+            return {...state}
     }
 
 }
