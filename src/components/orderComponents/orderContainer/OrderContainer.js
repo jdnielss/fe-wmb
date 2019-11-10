@@ -6,6 +6,7 @@ import { fetchTableAvailable, fetchFoodMenu, PICHandler, customerQuantityHandler
 import {fetchDataMenu} from "../../menuComponents/menuService/MenuService";
 import {fetchDataTableAvailable} from "../../tableComponents/tableService/TableService";
 import {fetchDataOrder} from "../orderService/OrderService";
+import OrderHistory from "../OrderHistory";
 
 class MenuTableContainer extends Component {
 
@@ -41,7 +42,9 @@ class MenuTableContainer extends Component {
     handleAddMenu=(event)=>{
         this.props.dispatch({...addOrderMenu})
     }
+    handleSubmitOrder=()=>{
 
+    }
 
 
 
@@ -58,13 +61,13 @@ class MenuTableContainer extends Component {
                             <div className="form-group row">
                                 <div className="form-group col-md-12">
                                     <label htmlFor="PIC Name">PIC Name</label>
-                                    <input type="text" className="form-control" />
+                                    <input type="text" className="form-control" onChange={this.handlePICName} />
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <div className="form-group col-md-12">
                                     <label htmlFor="PIC Name">Customer Capacity</label>
-                                    <input type="number" className="form-control" />
+                                    <input type="number" className="form-control" onChange={this.handleCustomerQuantity}/>
                                 </div>
                             </div>
                             <div className="form-group row">
@@ -96,7 +99,7 @@ class MenuTableContainer extends Component {
                         </form>
                     </div>
                 </div>
-
+                <OrderHistory dataOrder={this.props.addOrder.dataFetchOrder}/>
             </div>
 
         );
