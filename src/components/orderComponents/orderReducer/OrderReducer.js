@@ -37,7 +37,7 @@ export function addOrder(state = dataOrder, action) {
             return {
                 ...state, formOrder: {...state.formOrder, idTable: action.payload}
             }
-        case 'ADD_ORDERS':
+        case 'ADD_ORDER_MENU':
             return {
                 ...state, formOrder: {
                     ...state.formOrder,
