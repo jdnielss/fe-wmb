@@ -12,6 +12,7 @@ import MenuTableContainer from "./components/menuComponents/menuContainer/MenuTa
 import OrderContainer from "./components/orderComponents/orderContainer/OrderContainer";
 
 import OrderHistoryContainer from "./components/orderComponents/orderContainer/OrderHistoryContainer";
+import TransactionContainer from "./components/transactionComponents/transactionContainer/TransactionContainer";
 
 class App extends Component {
     render() {
@@ -32,7 +33,7 @@ class App extends Component {
                                             <Route path="/menu"><MenuContainer/></Route>
                                             <Route path="/menu-table"><MenuTableContainer/></Route>
                                             <Route path="/order"><OrderContainer/></Route>
-                                            <Route path="/order-history"><OrderHistoryContainer/></Route>
+                                            <Route path="/transaction"><TransactionContainer/></Route>
                                         </Provider>
                                     </Switch>
                                 </div>

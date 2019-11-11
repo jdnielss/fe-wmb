@@ -16,9 +16,10 @@ class OrderHistory extends Component {
                                 <tr>
                                     <th>PIC Name</th>
                                     <th>Customer Capacity</th>
-                                    <th>Table</th>
+                                    <th>No Table</th>
+                                    <th>Status Table</th>
                                     <th>Menu</th>
-                                    <th>Action</th>
+                                    <th>Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -29,12 +30,16 @@ class OrderHistory extends Component {
                                                 <td>{element.picCustomer}</td>
                                                 <td>{element.manyCustomers}</td>
                                                 <td>{element.table.numberTable}</td>
-                                                <td>{element.orderDetails.foodName}</td>
-                                                <td>
-                                                    <span className="btn-table"><button className="btn btn-primary btn-sm">Update</button></span>
-                                                    <span className="btn-table"><button className="btn btn-danger btn-sm">Delete</button></span>
-                                                </td>
+                                                <td>{element.table.status}</td>
+                                                <td>{element.orderDetails.map((element) => {
+                                                    return <ul>
+                                                        <span>{element.food.foodName}</span>
+                                                    </ul>
+                                                })}</td>
+                                                <td>Rp. {element.totalPrice}</td>
+
                                             </tr>
+
                                         )
                                     })
                                 }
@@ -43,7 +48,6 @@ class OrderHistory extends Component {
                         </div>
                     </div>
                 </div>
-
             </div>
 
         );

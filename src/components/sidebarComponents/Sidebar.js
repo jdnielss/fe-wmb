@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import '../../App.css'
 import TableIcon from '@material-ui/icons/TableChart'
-import HomeIcon from '@material-ui/icons/HomeRounded'
 import HistoryIcon from '@material-ui/icons/History'
-import OrderIcon from '@material-ui/icons/ShoppingBasket'
+import OrderIcon from '@material-ui/icons/ShoppingCart'
 
 class Sidebar extends Component {
     render() {
@@ -19,28 +18,28 @@ class Sidebar extends Component {
                         <div className="sidebar-brand-text mx-3">Warung Makan Bahari</div>
                     </a>
 
-                    <li className="nav-item active">
-                        <Link to="/" className="nav-link">
-                            <HomeIcon/><span className="text-uppercase"> Home</span>
-                        </Link>
-                    </li>
+                    {/*<li className="nav-item active">*/}
+                    {/*    <Link to="/" className="nav-link">*/}
+                    {/*        <HomeIcon/><span className="text-uppercase"> Home</span>*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
                     <hr className="sidebar-divider my-0"/>
 
                     <li className="nav-item active">
                         <Link to="/table" className="nav-link">
-                            <TableIcon/><span className="text-uppercase">Table</span>
+                            <TableIcon/><span className="text-uppercase"> Table</span>
                         </Link>
                     </li>
                     <hr className="sidebar-divider my-0"/>
 
                     <li className="nav-item active">
                         <Link to="/order" className="nav-link">
-                            <OrderIcon/><span className="text-uppercase">Order</span>
+                            <OrderIcon/><span className="text-uppercase"> Order</span>
                         </Link>
                     </li>
                     <li className="nav-item active">
-                        <Link to="/order-history" className="nav-link">
-                            <HistoryIcon/><span className="text-uppercase">Order History</span>
+                        <Link to="/transaction" className="nav-link">
+                            <HistoryIcon/><span className="text-uppercase"> Order History</span>
                         </Link>
                     </li>
                     <hr className="sidebar-divider my-0"/>
@@ -71,7 +70,7 @@ class Sidebar extends Component {
                     <hr className="sidebar-divider my-0"/>
                     <li className="nav-item active">
                         <Link to="/history" className="nav-link">
-                            <HistoryIcon/><span className="text-uppercase">Transaction History</span>
+                            <HistoryIcon/><span className="text-uppercase"> Transaction History</span>
                         </Link>
                     </li>
 

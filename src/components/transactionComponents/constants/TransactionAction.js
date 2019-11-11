@@ -1,0 +1,1 @@
+export const  fetchingDataTransaction = {type: 'FETCHING_TRANSACTION_SUCCESS'}
