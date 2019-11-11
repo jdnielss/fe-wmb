@@ -16,7 +16,6 @@ class OrderHistoryContainer extends Component {
     }
 
     render() {
-        console.log(this.props, 'kakaka')
         return (
             <div>
               <OrderHistory dataOrder={this.props.addOrder.dataFetchOrder}/>

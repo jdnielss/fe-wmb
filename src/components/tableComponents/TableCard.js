@@ -4,13 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
-import OrderTable from '@material-ui/icons/ShoppingCart'
 import {connect} from "react-redux";
 import {status1, status2} from "./constants/TableConstanta";
 
@@ -42,13 +38,7 @@ function TableCard(props) {
                           {props.dataTables.numberTable}
                       </Avatar>
                   }
-                  // action={
-                  //     <IconButton aria-label="settings">
-                  //         <ErrorOutlineIcon data-target="#modalMenu" data-toggle="modal" />
-                  //     </IconButton>
-                  // }
                   title={props.dataTables.status}
-                  // subheader={props.dataTables.capacity}
               />
 
               <CardContent>
