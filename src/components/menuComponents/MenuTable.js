@@ -1,9 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import './menuAssets/MenuTable.scss'
+import {typeDrink, typeFood, fetchingById} from "./constants/MenuConstanta";
+import {saveDataMenuById} from "./menuService/MenuService";
+import MenuUpdate from "./MenuUpdate";
 class MenuTableContainer extends Component {
 
+    fetchingById = async (id) =>{
+        const getMenuById = await saveDataMenuById(id)
+        this.props.dispatch({...fetchingById, payload:getMenuById})
+    }
+
     render() {
+        console.log(this.props, 'data Menu  deey Table')
         return (
             <div className="container-fluid">
                 <div className="card shadow mb-4">
@@ -32,23 +41,31 @@ class MenuTableContainer extends Component {
                                                 <td>{element.typeFood}</td>
                                                 <td>Rp. {element.price}</td>
                                                 <td>
-                                                    <span className="btn-table"><button className="btn btn-primary btn-sm">Update</button></span>
-                                                    <span className="btn-table"><button className="btn btn-danger btn-sm">Delete</button></span>
+                                                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#updateMenu" onClick={()=>{this.fetchingById(element.idFood)}}>
+                                                        Update
+                                                    </button>
                                                 </td>
                                             </tr>
                                         )
-                                    })
+                                    })  
                                 }
                                 </tbody>
                             </table>
+                            <MenuUpdate payload={this.props.addMenu}/>
                         </div>
                     </div>
                 </div>
-
             </div>
 
         );
     }
 }
 
-export default connect()(MenuTableContainer)
+
+const mapStateToProps=(state)=> {
+    return{
+        ...state
+    }
+}
+
+export default connect(mapStateToProps)(MenuTableContainer)

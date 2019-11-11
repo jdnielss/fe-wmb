@@ -5,7 +5,7 @@ const dataMenu = {
         price: null,
         quantity: null,
         foodName: ''
-    }
+    },
 }
 
 
@@ -39,6 +39,12 @@ export default function addMenu(state = dataMenu, action) {
                     ...state.menuForm, quantity: action.payload
                 }
             }
+        //    UPDATE
+        case 'HANDLER_ID':
+            return {
+                ...state, menuForm: {...action.payload}
+            }
+
         default:
             return {...state}
     }

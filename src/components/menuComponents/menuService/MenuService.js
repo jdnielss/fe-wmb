@@ -7,6 +7,14 @@ export async function fetchDataMenu(){
     console.log(data)
     return data;
 }
+export async function saveDataMenuById(idMenu){
+    const data = await fetch(`http://10.10.13.150:9090/food/${idMenu}`, {method:'GET',})
+        .then((response) => {
+            console.log(response)
+            return response.json()
+        })
+    return data;
+}
 export async function saveDataMenu(dataMenu) {
     return await fetch('http://10.10.13.150:9090/food', {
         method: 'POST',
