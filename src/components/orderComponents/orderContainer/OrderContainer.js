@@ -50,7 +50,7 @@ class MenuTableContainer extends Component {
     }
     handleOrderSubmit =(event)=>{
         event.preventDefault()
-        saveDataOrder(this.props.addOrder.formOrder)
+        saveDataOrder(this.props.formOrder)
         this.fetchingData()
     }
 
@@ -80,7 +80,7 @@ class MenuTableContainer extends Component {
                                 <div className="col-md-12">
                                     <select id="inputState" className="form-control" onChange={this.handleTableId}>
                                         <option selected value={null}>Available Table</option>
-                                        {this.props.addOrder.tableAvailable.map((element, index) => {
+                                        {this.props.tableAvailable.map((element, index) => {
                                             return <option key={index} value={element.idTable}>No.Tble
                                                 :{element.numberTable} , capacity: {element.capacity}</option>
                                         })}
@@ -92,7 +92,7 @@ class MenuTableContainer extends Component {
                                         onClick={this.handleAddMenu}>Order Menu
                                 </button>
                             </div>
-                            {this.props.addOrder.formOrder.orderDetails.map((element, index) => {
+                            {this.props.formOrder.orderDetails.map((element, index) => {
                                 return <div className="form-row" key={index}>
                                     <div className="form-group col-md-6">
                                         <label htmlFor="inputState">FOOD</label>
@@ -104,7 +104,7 @@ class MenuTableContainer extends Component {
                                             })
                                         }}>
                                             <option value={null} selected>Choose...</option>
-                                            {this.props.addOrder.dataMenu.map((element, index) => {
+                                            {this.props.dataMenu.map((element, index) => {
                                                 return <option value={element.idFood}
                                                                key={index}>{element.foodName}</option>
                                             })}

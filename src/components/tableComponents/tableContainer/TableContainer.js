@@ -56,7 +56,7 @@ class TableContainer extends Component {
         this.props.dispatch({...handleInputCapacity, payload: data})
     }
     handleButtonSubmit=()=>{
-        saveDataTable({...this.props.addTable.tableFormData});
+        saveDataTable({...this.props.tableFormData});
         setInterval(this.fetchingData(0), 100 )
         this.fetchingData(0);
     }
