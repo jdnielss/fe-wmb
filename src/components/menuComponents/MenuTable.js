@@ -12,6 +12,7 @@ class MenuTableContainer extends Component {
     }
 
     render() {
+        console.log(this.props, 'data Menu  deey Table')
         return (
             <div className="container-fluid">
                 <div className="card shadow mb-4">

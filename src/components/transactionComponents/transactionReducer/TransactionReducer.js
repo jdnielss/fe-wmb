@@ -12,7 +12,7 @@ const initialState = {
 
 }
 
-export default function purchasingOrder(state = initialState, action) {
+export default function paymentReducer(state = initialState, action) {
     switch (action.type) {
         case 'FETCHING_TRANSACTION_SUCCESS':
             return {

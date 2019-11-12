@@ -11,7 +11,7 @@ const dataOrder = {
 };
 
 
-export default function addOrder(state = dataOrder, action) {
+export default function orderReducer(state = dataOrder, action) {
     switch (action.type) {
         case 'FETCH_ORDER_SUCCESS':
             return {
