@@ -4,6 +4,9 @@ const dataTable = {
         numberTable: null,
         status: '',
         capacity: null
+    },
+    fetchTableById: {
+
     }
 }
 
@@ -14,6 +17,11 @@ export default function tableReducer(state = dataTable, action) {
             return {
                 ...state, fetchResult: action.payload
             }
+        case 'FETCHING_TABLE_BY_ID':
+                return {
+                    ...state,
+                    fetchTableById: action.payload
+                }
         case 'HANDLE_NO_TABLE':
             return {
                 ...state, tableFormData: {...state.tableFormData, numberTable: action.payload}

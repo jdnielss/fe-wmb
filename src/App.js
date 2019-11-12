@@ -9,11 +9,11 @@ import Header from "./components/sidebarComponents/Header";
 import MenuContainer from "./components/menuComponents/menuContainer/MenuCardContainer";
 import MenuTableContainer from "./components/menuComponents/menuContainer/MenuTableContainer";
 import OrderContainer from "./components/orderComponents/orderContainer/OrderContainer";
-import TransactionContainer from "./components/transactionComponents/transactionContainer/TransactionContainer";
-import menuReducer from "./components/menuComponents/menuReducer/menuReducer";
-import tableReducer from "./components/tableComponents/tableReducer/TableReducer";
-import orderReducer from "./components/orderComponents/orderReducer/OrderReducer";
-import paymentReducer from "./components/transactionComponents/transactionReducer/TransactionReducer";
+import TransactionContainer from "./components/paymentComponents/TransactionContainer";
+import menuReducer from "./components/reducers/menuReducer";
+import tableReducer from "./components/reducers/TableReducer";
+import orderReducer from "./components/reducers/OrderReducer";
+import paymentReducer from "./components/reducers/PaymentReducer";
 
 class App extends Component {
     render() {

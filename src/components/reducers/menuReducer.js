@@ -17,7 +17,7 @@ const dataMenu = {
 }
 
 
-export default function addMenu(state = dataMenu, action) {
+export default function menuReducer(state = dataMenu, action) {
     switch (action.type) {
         case 'FETCHING_MENU_SUCCESS':
             return {

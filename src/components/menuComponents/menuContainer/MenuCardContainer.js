@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import '../menuAssets/MenuTable.scss'
-import {fetchDataMenu} from "../menuService/MenuService";
+import {fetchDataMenu} from "../../services/MenuService";
 import {connect} from 'react-redux'
-import {fetchingSuccess} from "../constants/MenuConstanta";
+import {fetchingSuccess} from "../MenuActions";
 import MenuCard from "../MenuCard";
 import '../menuAssets/MenuTable.scss'
 import Grid from "@material-ui/core/Grid";

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../tableAssets/TableCard.scss'
-import {fetchDataTable, saveDataTable} from '../tableService/TableService'
+import {fetchDataTable, fetchTableById, saveDataTable} from '../../services/TableService'
 import { connect } from 'react-redux'
 import {
     fetchingSuccess,
@@ -14,6 +14,7 @@ import Grid from '@material-ui/core/Grid'
 import AddTable from '@material-ui/icons/AddBox'
 import TableCard from '../TableCard'
 import TableCardDining from "../TableCardDining";
+import {fetchingById} from "../../menuComponents/MenuActions";
 
 class TableContainer extends Component {
     constructor(props){
@@ -57,7 +58,6 @@ class TableContainer extends Component {
     }
     handleButtonSubmit=()=>{
         saveDataTable({...this.props.tableFormData});
-        setInterval(this.fetchingData(0), 100 )
         this.fetchingData(0);
     }
 

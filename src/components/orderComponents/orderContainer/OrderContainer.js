@@ -13,9 +13,9 @@ import {
     foodQuantityHandler,
     fetchOrder
 } from "../constants/OrderAction";
-import {fetchDataMenu} from "../../menuComponents/menuService/MenuService";
-import {fetchDataTableAvailable} from "../../tableComponents/tableService/TableService";
-import {fetchDataOrder, saveDataOrder} from "../orderService/OrderService";
+import {fetchDataMenu} from "../../services/MenuService";
+import {fetchDataTableAvailable} from "../../services/TableService";
+import {fetchDataOrder, saveDataOrder} from "../../services/OrderService";
 
 class MenuTableContainer extends Component {
 

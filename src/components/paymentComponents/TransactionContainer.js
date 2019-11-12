@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {fetchDataTransaction, getDataTransactionDataById} from "../transactionService/TransactionService";
+import {fetchDataTransaction, getDataTransactionDataById} from "../services/PaymentService";
 import {connect} from 'react-redux'
-import {fetchingDataTransaction} from "../constants/TransactionAction";
-import TransactionForm from "../TransactionForm";
-import {typeDrink, typeFood} from "../../menuComponents/constants/MenuConstanta";
-import purchasingOrder from "../transactionReducer/TransactionReducer";
+import {fetchingDataTransaction} from "./PaymentActions";
+import TransactionForm from "./TransactionForm";
+import {typeDrink, typeFood} from "../menuComponents/MenuActions";
+import purchasingOrder from "../reducers/PaymentReducer";
 
 class TransactionContainer extends Component {
     componentDidMount() {

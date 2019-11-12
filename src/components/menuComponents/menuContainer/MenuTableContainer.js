@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import '../menuAssets/MenuTable.scss'
-import {fetchDataMenu, saveFoodWithImage} from "../menuService/MenuService";
+import {fetchDataMenu, saveFoodWithImage} from "../../services/MenuService";
 import MenuTable from "../MenuTable";
 import {
     fetchingSuccess,
@@ -11,7 +11,7 @@ import {
     typeDrink,
     typeFood,
     handleInputMenuName
-} from "../constants/MenuConstanta";
+} from "../MenuActions";
 
 class MenuTableContainer extends Component {
     constructor(props) {
