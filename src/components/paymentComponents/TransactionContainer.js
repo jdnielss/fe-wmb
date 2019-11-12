@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import {fetchDataTransaction, getDataTransactionDataById} from "../services/PaymentService";
 import {connect} from 'react-redux'
 import {fetchingDataTransaction} from "./PaymentActions";
-import TransactionForm from "./TransactionForm";
-import {typeDrink, typeFood} from "../menuComponents/MenuActions";
-import purchasingOrder from "../reducers/PaymentReducer";
 
 class TransactionContainer extends Component {
     componentDidMount() {
@@ -13,7 +10,6 @@ class TransactionContainer extends Component {
 
     fetchingData = async () => {
         const resultDataTransaction = await fetchDataTransaction()
-        console.log(resultDataTransaction, 'data Transaksi')
         this.props.dispatch({...fetchingDataTransaction, payload: resultDataTransaction})
     }
     fetchingTrxById = async (idTransaction) => {
@@ -22,7 +18,6 @@ class TransactionContainer extends Component {
     }
 
     render() {
-        console.log(this.props.fetchResultTransactionById.idTransaction)
         return (
             <div>
                 <div className="container-fluid">
@@ -47,15 +42,15 @@ class TransactionContainer extends Component {
                                     <tbody className="">
                                     {this.props.fetchResultTransaction.map((element, index) => {
                                         return <tr>
-                                            <td>{element.orderList.picCustomer}</td>
-                                            <td>{element.orderList.manyCustomers}</td>
-                                            <td>{element.orderList.table.numberTable}</td>
-                                            <td>{element.orderList.orderDetails.map((element, index) => {
+                                            <td key={index}>{element.orderList.picCustomer} </td>
+                                            <td key={index}>{element.orderList.manyCustomers}</td>
+                                            <td key={index}>{element.orderList.table.numberTable}</td>
+                                            <td key={index}>{element.orderList.orderDetails.map((element, index) => {
                                                 return <ul>
-                                                    <span>{element.food.foodName}</span>
+                                                    <span key={index}>{element.food.foodName}</span>
                                                 </ul>
                                             })}</td>
-                                            <td>{element.paymentStatus}</td>
+                                            <td key={index}>{element.paymentStatus}</td>
                                             <td>
                                                 <button className="btn btn-success" type="button" data-toggle="modal"
                                                         data-target="#transactionModal" onClick={() => {
@@ -90,7 +85,7 @@ class TransactionContainer extends Component {
                                                                 <input type="text"
                                                                        className="form-control"
                                                                        placeholder="Price" disabled
-                                                                       value={this.props.fetchResultTransactionById.orderList.picCustomer}/>
+                                                                       value={this.props.fetchResultTransactionById.orderList.picCustomer || ''}/>
                                                             </div>
                                                         </div>
 
@@ -101,7 +96,7 @@ class TransactionContainer extends Component {
                                                                 <input type="text"
                                                                        className="form-control"
                                                                        placeholder="Price" disabled
-                                                                       value={this.props.fetchResultTransactionById.total}/>
+                                                                       value={this.props.fetchResultTransactionById.total || ''}/>
                                                             </div>
                                                         </div>
                                                     </form>

@@ -17,12 +17,6 @@ class Sidebar extends Component {
                         </div>
                         <div className="sidebar-brand-text mx-3">Warung Makan Bahari</div>
                     </a>
-
-                    {/*<li className="nav-item active">*/}
-                    {/*    <Link to="/" className="nav-link">*/}
-                    {/*        <HomeIcon/><span className="text-uppercase"> Home</span>*/}
-                    {/*    </Link>*/}
-                    {/*</li>*/}
                     <hr className="sidebar-divider my-0"/>
 
                     <li className="nav-item active">

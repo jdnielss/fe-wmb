@@ -79,7 +79,7 @@ class MenuTableContainer extends Component {
                             <div className="form-group row">
                                 <div className="col-md-12">
                                     <select id="inputState" className="form-control" onChange={this.handleTableId}>
-                                        <option selected value={null}>Available Table</option>
+                                        <option selected defaultValue={null}>Available Table</option>
                                         {this.props.tableAvailable.map((element, index) => {
                                             return <option key={index} value={element.idTable}>No.Tble
                                                 :{element.numberTable} , capacity: {element.capacity}</option>
@@ -103,7 +103,7 @@ class MenuTableContainer extends Component {
                                                 payload: event.target.value
                                             })
                                         }}>
-                                            <option value={null} selected>Choose...</option>
+                                            <option defaultValue={null} selected>Choose...</option>
                                             {this.props.dataMenu.map((element, index) => {
                                                 return <option value={element.idFood}
                                                                key={index}>{element.foodName}</option>
