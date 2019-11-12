@@ -38,7 +38,6 @@ class TransactionForm extends Component {
                                         <button className="btn btn-success">PAY NOW</button>
                                     </td>
                                 </tr>
-
                                 </tbody>
                              </table>
                         </div>

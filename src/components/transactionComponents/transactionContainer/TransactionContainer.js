@@ -16,9 +16,9 @@ class TransactionContainer extends Component {
         console.log(resultDataTransaction, 'data Transaksi')
         this.props.dispatch({...fetchingDataTransaction, payload: resultDataTransaction})
     }
-    fetchingTrxById = async (idTransaction) =>{
+    fetchingTrxById = async (idTransaction) => {
         const gettrxById = await getDataTransactionDataById(idTransaction)
-        this.props.dispatch({type:'FETCHING_TRANSACTION_BY_ID_SUCCESS', payload:gettrxById})
+        this.props.dispatch({type: 'FETCHING_TRANSACTION_BY_ID_SUCCESS', payload: gettrxById})
     }
 
     render() {
@@ -58,7 +58,9 @@ class TransactionContainer extends Component {
                                             <td>{element.paymentStatus}</td>
                                             <td>
                                                 <button className="btn btn-success" type="button" data-toggle="modal"
-                                                        data-target="#transactionModal" onClick={()=>{this.fetchingTrxById(element.idTransaction)}}>PAY NOW
+                                                        data-target="#transactionModal" onClick={() => {
+                                                    this.fetchingTrxById(element.idTransaction)
+                                                }}>PAY NOW
                                                 </button>
                                             </td>
                                         </tr>
@@ -69,7 +71,7 @@ class TransactionContainer extends Component {
                                     <div className="modal fade" id="transactionModal" tabIndex="-1"
                                          role="dialog"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div className="modal-dialog " role="document">
+                                        <div className="modal-dialog modal-lg " role="document">
                                             <div className="modal-content">
                                                 <div className="modal-header">
                                                     <h5 className="modal-title"
@@ -81,19 +83,26 @@ class TransactionContainer extends Component {
                                                 </div>
                                                 <div className="modal-body">
                                                     <form className="user">
-                                                        <div className="form-group">
-                                                            <input type="text"
-                                                                   className="form-control"
-                                                                   placeholder="Price" value={this.props.purchasingOrder.fetchResultTransactionById.total}/>
+                                                        <div className="form-group row">
+                                                            <label htmlFor="staticEmail"
+                                                                   className="col-sm-2 col-form-label">PIC Name</label>
+                                                            <div className="col-sm-10">
+                                                                <input type="text"
+                                                                       className="form-control"
+                                                                       placeholder="Price" disabled
+                                                                       value={this.props.purchasingOrder.fetchResultTransactionById.orderList.picCustomer}/>
+                                                            </div>
                                                         </div>
-                                                        <div className="form-group">
-                                                            <select name="selectStatus"
-                                                                    id="selectStatus"
-                                                                    className="custom-select custom-select-md mb-3">
-                                                                <option value="null">TYPE FOOD</option>
-                                                                <option value={typeFood}>FOOD</option>
-                                                                <option value={typeDrink}>DRINK</option>
-                                                            </select>
+
+                                                        <div className="form-group row">
+                                                            <label htmlFor="staticEmail"
+                                                                   className="col-sm-2 col-form-label">Price</label>
+                                                            <div className="col-sm-10">
+                                                                <input type="text"
+                                                                       className="form-control"
+                                                                       placeholder="Price" disabled
+                                                                       value={this.props.purchasingOrder.fetchResultTransactionById.total}/>
+                                                            </div>
                                                         </div>
                                                     </form>
                                                 </div>
