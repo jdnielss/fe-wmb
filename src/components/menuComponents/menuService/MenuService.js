@@ -7,10 +7,10 @@ export async function fetchDataMenu(){
     console.log(data)
     return data;
 }
-export async function saveDataMenuById(idMenu){
-    const data = await fetch(`http://10.10.13.150:9090/food/${idMenu}`, {method:'GET',})
+export async function saveDataMenuById(idFood){
+    const data = await fetch(`http://10.10.13.150:9090/food/${idFood}`, {method:'GET',})
         .then((response) => {
-            console.log(response)
+            console.log(response, 'Respone SaveDataMenuById')
             return response.json()
         })
     return data;

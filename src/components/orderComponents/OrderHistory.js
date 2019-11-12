@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 class OrderHistory extends Component {
 
     render() {
+        console.log(this.props.dataOrder, 'aaaaaaaa')
         return (
             <div className="container-fluid">
                 <div className="card shadow mb-4">

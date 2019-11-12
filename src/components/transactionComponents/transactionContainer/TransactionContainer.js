@@ -18,11 +18,7 @@ class TransactionContainer extends Component {
         console.log(this.props)
         return (
             <div>
-                {
-                    this.props.purchasingOrder.fetchResultTransaction.map((element, index) => {
-                        return <TransactionForm dataTransaction={element} key={index}/>
-                    })
-                }
+                <TransactionForm dataTransaction={this.props.order.fetchResultTransaction}/>
             </div>
         );
     }
