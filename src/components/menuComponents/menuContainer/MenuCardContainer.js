@@ -19,7 +19,7 @@ class MenuCardContainer extends Component {
         return (
             <Grid container spacing={5} alignItems="center">
                 {
-                    this.props.addMenu.fetchResultMenu.map((element, index) => {
+                    this.props.fetchResultMenu.map((element, index) => {
                         return <MenuCard dataMenu={element}/>
                     })
                 }

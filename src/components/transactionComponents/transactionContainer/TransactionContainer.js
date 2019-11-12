@@ -22,7 +22,7 @@ class TransactionContainer extends Component {
     }
 
     render() {
-        console.log(this.props.purchasingOrder.fetchResultTransactionById.idTransaction)
+        console.log(this.props.fetchResultTransactionById.idTransaction)
         return (
             <div>
                 <div className="container-fluid">
@@ -45,7 +45,7 @@ class TransactionContainer extends Component {
                                     </tr>
                                     </thead>
                                     <tbody className="">
-                                    {this.props.purchasingOrder.fetchResultTransaction.map((element, index) => {
+                                    {this.props.fetchResultTransaction.map((element, index) => {
                                         return <tr>
                                             <td>{element.orderList.picCustomer}</td>
                                             <td>{element.orderList.manyCustomers}</td>
@@ -90,7 +90,7 @@ class TransactionContainer extends Component {
                                                                 <input type="text"
                                                                        className="form-control"
                                                                        placeholder="Price" disabled
-                                                                       value={this.props.purchasingOrder.fetchResultTransactionById.orderList.picCustomer}/>
+                                                                       value={this.props.fetchResultTransactionById.orderList.picCustomer}/>
                                                             </div>
                                                         </div>
 
@@ -101,7 +101,7 @@ class TransactionContainer extends Component {
                                                                 <input type="text"
                                                                        className="form-control"
                                                                        placeholder="Price" disabled
-                                                                       value={this.props.purchasingOrder.fetchResultTransactionById.total}/>
+                                                                       value={this.props.fetchResultTransactionById.total}/>
                                                             </div>
                                                         </div>
                                                     </form>

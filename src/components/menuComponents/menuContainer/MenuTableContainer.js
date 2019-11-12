@@ -52,7 +52,7 @@ class MenuTableContainer extends Component {
     }
     handleSubmitMenu = (event) => {
         event.preventDefault()
-        saveFoodWithImage(this.props.addMenu.menuForm,this.state.foodPicture)
+        saveFoodWithImage(this.props.menuForm,this.state.foodPicture)
         this.fetchDataMenu()
     }
 
@@ -106,7 +106,7 @@ class MenuTableContainer extends Component {
                         </div>
                     </div>
                 </div>
-                <MenuTable dataMenu={this.props.addMenu.fetchResultMenu}/>
+                <MenuTable dataMenu={this.props.fetchResultMenu}/>
             </div>
 
         );
