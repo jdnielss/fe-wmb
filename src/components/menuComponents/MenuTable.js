@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import './menuAssets/MenuTable.scss'
-import {fetchingById} from "./constants/MenuConstanta";
+import {typeDrink, typeFood, fetchingById} from "./constants/MenuConstanta";
 import {saveDataMenuById} from "./menuService/MenuService";
 import MenuUpdate from "./MenuUpdate";
 class MenuTableContainer extends Component {
 
-    fetchingById = async (idTransaction) =>{
-        const getMenuById = await saveDataMenuById(idTransaction)
+    fetchingById = async (id) =>{
+        const getMenuById = await saveDataMenuById(id)
         this.props.dispatch({...fetchingById, payload:getMenuById})
     }
 
     render() {
-        console.log(this.props, 'Menu table')
+        console.log(this.props, 'data Menu  deey Table')
         return (
             <div className="container-fluid">
                 <div className="card shadow mb-4">
@@ -51,7 +51,7 @@ class MenuTableContainer extends Component {
                                 }
                                 </tbody>
                             </table>
-                            <MenuUpdate updateMenu={this.props.addMenu.fetchResultMenu}/>
+                            <MenuUpdate menuUpdate={this.props.addMenu.menuUpdate}/>
                         </div>
                     </div>
                 </div>

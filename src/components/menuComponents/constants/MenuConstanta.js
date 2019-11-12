@@ -5,6 +5,7 @@ export const handleInputPrice = {type: 'HANDLE_PRICE_FOOD'};
 export const handleTypeFood = {type: 'HANDLE_TYPE_FOOD'};
 export const typeFood = "FOOD";
 export const typeDrink = "DRINK";
-export const fetchingById = {type: 'HANDLER_ID'};
+
+export const fetchingById = {type: 'HANDLER_FETCH_BY_ID'}
 
 

@@ -10,6 +10,8 @@ import reducer from './components/combineReducer/CombineReducers'
 import MenuContainer from "./components/menuComponents/menuContainer/MenuCardContainer";
 import MenuTableContainer from "./components/menuComponents/menuContainer/MenuTableContainer";
 import OrderContainer from "./components/orderComponents/orderContainer/OrderContainer";
+
+import OrderHistoryContainer from "./components/orderComponents/orderContainer/OrderHistoryContainer";
 import TransactionContainer from "./components/transactionComponents/transactionContainer/TransactionContainer";
 
 class App extends Component {

@@ -13,6 +13,7 @@ import {
 import Grid from '@material-ui/core/Grid'
 import AddTable from '@material-ui/icons/AddBox'
 import TableCard from '../TableCard'
+import TableCardDining from "../TableCardDining";
 
 class TableContainer extends Component {
     constructor(props){
@@ -64,7 +65,11 @@ class TableContainer extends Component {
         let dataTables, renderPageNumbers;
         if(this.state.fetchResult.content !== null){
             dataTables = this.state.fetchResult.content.map((dataTables, index) => {
-                return <TableCard dataTables={dataTables} key={index} number={index}/>
+                if (dataTables.status ==="AVAILABLE") {
+                    return <TableCard dataTables={dataTables} key={index} number={index}/>
+                }else if (dataTables.status ==="DINING"){
+                    return <TableCardDining dataTables={dataTables} key={index} number={index}/>
+                }
             })
 
         }

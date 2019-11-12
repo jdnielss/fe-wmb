@@ -1,12 +1,12 @@
 import React from 'react';
 import './tableAssets/TableCard.scss'
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import {red} from '@material-ui/core/colors';
+import { red } from '@material-ui/core/colors';
 import {connect} from "react-redux";
 import {status1, status2} from "./constants/TableConstanta";
 
@@ -26,11 +26,11 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function TableCard(props) {
+function TableCardDining(props) {
     const classes = useStyles();
     return (
         <Card className={classes.card}>
-            <div className="card border-left-primary shadow h-100 py-2">
+            <div className="card border-left-warning shadow h-100 py-2">
 
                 <CardHeader
                     avatar={
@@ -40,6 +40,7 @@ function TableCard(props) {
                     }
                     title={props.dataTables.status}
                 />
+
                 <CardContent>
                     <Typography variant="body2" color="textSecondary" component="p" onChange>
                         <b>Capacity : {props.dataTables.capacity}</b>
@@ -51,4 +52,4 @@ function TableCard(props) {
     );
 }
 
-export default connect()(TableCard)
+export default connect()(TableCardDining)
