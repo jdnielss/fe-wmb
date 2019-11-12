@@ -8,7 +8,7 @@ const dataTable = {
 }
 
 
-export default function addTable(state = dataTable, action) {
+export default function tableReducer(state = dataTable, action) {
     switch (action.type) {
         case 'FETCHING_TABLE_SUCCESS':
             return {
