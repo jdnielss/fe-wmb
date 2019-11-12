@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-import {fetchDataTransaction, getDataTransactionDataById} from "../transactionService/TransactionService";
+import {fetchDataTransaction, getDataTransactionDataById} from "../PaymentService/TransactionService";
 import {connect} from 'react-redux'
 import {fetchingDataTransaction} from "../constants/TransactionAction";
-import TransactionForm from "../TransactionForm";
-import {typeDrink, typeFood} from "../../menuComponents/constants/MenuConstanta";
-import purchasingOrder from "../transactionReducer/TransactionReducer";
 
 class TransactionContainer extends Component {
     componentDidMount() {
@@ -22,7 +19,7 @@ class TransactionContainer extends Component {
     }
 
     render() {
-        console.log(this.props.purchasingOrder.fetchResultTransactionById.idTransaction)
+        console.log(this.props.purchasingOrder.fetchResultTransactionById)
         return (
             <div>
                 <div className="container-fluid">
@@ -91,6 +88,16 @@ class TransactionContainer extends Component {
                                                                        className="form-control"
                                                                        placeholder="Price" disabled
                                                                        value={this.props.purchasingOrder.fetchResultTransactionById.orderList.picCustomer}/>
+                                                            </div>
+                                                        </div>
+                                                        <div className="form-group row">
+                                                            <label htmlFor="staticEmail"
+                                                                   className="col-sm-2 col-form-label">PIC Name</label>
+                                                            <div className="col-sm-10">
+                                                                <input type="text"
+                                                                       className="form-control"
+                                                                       placeholder="Price" disabled
+                                                                       value={this.props.purchasingOrder.fetchResultTransactionById.orderList}/>
                                                             </div>
                                                         </div>
 

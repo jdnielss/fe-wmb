@@ -12,7 +12,7 @@ import MenuTableContainer from "./components/menuComponents/menuContainer/MenuTa
 import OrderContainer from "./components/orderComponents/orderContainer/OrderContainer";
 
 import OrderHistoryContainer from "./components/orderComponents/orderContainer/OrderHistoryContainer";
-import TransactionContainer from "./components/transactionComponents/transactionContainer/TransactionContainer";
+import TransactionContainer from "./components/PaymentComponents/PaymentComponents/TransactionContainer";
 
 class App extends Component {
     render() {
