@@ -51,7 +51,7 @@ class MenuTableContainer extends Component {
                                 }
                                 </tbody>
                             </table>
-                            <MenuUpdate payload={this.props.addMenu}/>
+                            <MenuUpdate menuUpdate={this.props.addMenu.menuUpdate}/>
                         </div>
                     </div>
                 </div>

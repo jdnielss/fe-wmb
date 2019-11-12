@@ -6,6 +6,14 @@ const dataMenu = {
         quantity: null,
         foodName: ''
     },
+    menuUpdate: {
+        idFood:'',
+        typeFood: '',
+        price: null,
+        quantity: null,
+        foodName: ''
+
+    }
 }
 
 
@@ -13,7 +21,7 @@ export default function addMenu(state = dataMenu, action) {
     switch (action.type) {
         case 'FETCHING_MENU_SUCCESS':
             return {
-                ...state.fetchResultMenu, fetchResultMenu: action.payload
+                ...state,fetchResultMenu: action.payload
             };
         case 'HANDLE_FOOD_NAME':
             return {
@@ -40,9 +48,9 @@ export default function addMenu(state = dataMenu, action) {
                 }
             }
         //    UPDATE
-        case 'HANDLER_ID':
+        case 'HANDLER_FETCH_BY_ID':
             return {
-                ...state, menuForm: {...action.payload}
+                ...state, menuUpdate: {...action.payload}
             }
 
         default:

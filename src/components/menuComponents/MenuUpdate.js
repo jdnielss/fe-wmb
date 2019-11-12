@@ -3,7 +3,7 @@ import {typeDrink, typeFood} from "./constants/MenuConstanta";
 import {connect} from 'react-redux'
 class MenuUpdate extends Component {
     render() {
-        console.log(this.props.payload.menuForm);
+        console.log(this.props.addMenu.menuUpdate);
         return (
             <div className="modal fade" id="updateMenu" tabIndex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -18,9 +18,9 @@ class MenuUpdate extends Component {
                         <div className="modal-body">
                             <form className="user">
 
-                                {/*<div className="form-group">*/}
-                                {/*    <input type="text" className="form-control" value={this.props.addMenu.updateMenu.foodName}/>*/}
-                                {/*</div>*/}
+                                <div className="form-group">
+                                    <input type="text" className="form-control" value={this.props.menuUpdate}/>
+                                </div>
                                 {/*<div className="form-group">*/}
                                 {/*    <input type="number" className="form-control"*/}
                                 {/*           placeholder="Quantity" value={this.props.addMenu.updateMenu.quantity} />*/}
@@ -47,4 +47,9 @@ class MenuUpdate extends Component {
         );
     }
 }
-export default MenuUpdate;
+const mapStateToProps=(state)=>{
+    return{
+        ...state
+    }
+}
+export default connect(mapStateToProps) (MenuUpdate);

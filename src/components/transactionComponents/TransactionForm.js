@@ -20,7 +20,7 @@ class TransactionForm extends Component {
                                     <th>No Table</th>
                                     <th>Menu</th>
                                     <th>Status</th>
-                                    <th>Payment</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody className="">
@@ -35,12 +35,12 @@ class TransactionForm extends Component {
                                     })}</td>
                                     <td>{this.props.dataTransaction.paymentStatus}</td>
                                     <td>
-                                        <button className="btn btn-success">PAID</button>
+                                        <button className="btn btn-success">PAY NOW</button>
                                     </td>
                                 </tr>
 
                                 </tbody>
-                            </table>
+                             </table>
                         </div>
                     </div>
                 </div>
