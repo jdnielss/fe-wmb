@@ -51,8 +51,8 @@ class PaymentHistoryContainer extends Component {
                                                         <span key={index}>{element.food.foodName}</span>
                                                     </ul>
                                                 })}</td>
-                                                <td>{element.change}</td>
                                                 <td>{element.pay}</td>
+                                                <td>{element.change}</td>
                                                 <td>{element.total}</td>
                                                 <td key={index}>{element.paymentStatus}</td>
                                             </tr>
