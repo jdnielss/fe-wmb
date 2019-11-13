@@ -4,7 +4,6 @@ const initialState = {
         idTransaction: '',
         total: null,
         paymentMethod: '',
-        change: 0,
         pay: null,
         paymentStatus: '',
         orderList:{}
@@ -25,7 +24,6 @@ export default function paymentReducer(state = initialState, action) {
                     idTransaction: action.payload.idTransaction,
                     total: action.payload.total,
                     paymentMethod: action.payload.paymentMethod,
-                    change: action.payload.change,
                     pay: action.payload.pay,
                     paymentStatus: action.payload.paymentStatus,
                     orderList:action.payload.orderList
