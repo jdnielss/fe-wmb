@@ -11,7 +11,6 @@ import MenuSelector from "../menuComponents/MenuSelector";
 
 class OrderForm extends Component {
     render() {
-        console.log(this.props.formOrder, 'ini order')
         return (
             <div className="container-fluid">
                 <div className="card shadow mb-4">
@@ -25,14 +24,14 @@ class OrderForm extends Component {
                                 <div className="form-group col-md-12">
                                     <label htmlFor="PIC Name">PIC Name
                                     </label>
-                                    <input type="text" className="form-control" onChange={this.handlePICName}/>
+                                    <input type="text" className="form-control" onChange={this.handlePICName} required/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <div className="form-group col-md-12">
                                     <label htmlFor="PIC Name">Customer Capacity</label>
                                     <input type="number" className="form-control"
-                                           onChange={this.handleCustomerQuantity}/>
+                                           onChange={this.handleCustomerQuantity} required/>
                                 </div>
                             </div>
                             <div>
