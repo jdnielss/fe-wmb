@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import '../menuAssets/MenuTable.scss'
-import {fetchDataMenu} from "../../services/MenuService";
+import '../assets/MenuTable.scss'
+import {fetchDataMenu} from "../service/MenuService";
 import {connect} from 'react-redux'
-import {fetchingSuccess} from "../MenuActions";
+import {fetchingSuccess} from "../action/MenuActions";
 import MenuCard from "../MenuCard";
-import '../menuAssets/MenuTable.scss'
+import '../assets/MenuTable.scss'
 import Grid from "@material-ui/core/Grid";
 class MenuCardContainer extends Component {
     componentDidMount() {

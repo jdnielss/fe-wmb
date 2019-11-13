@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import './menuAssets/MenuTable.scss'
-import {fetchingById} from "./MenuActions";
-import {saveDataMenuById} from "../services/MenuService";
+import './assets/MenuTable.scss'
+import {fetchingById} from "./action/MenuActions";
+import {saveDataMenuById} from "./service/MenuService";
 import MenuUpdate from "./MenuUpdate";
 class MenuTableContainer extends Component {
 

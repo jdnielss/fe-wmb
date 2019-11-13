@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import '../orderAssets/Custom-Order.scss'
+import '../assets/Custom-Order.scss'
 import {
     fetchTableAvailable,
     fetchFoodMenu,
@@ -11,10 +11,10 @@ import {
     foodIdHandler,
     foodQuantityHandler,
     fetchOrder
-} from "../constants/OrderAction";
-import {fetchDataMenu} from "../../services/MenuService";
-import {fetchDataTableAvailable} from "../../services/TableService";
-import {fetchDataOrder, saveDataOrder} from "../../services/OrderService";
+} from "../action/OrderAction";
+import {fetchDataMenu} from "../../menuComponents/service/MenuService";
+import {fetchDataTableAvailable} from "../../tableComponents/service/TableService";
+import {fetchDataOrder, saveDataOrder} from "../service/OrderService";
 
 class MenuTableContainer extends Component {
 
@@ -123,7 +123,6 @@ class MenuTableContainer extends Component {
                                 </div>
                             })}
                             <button className="btn btn-primary btn-block btn-user" onClick={this.handleOrderSubmit}>ORDER</button>
-
                         </form>
                     </div>
                 </div>

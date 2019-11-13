@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {foodIdHandler, foodQuantityHandler} from "../constants/OrderAction";
+import {foodIdHandler, foodQuantityHandler} from "../action/OrderAction";
 
-class OrderMenu extends Component {
+class OrderMenuContainer extends Component {
     render() {
         return (
             <div className="form-row">
@@ -32,4 +32,4 @@ class OrderMenu extends Component {
     }
 }
 
-export default connect()(OrderMenu);
+export default connect()(OrderMenuContainer);

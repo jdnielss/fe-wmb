@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {fetchOrder} from "../constants/OrderAction";
-import {fetchDataOrder} from "../../services/OrderService";
+import {fetchOrder} from "../action/OrderAction";
+import {fetchDataOrder} from "../service/OrderService";
 import {connect} from "react-redux";
 import OrderHistory from "../OrderHistory";
 

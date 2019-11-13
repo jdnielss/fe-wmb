@@ -7,7 +7,8 @@ const dataTable = {
     },
     fetchTableById: {
 
-    }
+    },
+    fetchDataCustomer: {}
 }
 
 
@@ -22,6 +23,11 @@ export default function tableReducer(state = dataTable, action) {
                     ...state,
                     fetchTableById: action.payload
                 }
+        case 'FETCHING_DATA_CUSTOMER':
+            return {
+                ...state,
+                fetchDataCustomer: action.payload
+            }
         case 'HANDLE_NO_TABLE':
             return {
                 ...state, tableFormData: {...state.tableFormData, numberTable: action.payload}

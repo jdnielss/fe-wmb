@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {typeDrink, typeFood} from "./MenuActions";
+import {typeDrink, typeFood} from "./action/MenuActions";
 import {connect} from 'react-redux'
 class MenuUpdate extends Component {
     render() {

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import './tableAssets/TableCard.scss'
+import PropTypes from 'prop-types';
+import OrderForm from "../orderComponents/OrderForm";
+import './assets/TableCard.scss'
 import { withStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -7,16 +9,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import IconButton from "@material-ui/core/IconButton";
-import DetailIcon from "@material-ui/icons/ErrorOutline";
-import PropTypes from 'prop-types';
-import {fetchTableById} from "../services/TableService";
-import {fetchingTableId} from "./constants/TableConstanta";
+import {fetchTableById} from "./service/TableService";
+import {fetchingTableId} from "./action/TableActions";
 import {connect} from "react-redux";
 import DeleteIcon from '@material-ui/icons/Delete';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import OrderForm from "../orderComponents/OrderForm";
-
+import OrderIcon from '@material-ui/icons/ShoppingCart';
+import IconButton from "@material-ui/core/IconButton";
+import DetailIcon from "@material-ui/icons/ErrorOutline";
 
 const useStyles =(theme => ({
     card: {
@@ -69,7 +68,7 @@ class TableCard extends Component {
                             <DeleteIcon data-toggle="modal" data-target="#askingPermission"/>
                         </IconButton>
                         <IconButton>
-                            <ShoppingBasketIcon data-toggle="modal" data-target="#order"/>
+                            <OrderIcon data-toggle="modal" data-target="#order"/>
                         </IconButton>
                     </CardContent>
                     <div className="modal fade" id="detailModal" tabIndex="-1" role="dialog"
