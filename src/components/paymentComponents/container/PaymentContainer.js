@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchDataTransaction, getDataTransactionDataById} from "../service/PaymentService";
+import {fetchDataTransaction, getDataTransactionDataById, updatePayment} from "../service/PaymentService";
 import {connect} from 'react-redux'
 import {fetchingDataTransaction, handlePayment} from "../action/PaymentActions";
 
@@ -20,6 +20,10 @@ class PaymentContainer extends Component {
         const data = event.target.value
         this.props.dispatch({...handlePayment, payload:data})
     }
+    handlePaymentSubmit=(event)=>{
+        event.preventDefault()
+        updatePayment(this.props.fetchResultTransactionById)
+}
 
     render() {
         console.log(this.props.fetchResultTransactionById)
@@ -117,8 +121,8 @@ class PaymentContainer extends Component {
                                                 </div>
                                                 <div className="modal-footer">
                                                     <button type="button" className="btn btn-primary"
-                                                            onClick={this.handleSubmitMenu}
-                                                            data-dismiss="modal">Save changes
+                                                            onClick={this.handlePaymentSubmit}
+                                                            data-dismiss="modal">Pay Now
                                                     </button>
                                                 </div>
                                             </div>

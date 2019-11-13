@@ -12,3 +12,16 @@ export async function getDataTransactionDataById(idTransaction){
         })
     return data;
 }
+export async function updatePayment(paymentData) {
+    return await fetch('http://10.10.13.150:9090/pay', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(paymentData)
+    })
+        .then((res) => {
+            return res.json()
+        }).catch(err => err);
+}
