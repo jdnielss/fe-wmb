@@ -6,7 +6,9 @@ const initialState = {
         paymentMethod: '',
         pay: null,
         paymentStatus: '',
-        orderList:{}
+        orderList: {
+            orderDetails: [],
+        }
     }
 
 }
@@ -26,12 +28,12 @@ export default function paymentReducer(state = initialState, action) {
                     paymentMethod: action.payload.paymentMethod,
                     pay: action.payload.pay,
                     paymentStatus: action.payload.paymentStatus,
-                    orderList:action.payload.orderList
+                    orderList: action.payload.orderList
                 }
             }
         case 'HANDLE_PAYMENT':
             return {
-                ...state, fetchResultTransactionById: {...state.fetchResultTransactionById, pay:action.payload}
+                ...state, fetchResultTransactionById: {...state.fetchResultTransactionById, pay: action.payload}
             }
         default:
             return {

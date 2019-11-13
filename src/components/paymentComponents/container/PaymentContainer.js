@@ -16,16 +16,17 @@ class PaymentContainer extends Component {
         const gettrxById = await getDataTransactionDataById(idTransaction)
         this.props.dispatch({type: 'FETCHING_TRANSACTION_BY_ID_SUCCESS', payload: gettrxById})
     }
-    handlePayment=(event)=>{
+    handlePayment = (event) => {
         const data = event.target.value
-        this.props.dispatch({...handlePayment, payload:data})
+        this.props.dispatch({...handlePayment, payload: data})
     }
-    handlePaymentSubmit= async (event)=>{
+    handlePaymentSubmit = async (event) => {
         event.preventDefault()
         await updatePayment(this.props.fetchResultTransactionById)
-}
+    }
 
     render() {
+        console.log(this.props.fetchResultTransactionById, 'byId')
         return (
             <div>
                 <div className="container-fluid">
@@ -42,31 +43,30 @@ class PaymentContainer extends Component {
                                         <th>PIC Name</th>
                                         <th>Customer Capacity</th>
                                         <th>No Table</th>
-                                        <th>Menu</th>
+                                        <th>ToTal Price</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody className="">
                                     {this.props.fetchResultTransaction.map((element, index) => {
-                                        return <tr>
-                                            <td key={index}>{element.orderList.picCustomer} </td>
-                                            <td key={index}>{element.orderList.manyCustomers}</td>
-                                            <td key={index}>{element.orderList.table.numberTable}</td>
-                                            <td key={index}>{element.orderList.orderDetails.map((element, index) => {
-                                                return <ul>
-                                                    <span key={index}>{element.food.foodName}</span>
-                                                </ul>
-                                            })}</td>
-                                            <td key={index}>{element.paymentStatus}</td>
-                                            <td>
-                                                <button className="btn btn-success" type="button" data-toggle="modal"
-                                                        data-target="#transactionModal" onClick={() => {
-                                                    this.fetchingTrxById(element.idTransaction)
-                                                }}>PAY NOW
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        if (element.paymentStatus === 'UNPAID') {
+                                            return <tr>
+                                                <td key={index}>{element.orderList.picCustomer} </td>
+                                                <td key={index}>{element.orderList.manyCustomers}</td>
+                                                <td key={index}>{element.orderList.table.numberTable}</td>
+                                                <td key={index}>{element.total}</td>
+                                                <td key={index}>{element.paymentStatus}</td>
+                                                <td>
+                                                    <button className="btn btn-success" type="button"
+                                                            data-toggle="modal"
+                                                            data-target="#transactionModal" onClick={() => {
+                                                        this.fetchingTrxById(element.idTransaction)
+                                                    }}>PAY NOW
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
                                     })}
                                     </tbody>
                                 </table>
@@ -85,6 +85,7 @@ class PaymentContainer extends Component {
                                                     </button>
                                                 </div>
                                                 <div className="modal-body">
+
                                                     <form className="user">
                                                         <div className="form-group row">
                                                             <label htmlFor="staticEmail"
@@ -96,7 +97,6 @@ class PaymentContainer extends Component {
                                                                        value={this.props.fetchResultTransactionById.orderList.picCustomer || ''}/>
                                                             </div>
                                                         </div>
-
                                                         <div className="form-group row">
                                                             <label htmlFor="staticEmail"
                                                                    className="col-sm-2 col-form-label">Price</label>
@@ -113,10 +113,26 @@ class PaymentContainer extends Component {
                                                             <div className="col-sm-10">
                                                                 <input type="number"
                                                                        className="form-control"
-                                                                      onChange={this.handlePayment}/>
+                                                                       onChange={this.handlePayment}/>
                                                             </div>
                                                         </div>
                                                     </form>
+                                                    <table className="table">
+                                                        <thead className="thead-light">
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Food</th>
+                                                            <th>Sub Total</th>
+                                                        </tr>
+                                                        </thead>
+                                                        {this.props.fetchResultTransactionById.orderList.orderDetails.map((element, index) => {
+                                                            return (<tr>
+                                                                <td>{index + 1}</td>
+                                                                <td>{element.food.foodName}</td>
+                                                                <td>{element.subTotal}</td>
+                                                            </tr>)
+                                                        })}
+                                                    </table>
                                                 </div>
                                                 <div className="modal-footer">
                                                     <button type="button" className="btn btn-primary"
