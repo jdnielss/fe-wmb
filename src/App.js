@@ -11,10 +11,9 @@ import MenuTableContainer from "./components/menuComponents/container/MenuTableC
 import OrderContainer from "./components/orderComponents/container/OrderContainer";
 import TransactionContainer from "./components/paymentComponents/container/PaymentContainer";
 import menuReducer from "./components/menuComponents/reducer/menuReducer";
-import tableReducer from "./components/tableComponents/reducers/TableReducer";
 import orderReducer from "./components/orderComponents/reducer/OrderReducer";
 import paymentReducer from "./components/paymentComponents/reducer/PaymentReducer";
-
+import tableReducer from './components/tableComponents/reducers/TableReducer'
 class App extends Component {
     render() {
         return (

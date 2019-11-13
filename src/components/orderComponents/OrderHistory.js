@@ -26,20 +26,18 @@ class OrderHistory extends Component {
                                 {
                                     this.props.dataOrder.map((element, index) =>{
                                         return (
-                                            <tr>
-                                                <td>{element.picCustomer}</td>
-                                                <td>{element.manyCustomers}</td>
-                                                <td>{element.table.numberTable}</td>
-                                                <td>{element.table.status}</td>
-                                                <td>{element.orderDetails.map((element) => {
+                                            <tr >
+                                                <td key={index}>{element.picCustomer}</td>
+                                                <td key={index}>{element.manyCustomers}</td>
+                                                <td key={index}>{element.table.numberTable}</td>
+                                                <td key={index}>{element.table.status}</td>
+                                                <td key={index}>{element.orderDetails.map((element) => {
                                                     return <ul>
                                                         <span>{element.food.foodName}</span>
                                                     </ul>
                                                 })}</td>
                                                 <td>Rp. {element.totalPrice}</td>
-
                                             </tr>
-
                                         )
                                     })
                                 }

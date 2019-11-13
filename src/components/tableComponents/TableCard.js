@@ -15,7 +15,7 @@ import {connect} from "react-redux";
 import DeleteIcon from '@material-ui/icons/Delete';
 import OrderIcon from '@material-ui/icons/ShoppingCart';
 import IconButton from "@material-ui/core/IconButton";
-import DetailIcon from "@material-ui/icons/ErrorOutline";
+import DetailIcon from "@material-ui/icons/InfoOutlined";
 
 const useStyles =(theme => ({
     card: {
@@ -41,6 +41,7 @@ class TableCard extends Component {
         this.props.dispatch({...fetchingTableId, payload:resultData})
     }
     render() {
+        console.log(this.props, 'data table')
         const {classes} = this.props;
         return (
             <Card className={classes.card}>
@@ -83,22 +84,22 @@ class TableCard extends Component {
                                 </div>
                                 <div className="modal-body">
                                     <form>
-                                        <div className="form-group row">
-                                            <label htmlFor="staticEmail"
-                                                   className="col-sm-2 col-form-label">Status</label>
-                                            <div className="col-sm-10">
-                                                <input type="text" readOnly className="form-control"
-                                                       value={this.props.fetchTableById.status}/>
-                                            </div>
-                                        </div>
-                                        <div className="form-group row">
-                                            <label htmlFor="staticEmail"
-                                                   className="col-sm-2 col-form-label">Capacity</label>
-                                            <div className="col-sm-10">
-                                                <input type="text" readOnly className="form-control"
-                                                       value={this.props.fetchTableById.capacity}/>
-                                            </div>
-                                        </div>
+                                        {/*<div className="form-group row">*/}
+                                        {/*    <label htmlFor="staticEmail"*/}
+                                        {/*           className="col-sm-2 col-form-label">Status</label>*/}
+                                        {/*    <div className="col-sm-10">*/}
+                                        {/*        <input type="text" readOnly className="form-control"*/}
+                                        {/*               value={this.props.fetchTableById.status}/>*/}
+                                        {/*    </div>*/}
+                                        {/*</div>*/}
+                                        {/*<div className="form-group row">*/}
+                                        {/*    <label htmlFor="staticEmail"*/}
+                                        {/*           className="col-sm-2 col-form-label">Capacity</label>*/}
+                                        {/*    <div className="col-sm-10">*/}
+                                        {/*        <input type="text" readOnly className="form-control"*/}
+                                        {/*               value={this.props.fetchTableById.capacity}/>*/}
+                                        {/*    </div>*/}
+                                        {/*</div>*/}
                                     </form>
                                 </div>
                             </div>

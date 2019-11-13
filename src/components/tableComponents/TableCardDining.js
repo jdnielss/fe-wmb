@@ -9,12 +9,11 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import {connect} from "react-redux";
 import IconButton from "@material-ui/core/IconButton";
-import DetailIcon from "@material-ui/icons/ErrorOutline";
+import DetailIcon from "@material-ui/icons/InfoOutlined";
 import PropTypes from 'prop-types';
 import DeleteIcon from '@material-ui/icons/Delete';
 import OrderIcon from '@material-ui/icons/ShoppingCart';
 import {fetchDataOrderById} from "../orderComponents/service/OrderService";
-import {fetchingDataCustomer} from "./action/TableActions";
 
 const useStyles =(theme => ({
     card: {
@@ -46,7 +45,6 @@ class TableCardDining extends Component {
         return (
             <Card className={classes.card}>
                 <div className="card border-left-warning shadow h-100 py-2">
-
                     <CardHeader
                         avatar={
                             <Avatar aria-label="recipe" className={classes.avatar}>
@@ -55,7 +53,7 @@ class TableCardDining extends Component {
                         }
                         action={
                             <IconButton aria-label="settings">
-                                <DetailIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingOrderById()} />
+                                <DetailIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingOrderById(this.props)} />
                             </IconButton>
                         }
                         title={this.props.dataTables.status}
@@ -85,22 +83,9 @@ class TableCardDining extends Component {
                                 </div>
                                 <div className="modal-body">
                                     <form>
-                                        <div className="form-group row">
-                                            <label htmlFor="staticEmail"
-                                                   className="col-sm-2 col-form-label">Status</label>
-                                            <div className="col-sm-10">
-                                                <input type="text" readOnly className="form-control"
-                                                       value={this.props.fetchTableById.status}/>
-                                            </div>
-                                        </div>
-                                        <div className="form-group row">
-                                            <label htmlFor="staticEmail"
-                                                   className="col-sm-2 col-form-label">Capacity</label>
-                                            <div className="col-sm-10">
-                                                <input type="text" readOnly className="form-control"
-                                                       value={this.props.fetchTableById.capacity}/>
-                                            </div>
-                                        </div>
+                                        {/*{*/}
+                                        {/*    this.props*/}
+                                        {/*}*/}
                                     </form>
                                 </div>
                             </div>
