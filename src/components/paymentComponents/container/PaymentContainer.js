@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../../../App.css'
+import '../Payment.scss'
 import {fetchDataTransaction, getDataTransactionDataById, updatePayment} from "../service/PaymentService";
 import {connect} from 'react-redux'
 import {fetchingDataTransaction, handlePayment} from "../action/PaymentActions";
@@ -33,7 +33,7 @@ class PaymentContainer extends Component {
                 <div className="container-fluid">
                     <div className="card shadow mb-4">
                         <div className="card-header py-3">
-                            <h1 className="h3 mb-2 text-gray-800 text-center text-uppercase">Transaction List</h1>
+                            <h1 className="h3 mb-2 text-gray-800 text-center text-uppercase">Payment Pending</h1>
                         </div>
                         <div className="card-body">
                             <div className="table-responsive">
