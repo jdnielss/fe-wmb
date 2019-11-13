@@ -40,7 +40,6 @@ class TableCardDining extends Component {
         this.props.dispatch({ type:'FETCHING_DATA_CUSTOMER', payload:resultData})
     }
     render() {
-        console.log(this.props.fetchingOrderById, 'data order')
         const {classes} = this.props;
         return (
             <Card className={classes.card}>

@@ -3,7 +3,6 @@ import {typeDrink, typeFood} from "./action/MenuActions";
 import {connect} from 'react-redux'
 class MenuUpdate extends Component {
     render() {
-        console.log(this.props.menuUpdate);
         return (
             <div className="modal fade" id="updateMenu" tabIndex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">

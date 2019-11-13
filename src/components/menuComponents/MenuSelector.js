@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchFoodMenu, foodIdHandler, foodQuantityHandler} from "../orderComponents/action/OrderAction";
+import {fetchFoodMenu} from "../orderComponents/action/OrderAction";
 import {connect} from "react-redux";
 import {fetchDataMenu} from "./service/MenuService";
 

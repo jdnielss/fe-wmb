@@ -17,7 +17,6 @@ import OrderIcon from '@material-ui/icons/ShoppingCart';
 import IconButton from "@material-ui/core/IconButton";
 import DetailIcon from "@material-ui/icons/ErrorOutline";
 import {createStore} from "redux";
-import orderReducer from "../orderComponents/reducer/OrderReducer";
 import reducerFormOrder from "../orderComponents/reducer/ReducerFormOrder";
 
 const useStyles = (theme => ({
@@ -43,7 +42,6 @@ class TableCard extends Component {
     }
 
     render() {
-        console.log(this.props.formOrder, 'data Form')
         const {classes} = this.props;
         return (
             <Card className={classes.card}>

@@ -1,12 +1,14 @@
+import Swal from "sweetalert2";
+import axios from "axios";
 export async function fetchDataOrder(){
-    const data = await fetch('http://10.10.13.150:9090/order', {method:'GET',})
+    const data = await axios.get('http://10.10.13.150:9090/order')
         .then((response) => {
             console.log(response)
             return response.json()
         })
-    console.log(data)
     return data;
 }
+
 
 export async function fetchDataOrderById(idOrder){
     const data = await fetch(`http://10.10.13.150:9090/order/${idOrder}`, {method:'GET',})
@@ -14,7 +16,6 @@ export async function fetchDataOrderById(idOrder){
             console.log(response)
             return response.json()
         })
-    console.log(data)
     return data;
 }
 
@@ -27,7 +28,17 @@ export async function saveDataOrder(orderForm) {
         },
         body: JSON.stringify(orderForm)
     })
-        .then((res) => {
-            return res.json()
-        }).catch(err => err);
+        .then( async (res) => {
+            if (res.status === 200){
+                await Swal.fire(
+                    'Success!',
+                    'Order Berhasil',
+                    'success'
+                )
+            } else await Swal.fire(
+                'Error!',
+                'Order Gagal',
+                'error'
+            )
+        }).catch();
 }

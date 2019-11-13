@@ -26,7 +26,6 @@ class PaymentContainer extends Component {
 }
 
     render() {
-        console.log(this.props.fetchResultTransactionById)
         return (
             <div>
                 <div className="container-fluid">

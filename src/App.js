@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import SideBar from './components/sidebarComponents/Sidebar'
-import PaymentHistory from "./components/paymentComponents/PaymentHistory";
 import './App.css'
 import {Provider} from "react-redux";
 import {createStore} from "redux";
-import TableContainer from "./components/tableComponents/container/TableContainer";
 import Header from "./components/sidebarComponents/Header";
 import MenuContainer from "./components/menuComponents/container/MenuCardContainer";
 import MenuTableContainer from "./components/menuComponents/container/MenuTableContainer";
@@ -14,8 +12,6 @@ import TransactionContainer from "./components/paymentComponents/container/Payme
 import menuReducer from "./components/menuComponents/reducer/menuReducer";
 import orderReducer from "./components/orderComponents/reducer/OrderReducer";
 import paymentReducer from "./components/paymentComponents/reducer/PaymentReducer";
-import tableReducer from './components/tableComponents/reducers/TableReducer'
-import PaymentHistoryContainer from "./components/paymentComponents/container/PaymentHistoryContainer";
 import TableWrapper from "./components/tableComponents/TableWrapper";
 import PaymentHistoryWrapper from "./components/paymentComponents/PaymentHistoryWrapper";
 class App extends Component {
