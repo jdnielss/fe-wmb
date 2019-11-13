@@ -4,17 +4,16 @@ import SideBar from './components/sidebarComponents/Sidebar'
 import './App.css'
 import {Provider} from "react-redux";
 import {createStore} from "redux";
-import TableContainer from "./components/tableComponents/tableContainer/TableContainer";
+import TableContainer from "./components/tableComponents/container/TableContainer";
 import Header from "./components/sidebarComponents/Header";
-import MenuContainer from "./components/menuComponents/menuContainer/MenuCardContainer";
-import MenuTableContainer from "./components/menuComponents/menuContainer/MenuTableContainer";
-import OrderContainer from "./components/orderComponents/orderContainer/OrderContainer";
-import TransactionContainer from "./components/paymentComponents/TransactionContainer";
-import menuReducer from "./components/reducers/menuReducer";
-import tableReducer from "./components/reducers/TableReducer";
-import orderReducer from "./components/reducers/OrderReducer";
-import paymentReducer from "./components/reducers/PaymentReducer";
-import OrderForm from "./components/orderComponents/OrderForm";
+import MenuContainer from "./components/menuComponents/container/MenuCardContainer";
+import MenuTableContainer from "./components/menuComponents/container/MenuTableContainer";
+import OrderContainer from "./components/orderComponents/container/OrderContainer";
+import TransactionContainer from "./components/paymentComponents/container/PaymentContainer";
+import menuReducer from "./components/menuComponents/reducer/menuReducer";
+import tableReducer from "./components/tableComponents/reducers/TableReducer";
+import orderReducer from "./components/orderComponents/reducer/OrderReducer";
+import paymentReducer from "./components/paymentComponents/reducer/PaymentReducer";
 
 class App extends Component {
     render() {

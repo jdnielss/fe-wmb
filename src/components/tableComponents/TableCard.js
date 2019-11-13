@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import './tableAssets/TableCard.scss'
+import PropTypes from 'prop-types';
+import OrderForm from "../orderComponents/OrderForm";
+import './assets/TableCard.scss'
 import { withStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -7,19 +9,16 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
+import {fetchTableById} from "./service/TableService";
+import {fetchingTableId} from "./action/TableActions";
+import {connect, Provider} from "react-redux";
+import DeleteIcon from '@material-ui/icons/Delete';
+import OrderIcon from '@material-ui/icons/ShoppingCart';
 import IconButton from "@material-ui/core/IconButton";
 import DetailIcon from "@material-ui/icons/ErrorOutline";
-import PropTypes from 'prop-types';
-import {fetchTableById} from "../services/TableService";
-import {fetchingTableId} from "./constants/TableConstanta";
-import {connect} from "react-redux";
-import DeleteIcon from '@material-ui/icons/Delete';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import OrderForm from "../orderComponents/OrderForm";
-import Provider from "react-redux/lib/components/Provider";
 import {createStore} from "redux";
-import orderReducer from "../reducers/OrderReducer";
-
+import orderReducer from "../orderComponents/reducer/OrderReducer";
+import reducerFormOrder from "../orderComponents/reducer/ReducerFormOrder";
 
 const useStyles =(theme => ({
     card: {
@@ -72,7 +71,7 @@ class TableCard extends Component {
                             <DeleteIcon data-toggle="modal" data-target="#askingPermission"/>
                         </IconButton>
                         <IconButton>
-                            <ShoppingBasketIcon data-toggle="modal" data-target="#order"/>
+                            <OrderIcon data-toggle="modal" data-target="#order" onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
                         </IconButton>
                     </CardContent>
                     <div className="modal fade" id="detailModal" tabIndex="-1" role="dialog"
@@ -138,7 +137,10 @@ class TableCard extends Component {
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                        <OrderForm/>
+                                    <Provider store={createStore(reducerFormOrder)}>
+                                        <OrderForm tableId={this.props.fetchTableById.idTable}/>
+                                    </Provider>
+
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close

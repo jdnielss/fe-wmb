@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-class TransactionForm extends Component {
+class PaymentForm extends Component {
 
     render() {
 
@@ -49,4 +49,4 @@ class TransactionForm extends Component {
     }
 }
 
-export default connect()(TransactionForm)
+export default connect()(PaymentForm)

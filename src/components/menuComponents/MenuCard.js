@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './menuAssets/MenuTable.scss'
+import './assets/MenuTable.scss'
 class MenuCard extends Component {
     render() {
         return (

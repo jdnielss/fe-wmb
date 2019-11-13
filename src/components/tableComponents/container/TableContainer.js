@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import '../tableAssets/TableCard.scss'
-import {fetchDataTable, saveDataTable} from '../../services/TableService'
+import '../assets/TableCard.scss'
+import {fetchDataTable, saveDataTable} from '../service/TableService'
 import { connect } from 'react-redux'
 import {
     fetchingSuccess,
     handleInputCapacity,
     handleInputNumber,
-} from '../constants/TableConstanta'
+} from '../action/TableActions'
 import Grid from '@material-ui/core/Grid'
 import AddTable from '@material-ui/icons/AddBox'
 import TableCard from '../TableCard'

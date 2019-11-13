@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {fetchDataTransaction, getDataTransactionDataById} from "../services/PaymentService";
+import {fetchDataTransaction, getDataTransactionDataById} from "../service/PaymentService";
 import {connect} from 'react-redux'
-import {fetchingDataTransaction} from "./PaymentActions";
+import {fetchingDataTransaction} from "../action/PaymentActions";
 
-class TransactionContainer extends Component {
+class PaymentContainer extends Component {
     componentDidMount() {
         this.fetchingData()
     }
@@ -126,4 +126,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(TransactionContainer)
+export default connect(mapStateToProps)(PaymentContainer)

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './tableAssets/TableCard.scss'
+import './assets/TableCard.scss'
 import { withStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -11,11 +11,10 @@ import {connect} from "react-redux";
 import IconButton from "@material-ui/core/IconButton";
 import DetailIcon from "@material-ui/icons/ErrorOutline";
 import PropTypes from 'prop-types';
-import {fetchTableById} from "../services/TableService";
-import {fetchingTableId} from "./constants/TableConstanta";
 import DeleteIcon from '@material-ui/icons/Delete';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-
+import OrderIcon from '@material-ui/icons/ShoppingCart';
+import {fetchDataOrderById} from "../orderComponents/service/OrderService";
+import {fetchingDataCustomer} from "./action/TableActions";
 
 const useStyles =(theme => ({
     card: {
@@ -37,14 +36,13 @@ const useStyles =(theme => ({
 
 class TableCardDining extends Component {
 
-    fetchingTableById = async (idTransaction) => {
-        const resultData = await fetchTableById(idTransaction)
-        this.props.dispatch({...fetchingTableId, payload:resultData})
+    fetchingOrderById = async (idOrder) => {
+        const resultData = await fetchDataOrderById(idOrder)
+        this.props.dispatch({ type:'FETCHING_DATA_CUSTOMER', payload:resultData})
     }
     render() {
-        console.log(this.props.fetchTableById)
+        console.log(this.props.fetchingOrderById, 'data order')
         const {classes} = this.props;
-        console.log(this.props, 'data props table')
         return (
             <Card className={classes.card}>
                 <div className="card border-left-warning shadow h-100 py-2">
@@ -57,7 +55,7 @@ class TableCardDining extends Component {
                         }
                         action={
                             <IconButton aria-label="settings">
-                                <DetailIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingTableById(this.props.dataTables.idTable)} />
+                                <DetailIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingOrderById()} />
                             </IconButton>
                         }
                         title={this.props.dataTables.status}
@@ -71,7 +69,7 @@ class TableCardDining extends Component {
                             <DeleteIcon aria-disabled="true"/>
                         </IconButton>
                         <IconButton>
-                            <ShoppingBasketIcon aria-disabled="true"/>
+                            <OrderIcon aria-disabled="true"/>
                         </IconButton>
                     </CardContent>
 
