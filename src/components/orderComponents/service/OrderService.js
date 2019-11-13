@@ -20,7 +20,7 @@ export async function fetchDataOrderById(idOrder){
 }
 
 export async function saveDataOrder(orderForm) {
-    return await axios.post('http://10.10.13.150:9090/order', {
+    return await fetch('http://10.10.13.150:9090/order', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
