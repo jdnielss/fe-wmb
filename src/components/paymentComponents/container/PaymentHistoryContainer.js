@@ -13,6 +13,7 @@ class PaymentHistoryContainer extends Component {
         this.props.dispatch({...fetchingDataTransaction, payload:result})
     }
     render() {
+        console.log(this.props)
         return (
             <div>
                 <div>
@@ -27,12 +28,15 @@ class PaymentHistoryContainer extends Component {
                                            cellSpacing="0">
                                         <thead>
                                         <tr>
+                                            <td>No.</td>
                                             <th>PIC Name</th>
                                             <th>Customer Capacity</th>
                                             <th>No Table</th>
                                             <th>Menu</th>
-                                            <th>Status</th>
+                                            <th>Pay</th>
+                                            <th>Change</th>
                                             <th>Total</th>
+                                            <th>Status</th>
                                         </tr>
                                         </thead>
                                         <tbody className="">
@@ -47,8 +51,10 @@ class PaymentHistoryContainer extends Component {
                                                         <span key={index}>{element.food.foodName}</span>
                                                     </ul>
                                                 })}</td>
-                                                <td key={index}>{element.paymentStatus}</td>
+                                                <td>{element.change}</td>
+                                                <td>{element.pay}</td>
                                                 <td>{element.total}</td>
+                                                <td key={index}>{element.paymentStatus}</td>
                                             </tr>
                                         })}
                                         </tbody>
