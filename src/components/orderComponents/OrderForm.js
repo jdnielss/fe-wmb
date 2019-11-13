@@ -22,14 +22,6 @@ class OrderForm extends Component {
                                     <input type="number" className="form-control" />
                                 </div>
                             </div>
-                            <div className="form-group row">
-                                <div className="col-md-12">
-                                    <select id="inputState" className="form-control">
-                                        <option selected>Available Table</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                            </div>
                             <div >
                                 <button className="btn-order btn btn-primary btn-user">Order Menu</button>
                             </div>
@@ -46,8 +38,6 @@ class OrderForm extends Component {
                                     <input type="number" className="form-control" id="inputCity"/>
                                 </div>
                             </div>
-                            <button className="btn btn-primary btn-block btn-user">ORDER</button>
-
                         </form>
                     </div>
                 </div>

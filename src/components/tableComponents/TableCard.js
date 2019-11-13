@@ -10,6 +10,12 @@ import { red } from '@material-ui/core/colors';
 import IconButton from "@material-ui/core/IconButton";
 import DetailIcon from "@material-ui/icons/ErrorOutline";
 import PropTypes from 'prop-types';
+import {fetchTableById} from "../services/TableService";
+import {fetchingTableId} from "./constants/TableConstanta";
+import {connect} from "react-redux";
+import DeleteIcon from '@material-ui/icons/Delete';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import OrderForm from "../orderComponents/OrderForm";
 
 
 const useStyles =(theme => ({
@@ -31,11 +37,15 @@ const useStyles =(theme => ({
 
 
 class TableCard extends Component {
+    fetchingTableById = async (idTransaction) => {
+        const resultData = await fetchTableById(idTransaction)
+        this.props.dispatch({...fetchingTableId, payload:resultData})
+    }
     render() {
         const {classes} = this.props;
         return (
             <Card className={classes.card}>
-                <div className="card border-left-warning shadow h-100 py-2">
+                <div className="card border-left-primary shadow h-100 py-2">
 
                     <CardHeader
                         avatar={
@@ -45,7 +55,7 @@ class TableCard extends Component {
                         }
                         action={
                             <IconButton aria-label="settings">
-                                <DetailIcon data-toggle="modal" data-target="#detailModal" />
+                                <DetailIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingTableById(this.props.dataTables.idTable)} />
                             </IconButton>
                         }
                         title={this.props.dataTables.status}
@@ -55,11 +65,16 @@ class TableCard extends Component {
                         <Typography variant="body2" color="textSecondary" component="p" onChange>
                             <b>Capacity : {this.props.dataTables.capacity}</b>
                         </Typography>
+                        <IconButton>
+                            <DeleteIcon data-toggle="modal" data-target="#askingPermission"/>
+                        </IconButton>
+                        <IconButton>
+                            <ShoppingBasketIcon data-toggle="modal" data-target="#order"/>
+                        </IconButton>
                     </CardContent>
-
                     <div className="modal fade" id="detailModal" tabIndex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog" role="document">
+                        <div className="modal-dialog modal-lg" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
                                     <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -68,9 +83,63 @@ class TableCard extends Component {
                                     </button>
                                 </div>
                                 <div className="modal-body">
+                                    <form>
+                                        <div className="form-group row">
+                                            <label htmlFor="staticEmail"
+                                                   className="col-sm-2 col-form-label">Status</label>
+                                            <div className="col-sm-10">
+                                                <input type="text" readOnly className="form-control"
+                                                       value={this.props.fetchTableById.status}/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label htmlFor="staticEmail"
+                                                   className="col-sm-2 col-form-label">Capacity</label>
+                                            <div className="col-sm-10">
+                                                <input type="text" readOnly className="form-control"
+                                                       value={this.props.fetchTableById.capacity}/>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal fade" id="askingPermission" tabIndex="-1" role="dialog"
+                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body">
+                                    Are you sure you want to delete this table?
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close
+                                    </button>
+                                    <button type="button" className="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal fade" id="order" tabIndex="-1" role="dialog"
+                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body">
+                                    <OrderForm/>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close
+                                    </button>
                                     <button type="button" className="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
@@ -84,5 +153,7 @@ class TableCard extends Component {
 TableCard.propType = {
     classes: PropTypes.object.isRequired
 }
-
-export default withStyles(useStyles)(TableCard)
+const mapStateToProps=(state)=>{
+    return{...state}
+}
+export default withStyles(useStyles)(connect(mapStateToProps)(TableCard))

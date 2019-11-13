@@ -6,9 +6,6 @@ import {
     fetchingSuccess,
     handleInputCapacity,
     handleInputNumber,
-    handleInputStatus,
-    status1,
-    status2
 } from '../constants/TableConstanta'
 import Grid from '@material-ui/core/Grid'
 import AddTable from '@material-ui/icons/AddBox'
@@ -47,10 +44,6 @@ class TableContainer extends Component {
         let data=event.target.value
         this.props.dispatch({...handleInputNumber, payload: data})
     }
-    handleTableStatus=(event)=>{
-        let data=event.target.value
-        this.props.dispatch({...handleInputStatus, payload: data})
-    }
     handleTableCapacity=(event)=>{
         let data=event.target.value
         this.props.dispatch({...handleInputCapacity, payload: data})
@@ -87,6 +80,7 @@ class TableContainer extends Component {
                 )
             })
         }
+        console.log(this.props.tableFormData)
 
         return (
             <div className="container-fluid">
@@ -95,7 +89,6 @@ class TableContainer extends Component {
                         <AddTable/> <span>Add Table</span>
                     </button>
                 </div>
-                    {/*<AddTable data-toggle="modal" data-target="#exampleModal"/>*/}
                 <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog " role="document">
@@ -114,15 +107,8 @@ class TableContainer extends Component {
                                     </div>
                                     <div className="form-group">
                                         <input type="number" className="form-control"
-                                               id="exampleInputEmail" placeholder="Capacity" onChange={this.handleTableCapacity}/>
+                                               id="exampleInputEmail" placeholder="Capacity" onChange={this.handleTableCapacity} required={true}/>
                                     </div>
-                                        <div className="form-group">
-                                            <select name="selectStatus" id="selectStatus" className="custom-select custom-select-md mb-3" onChange={this.handleTableStatus}>
-                                                <option value="null">STATUS</option>
-                                                <option value={status1}>Available</option>
-                                                <option value={status2}>Dining</option>
-                                            </select>
-                                        </div>
                                 </form>
                             </div>
                             <div className="modal-footer">

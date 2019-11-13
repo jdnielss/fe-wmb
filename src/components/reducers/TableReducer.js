@@ -2,7 +2,7 @@ const dataTable = {
     fetchResult: [],
     tableFormData: {
         numberTable: null,
-        status: '',
+        status: 'AVAILABLE',
         capacity: null
     },
     fetchTableById: {
