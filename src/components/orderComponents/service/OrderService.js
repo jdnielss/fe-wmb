@@ -20,15 +20,14 @@ export async function fetchDataOrderById(idOrder){
 }
 
 export async function saveDataOrder(orderForm) {
-    await axios.post('http://10.10.13.150:9090/order')
-    // return await fetch('http://10.10.13.150:9090/order', {
-    //     method: 'POST',
-    //     headers: {
-    //         Accept: 'application/json',
-    //         "Content-type": "application/json"
-    //     },
-    //     body: JSON.stringify(orderForm)
-    // })
+    return await axios.post('http://10.10.13.150:9090/order', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(orderForm)
+    })
         .then( async (res) => {
             if (res.status === 200){
                 await Swal.fire(
