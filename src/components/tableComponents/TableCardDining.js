@@ -64,10 +64,10 @@ class TableCardDining extends Component {
                             <b>Capacity : {this.props.dataTables.capacity}</b>
                         </Typography>
                         <IconButton>
-                            <DeleteIcon aria-disabled="true"/>
+                            <DeleteIcon aria-disabled="true" hidden/>
                         </IconButton>
                         <IconButton>
-                            <OrderIcon aria-disabled="true"/>
+                            <OrderIcon aria-disabled="true" hidden/>
                         </IconButton>
                     </CardContent>
 

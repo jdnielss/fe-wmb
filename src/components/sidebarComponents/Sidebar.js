@@ -63,8 +63,8 @@ class Sidebar extends Component {
                     </li>
                     <hr className="sidebar-divider my-0"/>
                     <li className="nav-item active">
-                        <Link to="/history" className="nav-link">
-                            <HistoryIcon/><span className="text-uppercase"> Transaction History</span>
+                        <Link to="/payment-history" className="nav-link">
+                            <HistoryIcon/><span className="text-uppercase"> Payment History</span>
                         </Link>
                     </li>
 
