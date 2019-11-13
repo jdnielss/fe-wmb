@@ -35,7 +35,7 @@ class MenuTableContainer extends Component {
                                 {
                                     this.props.dataMenu.map((element, index) =>{
                                         return (
-                                            <tr>
+                                            <tr key={index}>
                                                 <td>{element.foodName}</td>
                                                 <td>{element.quantity}</td>
                                                 <td>{element.typeFood}</td>

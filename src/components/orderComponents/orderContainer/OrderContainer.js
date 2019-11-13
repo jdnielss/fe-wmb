@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import '../orderAssets/Custom-Order.scss'
-
 import {
     fetchTableAvailable,
     fetchFoodMenu,

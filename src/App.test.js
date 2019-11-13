@@ -1,7 +1,7 @@
 import React from 'react'
 import {shallow} from 'enzyme'
 import App from './App'
-
+import {configure} from 'redux-mock-store'
 describe('App Component', () => {
     describe('Render', () =>{
         it('should have one router', () => {
