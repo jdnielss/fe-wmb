@@ -80,7 +80,6 @@ class TableContainer extends Component {
                 )
             })
         }
-        console.log(this.props.tableFormData)
 
         return (
             <div className="container-fluid">

@@ -3,8 +3,6 @@ import {Link} from 'react-router-dom'
 import '../../App.css'
 import TableIcon from '@material-ui/icons/TableChart'
 import HistoryIcon from '@material-ui/icons/History'
-import OrderIcon from '@material-ui/icons/ShoppingCart'
-
 class Sidebar extends Component {
     render() {
         return (

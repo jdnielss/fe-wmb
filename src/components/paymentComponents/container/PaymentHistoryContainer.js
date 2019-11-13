@@ -11,10 +11,8 @@ class PaymentHistoryContainer extends Component {
     fetchPaymentHistory = async () =>{
         const result = await fetchDataTransaction()
         this.props.dispatch({...fetchingDataTransaction, payload:result})
-        console.log(result)
     }
     render() {
-        console.log(this.props)
         return (
             <div>
                 <div>
@@ -29,7 +27,6 @@ class PaymentHistoryContainer extends Component {
                                            cellSpacing="0">
                                         <thead>
                                         <tr>
-                                            <th>No.</th>
                                             <th>PIC Name</th>
                                             <th>Customer Capacity</th>
                                             <th>No Table</th>
