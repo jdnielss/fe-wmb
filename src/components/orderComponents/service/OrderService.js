@@ -11,7 +11,7 @@ export async function fetchDataOrder(){
 
 
 export async function fetchDataOrderById(idOrder){
-    const data = await fetch(`http://10.10.13.150:9090/order/${idOrder}`, {method:'GET',})
+    const data = await axios.get(`http://10.10.13.150:9090/order/${idOrder}`)
         .then((response) => {
             console.log(response)
             return response.json()
@@ -20,14 +20,15 @@ export async function fetchDataOrderById(idOrder){
 }
 
 export async function saveDataOrder(orderForm) {
-    return await fetch('http://10.10.13.150:9090/order', {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            "Content-type": "application/json"
-        },
-        body: JSON.stringify(orderForm)
-    })
+    await axios.post('http://10.10.13.150:9090/order')
+    // return await fetch('http://10.10.13.150:9090/order', {
+    //     method: 'POST',
+    //     headers: {
+    //         Accept: 'application/json',
+    //         "Content-type": "application/json"
+    //     },
+    //     body: JSON.stringify(orderForm)
+    // })
         .then( async (res) => {
             if (res.status === 200){
                 await Swal.fire(
