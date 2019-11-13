@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../../../App.css'
 import {fetchDataTransaction, getDataTransactionDataById, updatePayment} from "../service/PaymentService";
 import {connect} from 'react-redux'
 import {fetchingDataTransaction, handlePayment} from "../action/PaymentActions";

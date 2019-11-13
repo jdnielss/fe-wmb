@@ -20,14 +20,12 @@ class MenuTableContainer extends Component {
                     </div>
                     <div className="card-body">
                         <div className="table-responsive">
-                            <table className="table table-bordered text-center" id="dataTable" width="100%" cellSpacing="0">
-                                <thead>
+                            <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
+                                <thead className="text-center">
                                 <tr>
-                                    <th>Food</th>
-                                    <th>Quantity</th>
-                                    <th>Type Food</th>
-                                    <th>Price</th>
-                                    <th>Action</th>
+                                    <th width="30%">Food</th>
+                                    <th>Details</th>
+                                    <th width="10%">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -35,15 +33,23 @@ class MenuTableContainer extends Component {
                                     this.props.dataMenu.map((element, index) =>{
                                         return (
                                             <tr key={index}>
-                                                <td>{element.foodName}</td>
-                                                <td>{element.quantity}</td>
-                                                <td>{element.typeFood}</td>
-                                                <td>Rp. {element.price}</td>
+                                                <td className="text-center">
+                                                    <img src={`http://10.10.13.150:80/foodImages/${element.idFood}.jpg`}/>
+                                                </td>
                                                 <td>
+                                                    <ul>
+                                                        <li>Food Name : {element.foodName}</li>
+                                                        <li>Food Quantity : {element.quantity}</li>
+                                                        <li>Type Food : {element.typeFood}</li>
+                                                        <li>Price :  {element.price}</li>
+                                                    </ul>
+                                                </td>
+                                                <td className="text-center">
                                                     <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#updateMenu" onClick={()=>{this.fetchingById(element.idFood)}}>
                                                         Update
                                                     </button>
                                                 </td>
+
                                             </tr>
                                         )
                                     })  
