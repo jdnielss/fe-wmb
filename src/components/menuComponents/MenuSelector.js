@@ -5,7 +5,6 @@ import {fetchDataMenu} from "./service/MenuService";
 
 class MenuSelector extends Component {
     render() {
-        console.log(this.props.key)
         return (
             <div className="form-row">
                 <div className="form-group col-md-6">
@@ -13,7 +12,7 @@ class MenuSelector extends Component {
                     <select id="inputState" className="form-control" onChange={(event) => {
                         this.props.dispatch({
                             type: 'HANDLE_FOOD_ID',
-                            index: this.props.key,
+                            index: this.props.index,
                             payload: event.target.value
                         })
                     }}>
@@ -29,7 +28,7 @@ class MenuSelector extends Component {
                            onChange={(event) => {
                                this.props.dispatch({
                                    type: 'HANDLE_FOOD_QUANTITY',
-                                   index: this.props.key,
+                                   index: this.props.index,
                                    payload: event.target.value
                                })
                            }}/>

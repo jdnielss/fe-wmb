@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import OrderForm from "../orderComponents/OrderForm";
 import './assets/TableCard.scss'
-import { withStyles } from '@material-ui/styles';
+import {withStyles} from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
+import {red} from '@material-ui/core/colors';
 import {fetchTableById} from "./service/TableService";
 import {fetchingTableId} from "./action/TableActions";
 import {connect, Provider} from "react-redux";
@@ -20,7 +20,7 @@ import {createStore} from "redux";
 import orderReducer from "../orderComponents/reducer/OrderReducer";
 import reducerFormOrder from "../orderComponents/reducer/ReducerFormOrder";
 
-const useStyles =(theme => ({
+const useStyles = (theme => ({
     card: {
         width: '20%',
         height: '15%',
@@ -37,14 +37,14 @@ const useStyles =(theme => ({
 }));
 
 
-
 class TableCard extends Component {
     fetchingTableById = async (idTransaction) => {
         const resultData = await fetchTableById(idTransaction)
-        this.props.dispatch({...fetchingTableId, payload:resultData})
+        this.props.dispatch({...fetchingTableId, payload: resultData})
     }
+
     render() {
-        console.log(this.props, 'data table')
+        console.log(this.props.formOrder, 'data Form')
         const {classes} = this.props;
         return (
             <Card className={classes.card}>
@@ -58,7 +58,8 @@ class TableCard extends Component {
                         }
                         action={
                             <IconButton aria-label="settings">
-                                <DetailIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingTableById(this.props.dataTables.idTable)} />
+                                <DetailIcon data-toggle="modal" data-target="#detailModal"
+                                            onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
                             </IconButton>
                         }
                         title={this.props.dataTables.status}
@@ -72,7 +73,8 @@ class TableCard extends Component {
                             <DeleteIcon data-toggle="modal" data-target="#askingPermission"/>
                         </IconButton>
                         <IconButton>
-                            <OrderIcon data-toggle="modal" data-target="#order" onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
+                            <OrderIcon data-toggle="modal" data-target="#order"
+                                       onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
                         </IconButton>
                     </CardContent>
                     <div className="modal fade" id="detailModal" tabIndex="-1" role="dialog"
@@ -86,24 +88,6 @@ class TableCard extends Component {
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    <form>
-                                        {/*<div className="form-group row">*/}
-                                        {/*    <label htmlFor="staticEmail"*/}
-                                        {/*           className="col-sm-2 col-form-label">Status</label>*/}
-                                        {/*    <div className="col-sm-10">*/}
-                                        {/*        <input type="text" readOnly className="form-control"*/}
-                                        {/*               value={this.props.fetchTableById.status}/>*/}
-                                        {/*    </div>*/}
-                                        {/*</div>*/}
-                                        {/*<div className="form-group row">*/}
-                                        {/*    <label htmlFor="staticEmail"*/}
-                                        {/*           className="col-sm-2 col-form-label">Capacity</label>*/}
-                                        {/*    <div className="col-sm-10">*/}
-                                        {/*        <input type="text" readOnly className="form-control"*/}
-                                        {/*               value={this.props.fetchTableById.capacity}/>*/}
-                                        {/*    </div>*/}
-                                        {/*</div>*/}
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -128,11 +112,13 @@ class TableCard extends Component {
                             </div>
                         </div>
                     </div>
+
                     <div className="modal fade" id="order" tabIndex="-1" role="dialog"
                          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div className="modal-dialog modal-lg" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
+                                    <h3>{this.props.formOrder}</h3>
                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -140,13 +126,8 @@ class TableCard extends Component {
                                 <div className="modal-body">
                                     <Provider store={createStore(reducerFormOrder)}>
                                         <OrderForm tableId={this.props.fetchTableById.idTable}/>
+                                        {this.props.formOrder}
                                     </Provider>
-
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close
-                                    </button>
-                                    <button type="button" className="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
@@ -156,10 +137,11 @@ class TableCard extends Component {
         );
     }
 }
+
 TableCard.propType = {
     classes: PropTypes.object.isRequired
 }
-const mapStateToProps=(state)=>{
-    return{...state}
+const mapStateToProps = (state) => {
+    return {...state}
 }
 export default withStyles(useStyles)(connect(mapStateToProps)(TableCard))

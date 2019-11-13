@@ -44,6 +44,7 @@ class OrderForm extends Component {
                                 return <MenuSelector key={index} index={index}/>
                             })}
                         </form>
+                        <button className="btn btn-primary btn-block btn-user "data-dismiss="modal" onClick={this.handleOrderSubmit}>ORDER</button>
                     </div>
                 </div>
             </div>
@@ -66,7 +67,6 @@ class OrderForm extends Component {
     handleOrderSubmit = (event) => {
         event.preventDefault()
         saveDataOrder(this.props.formOrder)
-        this.fetchingData()
     }
 }
 
