@@ -41,22 +41,24 @@ class PaymentHistoryContainer extends Component {
                                         </thead>
                                         <tbody className="">
                                         {this.props.fetchResultTransaction.map((element, index) => {
-                                            return <tr>
-                                                <td>{index+1}</td>
-                                                <td key={index}>{element.orderList.picCustomer} </td>
-                                                <td key={index}>{element.orderList.manyCustomers}</td>
-                                                <td key={index}>{element.orderList.table.numberTable}</td>
-                                                <td key={index}>{element.orderList.orderDetails.map((element, index) => {
-                                                    return <ul>
-                                                        <span key={index}>{element.food.foodName}</span>
-                                                    </ul>
-                                                })}</td>
-                                                <td>{element.change}</td>
-                                                <td>{element.pay}</td>
-                                                <td>{element.total}</td>
-                                                <td key={index}>{element.paymentStatus}</td>
-                                            </tr>
-                                        })}
+                                            if (element.paymentStatus === 'PAID'){
+                                                return <tr>
+                                                    <td>{index+1}</td>
+                                                    <td key={index}>{element.orderList.picCustomer} </td>
+                                                    <td key={index}>{element.orderList.manyCustomers}</td>
+                                                    <td key={index}>{element.orderList.table.numberTable}</td>
+                                                    <td key={index}>{element.orderList.orderDetails.map((element, index) => {
+                                                        return <ul>
+                                                            <span key={index}>{element.food.foodName}</span>
+                                                        </ul>
+                                                    })}</td>
+                                                    <td>{element.change}</td>
+                                                    <td>{element.pay}</td>
+                                                    <td>{element.total}</td>
+                                                    <td key={index}>{element.paymentStatus}</td>
+                                                </tr>
+                                            }}
+                                        )}
                                         </tbody>
                                     </table>
                                 </div>
