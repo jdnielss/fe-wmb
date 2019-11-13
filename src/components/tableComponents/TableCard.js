@@ -130,7 +130,7 @@ class TableCard extends Component {
                     </div>
                     <div className="modal fade" id="order" tabIndex="-1" role="dialog"
                          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div className="modal-dialog" role="document">
+                        <div className="modal-dialog modal-lg" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">

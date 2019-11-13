@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2'
+
 export async function fetchDataTransaction(){
     const data = await fetch('http://10.10.13.150:9090/transaction', {method:'GET',})
         .then((response) => {
@@ -21,7 +23,18 @@ export async function updatePayment(paymentData) {
         },
         body: JSON.stringify(paymentData)
     })
-        .then((res) => {
-            return res.json()
-        }).catch(err => err);
+        .then( async (res) => {
+            if (res.status === 200){
+                await Swal.fire(
+                    'Success!',
+                    'Pembayaran Berhasil',
+                    'success'
+                )
+            } else await Swal.fire(
+                'Error!',
+                'Pembayaran Gagal',
+                'error'
+            )
+        }).catch();
+
 }

@@ -36,9 +36,8 @@ class OrderForm extends Component {
                                 </div>
                             </div>
                             <div>
-                                <button className="btn-order btn btn-primary btn-user"
-                                        onClick={this.handleAddMenu}
-                                >Order Menu
+                                <button className="btn-order btn btn-primary btn-user" onClick={this.handleAddMenu}>
+                                    Order Menu
                                 </button>
                             </div>
                             {this.props.formOrder.orderDetails.map((element, index) => {
