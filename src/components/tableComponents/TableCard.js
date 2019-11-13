@@ -11,11 +11,14 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import {fetchTableById} from "./service/TableService";
 import {fetchingTableId} from "./action/TableActions";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import DeleteIcon from '@material-ui/icons/Delete';
 import OrderIcon from '@material-ui/icons/ShoppingCart';
 import IconButton from "@material-ui/core/IconButton";
-import DetailIcon from "@material-ui/icons/InfoOutlined";
+import DetailIcon from "@material-ui/icons/ErrorOutline";
+import {createStore} from "redux";
+import orderReducer from "../orderComponents/reducer/OrderReducer";
+import reducerFormOrder from "../orderComponents/reducer/ReducerFormOrder";
 
 const useStyles =(theme => ({
     card: {
@@ -69,7 +72,7 @@ class TableCard extends Component {
                             <DeleteIcon data-toggle="modal" data-target="#askingPermission"/>
                         </IconButton>
                         <IconButton>
-                            <OrderIcon data-toggle="modal" data-target="#order"/>
+                            <OrderIcon data-toggle="modal" data-target="#order" onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
                         </IconButton>
                     </CardContent>
                     <div className="modal fade" id="detailModal" tabIndex="-1" role="dialog"
@@ -135,7 +138,10 @@ class TableCard extends Component {
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    <OrderForm/>
+                                    <Provider store={createStore(reducerFormOrder)}>
+                                        <OrderForm tableId={this.props.fetchTableById.idTable}/>
+                                    </Provider>
+
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close

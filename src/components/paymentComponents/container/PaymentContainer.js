@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {fetchDataTransaction, getDataTransactionDataById} from "../service/PaymentService";
 import {connect} from 'react-redux'
-import {fetchingDataTransaction} from "../action/PaymentActions";
+import {fetchingDataTransaction, handlePayment} from "../action/PaymentActions";
 
 class PaymentContainer extends Component {
     componentDidMount() {
@@ -16,8 +16,13 @@ class PaymentContainer extends Component {
         const gettrxById = await getDataTransactionDataById(idTransaction)
         this.props.dispatch({type: 'FETCHING_TRANSACTION_BY_ID_SUCCESS', payload: gettrxById})
     }
+    handlePayment=(event)=>{
+        const data = event.target.value
+        this.props.dispatch({...handlePayment, payload:data})
+    }
 
     render() {
+        console.log(this.props.fetchResultTransactionById)
         return (
             <div>
                 <div className="container-fluid">
@@ -97,6 +102,15 @@ class PaymentContainer extends Component {
                                                                        className="form-control"
                                                                        placeholder="Price" disabled
                                                                        value={this.props.fetchResultTransactionById.total || ''}/>
+                                                            </div>
+                                                        </div>
+                                                        <div className="form-group row">
+                                                            <label htmlFor="staticEmail"
+                                                                   className="col-sm-2 col-form-label">Pay</label>
+                                                            <div className="col-sm-10">
+                                                                <input type="number"
+                                                                       className="form-control"
+                                                                      onChange={this.handlePayment}/>
                                                             </div>
                                                         </div>
                                                     </form>

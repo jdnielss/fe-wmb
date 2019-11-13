@@ -53,7 +53,7 @@ class TableCardDining extends Component {
                         }
                         action={
                             <IconButton aria-label="settings">
-                                <DetailIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingOrderById(this.props)} />
+                                <DetailIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingOrderById(this.props.dataTables.idTable)} />
                             </IconButton>
                         }
                         title={this.props.dataTables.status}

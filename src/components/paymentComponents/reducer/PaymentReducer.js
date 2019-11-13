@@ -31,6 +31,10 @@ export default function paymentReducer(state = initialState, action) {
                     orderList:action.payload.orderList
                 }
             }
+        case 'HANDLE_PAYMENT':
+            return {
+                ...state, fetchResultTransactionById: {...state.fetchResultTransactionById, pay:action.payload}
+            }
         default:
             return {
                 ...state
