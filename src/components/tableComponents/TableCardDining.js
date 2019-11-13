@@ -13,6 +13,9 @@ import DetailIcon from "@material-ui/icons/ErrorOutline";
 import PropTypes from 'prop-types';
 import {fetchTableById} from "../services/TableService";
 import {fetchingTableId} from "./constants/TableConstanta";
+import DeleteIcon from '@material-ui/icons/Delete';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+
 
 const useStyles =(theme => ({
     card: {
@@ -39,6 +42,7 @@ class TableCardDining extends Component {
         this.props.dispatch({...fetchingTableId, payload:resultData})
     }
     render() {
+        console.log(this.props.fetchTableById)
         const {classes} = this.props;
         console.log(this.props, 'data props table')
         return (
@@ -63,6 +67,12 @@ class TableCardDining extends Component {
                         <Typography variant="body2" color="textSecondary" component="p" onChange>
                             <b>Capacity : {this.props.dataTables.capacity}</b>
                         </Typography>
+                        <IconButton>
+                            <DeleteIcon aria-disabled="true"/>
+                        </IconButton>
+                        <IconButton>
+                            <ShoppingBasketIcon aria-disabled="true"/>
+                        </IconButton>
                     </CardContent>
 
                     <div className="modal fade" id="detailModal" tabIndex="-1" role="dialog"
@@ -82,7 +92,7 @@ class TableCardDining extends Component {
                                                    className="col-sm-2 col-form-label">Status</label>
                                             <div className="col-sm-10">
                                                 <input type="text" readOnly className="form-control"
-                                                       value={this.props.dataTables.status}/>
+                                                       value={this.props.fetchTableById.status}/>
                                             </div>
                                         </div>
                                         <div className="form-group row">
@@ -90,7 +100,7 @@ class TableCardDining extends Component {
                                                    className="col-sm-2 col-form-label">Capacity</label>
                                             <div className="col-sm-10">
                                                 <input type="text" readOnly className="form-control"
-                                                       value={this.props.dataTables.capacit}/>
+                                                       value={this.props.fetchTableById.capacity}/>
                                             </div>
                                         </div>
                                     </form>
@@ -106,5 +116,8 @@ class TableCardDining extends Component {
 TableCardDining.propType = {
     classes: PropTypes.object.isRequired
 }
+const mapStateToProps=(state)=>{
+    return{...state}
+}
 
-export default withStyles(useStyles)(connect()(TableCardDining))
+export default withStyles(useStyles)(connect(mapStateToProps)(TableCardDining))
