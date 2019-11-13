@@ -20,9 +20,9 @@ class PaymentContainer extends Component {
         const data = event.target.value
         this.props.dispatch({...handlePayment, payload:data})
     }
-    handlePaymentSubmit=(event)=>{
+    handlePaymentSubmit= async (event)=>{
         event.preventDefault()
-        updatePayment(this.props.fetchResultTransactionById)
+        await updatePayment(this.props.fetchResultTransactionById)
 }
 
     render() {

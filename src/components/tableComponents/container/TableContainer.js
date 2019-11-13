@@ -48,9 +48,9 @@ class TableContainer extends Component {
         let data=event.target.value
         this.props.dispatch({...handleInputCapacity, payload: data})
     }
-    handleButtonSubmit=()=>{
+    handleButtonSubmit=async ()=>{
         saveDataTable({...this.props.tableFormData});
-        this.fetchingData(0);
+        await this.fetchingData(0);
     }
 
     render() {
@@ -103,16 +103,16 @@ class TableContainer extends Component {
                                 <form className="user">
                                     <div className="form-group">
                                         <input type="number" className="form-control"
-                                               id="exampleInputEmail" placeholder="No. Table" onChange={this.handleTableNumber} required={true}/>
+                                                placeholder="No. Table" onChange={this.handleTableNumber} required="true"/>
                                     </div>
                                     <div className="form-group">
                                         <input type="number" className="form-control"
-                                               id="exampleInputEmail" placeholder="Capacity" onChange={this.handleTableCapacity} required={true}/>
+                                               placeholder="Capacity" onChange={this.handleTableCapacity} required="true"/>
                                     </div>
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={this.handleButtonSubmit} data-dismiss="modal">Save changes</button>
+                                <button type="submit" className="btn btn-primary" onClick={this.handleButtonSubmit}>Save changes</button>
                             </div>
                         </div>
                     </div>

@@ -36,7 +36,6 @@ const useStyles = (theme => ({
     }
 }));
 
-
 class TableCard extends Component {
     fetchingTableById = async (idTransaction) => {
         const resultData = await fetchTableById(idTransaction)

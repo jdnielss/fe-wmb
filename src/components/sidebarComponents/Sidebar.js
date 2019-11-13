@@ -25,12 +25,6 @@ class Sidebar extends Component {
                         </Link>
                     </li>
                     <hr className="sidebar-divider my-0"/>
-
-                    <li className="nav-item active">
-                        <Link to="/order" className="nav-link">
-                            <OrderIcon/><span className="text-uppercase"> Order</span>
-                        </Link>
-                    </li>
                     <li className="nav-item active">
                         <Link to="/transaction" className="nav-link">
                             <HistoryIcon/><span className="text-uppercase"> Order History</span>

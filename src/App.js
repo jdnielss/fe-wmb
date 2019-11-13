@@ -16,6 +16,8 @@ import orderReducer from "./components/orderComponents/reducer/OrderReducer";
 import paymentReducer from "./components/paymentComponents/reducer/PaymentReducer";
 import tableReducer from './components/tableComponents/reducers/TableReducer'
 import PaymentHistoryContainer from "./components/paymentComponents/container/PaymentHistoryContainer";
+import TableWrapper from "./components/tableComponents/TableWrapper";
+import PaymentHistoryWrapper from "./components/paymentComponents/PaymentHistoryWrapper";
 class App extends Component {
     render() {
         return (
@@ -29,9 +31,7 @@ class App extends Component {
                                 <div className="container-fluid">
                                     <Switch>
                                         <Route path="/table">
-                                            <Provider store={createStore(tableReducer)}>
-                                                <TableContainer/>
-                                            </Provider>
+                                                <TableWrapper/>
                                         </Route>
                                         <Route path="/menu">
                                             <Provider store={createStore(menuReducer)}>
@@ -54,9 +54,7 @@ class App extends Component {
                                             </Provider>
                                         </Route>
                                         <Route path="/payment-history">
-                                            <Provider store={createStore(paymentReducer)}>
-                                                <PaymentHistoryContainer/>
-                                            </Provider>
+                                                <PaymentHistoryWrapper/>
                                         </Route>
                                     </Switch>
                                 </div>
