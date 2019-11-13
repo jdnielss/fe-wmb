@@ -41,7 +41,7 @@ class PaymentHistoryContainer extends Component {
                                         <tbody className="">
                                         {this.props.fetchResultTransaction.map((element, index) => {
                                             return <tr>
-
+                                                <td>{index+1}</td>
                                                 <td key={index}>{element.orderList.picCustomer} </td>
                                                 <td key={index}>{element.orderList.manyCustomers}</td>
                                                 <td key={index}>{element.orderList.table.numberTable}</td>
