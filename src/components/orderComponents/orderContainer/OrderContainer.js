@@ -16,8 +16,9 @@ import {
 import {fetchDataMenu} from "../../services/MenuService";
 import {fetchDataTableAvailable} from "../../services/TableService";
 import {fetchDataOrder, saveDataOrder} from "../../services/OrderService";
+import OrderForm from "../OrderForm";
 
-class MenuTableContainer extends Component {
+class OrderContainer extends Component {
 
     componentDidMount() {
         this.fetchingData()
@@ -128,6 +129,7 @@ class MenuTableContainer extends Component {
                         </form>
                     </div>
                 </div>
+                {/*<div hidden={true}><OrderForm formorder={this.props.formOrder}/></div>*/}
             </div>
 
         );
@@ -140,4 +142,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(MenuTableContainer)
+export default connect(mapStateToProps)(OrderContainer)

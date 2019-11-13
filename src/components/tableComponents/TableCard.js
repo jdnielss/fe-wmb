@@ -16,6 +16,9 @@ import {connect} from "react-redux";
 import DeleteIcon from '@material-ui/icons/Delete';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import OrderForm from "../orderComponents/OrderForm";
+import Provider from "react-redux/lib/components/Provider";
+import {createStore} from "redux";
+import orderReducer from "../reducers/OrderReducer";
 
 
 const useStyles =(theme => ({
@@ -135,7 +138,7 @@ class TableCard extends Component {
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    <OrderForm/>
+                                        <OrderForm/>
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close

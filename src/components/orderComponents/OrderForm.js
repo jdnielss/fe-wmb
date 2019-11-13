@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
+import {withStyles} from "@material-ui/styles";
+import {connect} from "react-redux";
 
 class OrderForm extends Component {
     render() {
+        console.log(this.props.data,'ini order')
         return (
             <div className="container-fluid">
                 <div className="card shadow mb-4">
@@ -45,5 +48,7 @@ class OrderForm extends Component {
         );
     }
 }
-
-export default OrderForm;
+const mapStateToProps=(state)=>{
+    return{...state}
+}
+export default connect(mapStateToProps)(OrderForm)

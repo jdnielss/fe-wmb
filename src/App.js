@@ -14,6 +14,7 @@ import menuReducer from "./components/reducers/menuReducer";
 import tableReducer from "./components/reducers/TableReducer";
 import orderReducer from "./components/reducers/OrderReducer";
 import paymentReducer from "./components/reducers/PaymentReducer";
+import OrderForm from "./components/orderComponents/OrderForm";
 
 class App extends Component {
     render() {
