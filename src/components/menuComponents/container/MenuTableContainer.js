@@ -49,8 +49,8 @@ class MenuTableContainer extends Component {
     }
     handleSubmitMenu = async () => {
         await saveFoodWithImage(this.props.menuForm,this.state.foodPicture);
-        await this.submitSuccess();
-        await this.fetchDataMenu()
+         this.submitSuccess();
+         this.fetchDataMenu()
     }
     submitSuccess = () =>{
         Swal.fire(
