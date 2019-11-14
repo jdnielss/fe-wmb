@@ -24,20 +24,20 @@ class PaymentForm extends Component {
                                 </tr>
                                 </thead>
                                 <tbody className="">
-                                <tr>
-                                    <td>{this.props.dataTransaction.orderList.picCustomer}</td>
-                                    <td>{this.props.dataTransaction.orderList.manyCustomers}</td>
-                                    <td>{this.props.dataTransaction.orderList.table.numberTable}</td>
-                                    <td>{this.props.dataTransaction.orderList.orderDetails.map((element, index)=>{
-                                        return <ul>
-                                            <span>{element.food.foodName}</span>
-                                        </ul>
-                                    })}</td>
-                                    <td>{this.props.dataTransaction.paymentStatus}</td>
-                                    <td>
-                                        <button className="btn btn-success">PAY NOW</button>
-                                    </td>
-                                </tr>
+                                {/*<tr>*/}
+                                {/*    <td>{this.props.dataTransaction.orderList.picCustomer}</td>*/}
+                                {/*    <td>{this.props.dataTransaction.orderList.manyCustomers}</td>*/}
+                                {/*    <td>{this.props.dataTransaction.orderList.table.numberTable}</td>*/}
+                                {/*    <td>{this.props.dataTransaction.orderList.orderDetails.map((element, index)=>{*/}
+                                {/*        return <ul>*/}
+                                {/*            <span>{element.food.foodName}</span>*/}
+                                {/*        </ul>*/}
+                                {/*    })}</td>*/}
+                                {/*    <td>{this.props.dataTransaction.paymentStatus}</td>*/}
+                                {/*    <td>*/}
+                                {/*        <button className="btn btn-success">PAY NOW</button>*/}
+                                {/*    </td>*/}
+                                {/*</tr>*/}
                                 </tbody>
                              </table>
                         </div>

@@ -25,6 +25,7 @@ class MenuTableContainer extends Component {
         this.fetchDataMenu()
     }
 
+
     fetchDataMenu = async () => {
         const resultData = await fetchDataMenu()
         this.props.dispatch({...fetchingSuccess, payload:resultData})
@@ -53,7 +54,6 @@ class MenuTableContainer extends Component {
     handleSubmitMenu = (event) => {
         event.preventDefault()
         saveFoodWithImage(this.props.menuForm,this.state.foodPicture)
-        this.fetchDataMenu()
     }
 
     render() {

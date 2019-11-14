@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {updateMenu} from "./service/MenuService";
 class MenuUpdate extends Component {
     render() {
-        console.log(this.props.dataMenuById)
         return (
             <div className="modal fade" id="updateMenu" tabIndex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -44,7 +43,7 @@ class MenuUpdate extends Component {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-primary" onClick={this.handleUpdateButton} data-dismiss="modal">Save changes</button>
+                            <button type="button" className="btn btn-primary" onClick={() => {this.handleUpdateButton()}} data-dismiss="modal">Save changes</button>
                         </div>
                     </div>
                 </div>

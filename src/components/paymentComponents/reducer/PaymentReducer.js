@@ -1,5 +1,11 @@
 const initialState = {
-    fetchResultTransaction: [],
+    fetchResult:[],
+        fetchResultTransaction: {
+            content: [],
+            total: null,
+            per_page: null,
+            current_page: 0
+        },
     fetchResultTransactionById: {
         idTransaction: '',
         total: null,
@@ -10,14 +16,18 @@ const initialState = {
             orderDetails: [],
         }
     }
-
 }
+
 
 export default function paymentReducer(state = initialState, action) {
     switch (action.type) {
         case 'FETCHING_TRANSACTION_SUCCESS':
             return {
-                ...state, fetchResultTransaction: action.payload
+                ...state, fetchResultTransaction: {...state.fetchResultTransaction, content: action.payload.content, total: action.payload.totalElements, per_page: action.payload.size, current_page: action.payload.number}
+            }
+        case 'FETCHING_SUCCESS':
+            return {
+                ...state, fetchResult: action.payload
             }
         case 'FETCHING_TRANSACTION_BY_ID_SUCCESS':
             return {

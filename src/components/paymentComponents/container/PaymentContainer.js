@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import '../Payment.scss'
 import {fetchDataTransaction, getDataTransactionDataById, updatePayment} from "../service/PaymentService";
 import {connect} from 'react-redux'
-import {fetchingDataTransaction, handlePayment} from "../action/PaymentActions";
+import {handlePayment, fetchingSucces} from "../action/PaymentActions";
+import LoadingOverlay from 'react-loading-overlay';
+
 
 class PaymentContainer extends Component {
     componentDidMount() {
@@ -11,7 +13,7 @@ class PaymentContainer extends Component {
 
     fetchingData = async () => {
         const resultDataTransaction = await fetchDataTransaction()
-        this.props.dispatch({...fetchingDataTransaction, payload: resultDataTransaction})
+        this.props.dispatch({...fetchingSucces, payload: resultDataTransaction})
     }
     fetchingTrxById = async (idTransaction) => {
         const gettrxById = await getDataTransactionDataById(idTransaction)
@@ -27,7 +29,6 @@ class PaymentContainer extends Component {
     }
 
     render() {
-        console.log(this.props.fetchResultTransactionById, 'byId')
         return (
             <div>
                 <div className="container-fluid">
@@ -50,7 +51,7 @@ class PaymentContainer extends Component {
                                     </tr>
                                     </thead>
                                     <tbody className="">
-                                    {this.props.fetchResultTransaction.map((element, index) => {
+                                    {this.props.fetchResult.map((element, index) => {
                                         if (element.paymentStatus === 'UNPAID') {
                                             return <tr>
                                                 <td key={index}>{element.orderList.picCustomer} </td>

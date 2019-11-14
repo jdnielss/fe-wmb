@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import axios from "axios";
+
 export async function fetchDataOrder(){
     const data = await axios.get('http://10.10.13.150:9090/order')
         .then((response) => {
