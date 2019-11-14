@@ -70,15 +70,19 @@ class MenuUpdate extends Component {
     }
     handleUpdateButton = async ()=>{
         await updateMenu(this.props.dataMenuById);
-        this.props.rerender();
-        this.submitSucces()
+        this.submitSuccess();
+        await this.tukangRender();
+
     }
-    submitSucces = () =>{
+    submitSuccess = () =>{
         Swal.fire(
             'Data Update',
             'Data Up to Date',
             'success'
         )
+    }
+    tukangRender = async () => {
+        await this.props.rerender();
     }
 }
 

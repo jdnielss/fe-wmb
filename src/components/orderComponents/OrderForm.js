@@ -64,8 +64,8 @@ class OrderForm extends Component {
         this.props.dispatch({...customerQuantityHandler, payload: data})
     }
     handleOrderSubmit =async () => {
-        saveDataOrder(this.props.formOrder)
-        await this.props.triger()
+       await saveDataOrder(this.props.formOrder)
+        this.props.triger(0)
     }
 }
 

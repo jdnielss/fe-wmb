@@ -47,13 +47,10 @@ class OrderContainer extends Component {
         event.preventDefault()
         this.props.dispatch({...addOrderMenu})
     }
-    handleOrderSubmit =(event)=>{
-        event.preventDefault()
-        saveDataOrder(this.props.formOrder)
-        this.fetchingData()
+    handleOrderSubmit = async ()=>{
+       await saveDataOrder(this.props.formOrder);
+       this.fetchingData()
     }
-
-
     render() {
         return (
             <div className="container-fluid">
@@ -126,7 +123,6 @@ class OrderContainer extends Component {
                         </form>
                     </div>
                 </div>
-                {/*<div hidden={true}><OrderForm formorder={this.props.formOrder}/></div>*/}
             </div>
 
         );
