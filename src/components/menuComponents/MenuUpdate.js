@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {typeDrink, typeFood} from "./action/MenuActions";
 import {connect} from 'react-redux'
+import {updateMenu} from "./service/MenuService";
 class MenuUpdate extends Component {
     render() {
         console.log(this.props.dataMenuById)
@@ -43,7 +44,7 @@ class MenuUpdate extends Component {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-primary" onClick={this.handleSubmitMenu} data-dismiss="modal">Save changes</button>
+                            <button type="button" className="btn btn-primary" onClick={this.handleUpdateButton} data-dismiss="modal">Save changes</button>
                         </div>
                     </div>
                 </div>
@@ -66,6 +67,10 @@ class MenuUpdate extends Component {
     handleInputType = (event) =>{
         let data = event.target.value
         this.props.dispatch({type:'HANDLE_UPDATE_TYPE_FOOD', payload: data})
+    }
+    handleUpdateButton=(event)=>{
+        event.preventDefault();
+        updateMenu(this.props.dataMenuById)
     }
 }
 const mapStateToProps=(state)=>{

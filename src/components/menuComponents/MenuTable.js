@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import './assets/MenuTable.scss'
 import {fetchingById} from "./action/MenuActions";
-import {saveDataMenuById} from "./service/MenuService";
+import {getDataMenuById} from "./service/MenuService";
 import MenuUpdate from "./MenuUpdate";
 import EditIcon from '@material-ui/icons/Edit';
 class MenuTableContainer extends Component {
 
     fetchingById = async (id) =>{
-        const getMenuById = await saveDataMenuById(id)
+        const getMenuById = await getDataMenuById(id)
         this.props.dispatch({...fetchingById, payload:getMenuById})
     }
 
