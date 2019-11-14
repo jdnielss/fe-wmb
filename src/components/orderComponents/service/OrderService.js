@@ -38,7 +38,7 @@ export async function saveDataOrder(orderForm) {
                 )
             } else await Swal.fire(
                 'Error!',
-                'Order Gagal',
+                'Order Gagal, Melebihi Quantity',
                 'error'
             )
         }).catch();
