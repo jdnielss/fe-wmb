@@ -65,7 +65,7 @@ class OrderForm extends Component {
     }
     handleOrderSubmit =async () => {
        await saveDataOrder(this.props.formOrder)
-        this.props.triger(0)
+        await this.props.triger(0);
     }
 }
 

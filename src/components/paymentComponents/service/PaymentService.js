@@ -29,6 +29,7 @@ export async function getDataTransactionDataByTable(idTable){
     return data;
 }
 export async function updatePayment(paymentData) {
+    paymentData.pay = paymentData.pay.replace(/\D+/g, '');
     return await fetch('http://10.10.13.150:9090/pay', {
         method: 'POST',
         headers: {

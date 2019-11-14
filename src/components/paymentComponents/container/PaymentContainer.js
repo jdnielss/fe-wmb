@@ -30,6 +30,7 @@ class PaymentContainer extends Component {
     }
 
     render() {
+        console.log(this.props.fetchResultTransactionById, 'TEST')
         return (
             <div>
                 <div className="container-fluid">
@@ -111,9 +112,7 @@ class PaymentContainer extends Component {
                                                             <label htmlFor="staticEmail"
                                                                    className="col-sm-2 col-form-label">Pay</label>
                                                             <div className="col-sm-10">
-                                                                <input type="number"
-                                                                       className="form-control"
-                                                                       onChange={this.handlePayment}/>
+                                                                <NumberFormat thousandSeparator={true} prefix={'Rp.'}  onChange={this.handlePayment} />
                                                             </div>
                                                         </div>
                                                     </form>
