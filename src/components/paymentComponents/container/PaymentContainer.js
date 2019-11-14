@@ -25,6 +25,7 @@ class PaymentContainer extends Component {
     handlePaymentSubmit = async (event) => {
         event.preventDefault()
         await updatePayment(this.props.fetchResultTransactionById)
+        this.fetchingData()
     }
 
     render() {

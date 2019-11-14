@@ -58,7 +58,9 @@ class TableCard extends Component {
                                 <OrderIcon data-toggle="modal" data-target="#order"
                                            onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
                             </IconButton>
+
                         }
+
                         title={this.props.dataTables.status}
                     />
 
