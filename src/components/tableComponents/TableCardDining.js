@@ -55,7 +55,7 @@ class TableCardDining extends Component {
                         }
                         action={
                             <IconButton aria-label="settings">
-                                <InfoIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingOrderById(this.props.dataTables.idTable)} />
+                                <InfoIcon data-toggle="modal" data-target="#detailTable" onClick={() => this.fetchingOrderById(this.props.dataTables.idTable)} />
                             </IconButton>
                         }
                         title={this.props.dataTables.status}
@@ -73,7 +73,7 @@ class TableCardDining extends Component {
                         </IconButton>
                     </CardContent>
 
-                    <div className="modal fade" id="detailModal" tabIndex="-1" role="dialog"
+                    <div className="modal fade" id="detailTable" tabIndex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog modal-lg" role="document">
                             <div className="modal-content">
