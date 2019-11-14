@@ -3,6 +3,7 @@ import {typeDrink, typeFood} from "./action/MenuActions";
 import {connect} from 'react-redux'
 class MenuUpdate extends Component {
     render() {
+        console.log(this.props.dataMenuById)
         return (
             <div className="modal fade" id="updateMenu" tabIndex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -18,19 +19,23 @@ class MenuUpdate extends Component {
                             <form className="user">
 
                                 <div className="form-group">
-                                    <input type="text" className="form-control" value={this.props.menuUpdate}/>
+                                    Food Name
+                                    <input type="text" className="form-control" value={this.props.dataMenuById.foodName} onChange={this.handleInputFoodName}/>
                                 </div>
-                                {/*<div className="form-group">*/}
-                                {/*    <input type="number" className="form-control"*/}
-                                {/*           placeholder="Quantity" value={this.props.addMenu.updateMenu.quantity} />*/}
-                                {/*</div>*/}
                                 <div className="form-group">
+                                    Quantity
                                     <input type="number" className="form-control"
-                                           placeholder="Price" />
+                                           value={this.props.dataMenuById.quantity} onChange={this.handleInputQuantity}/>
                                 </div>
                                 <div className="form-group">
-                                    <select name="selectStatus" id="selectStatus" className="custom-select custom-select-md mb-3">
-                                        <option value="null">TYPE FOOD</option>
+                                    Price
+                                    <input type="number" className="form-control"
+                                           value={this.props.dataMenuById.price} onChange={this.handleInputPrice}/>
+                                </div>
+                                <div className="form-group">
+                                    Type Food
+                                    <select name="selectStatus" id="selectStatus" className="custom-select custom-select-md mb-3" onChange={this.handleInputType}>
+                                        <option value={this.props.dataMenuById.typeFood}>{this.props.dataMenuById.typeFood}</option>
                                         <option value={typeFood}>FOOD</option>
                                         <option value={typeDrink}>DRINK</option>
                                     </select>
@@ -44,6 +49,23 @@ class MenuUpdate extends Component {
                 </div>
             </div>
         );
+    }
+    handleInputFoodName = (event) =>{
+        let data = event.target.value
+        this.props.dispatch({type:'HANDLE_UPDATE_FOOD_NAME', payload: data})
+        this.props.dispatch({type:'HANDLE_UPDATE_ID_FOOD', payload: this.props.dataMenuById.idFood})
+    }
+    handleInputQuantity = (event) => {
+        let data = event.target.value
+        this.props.dispatch({type:'HANDLE_UPDATE_QUANTITY_FOOD', payload:data})
+    }
+    handleInputPrice = (event) =>{
+        let data = event.target.value
+        this.props.dispatch({type:'HANDLE_UPDATE_PRICE_FOOD', payload: data})
+    }
+    handleInputType = (event) =>{
+        let data = event.target.value
+        this.props.dispatch({type:'HANDLE_UPDATE_TYPE_FOOD', payload: data})
     }
 }
 const mapStateToProps=(state)=>{
