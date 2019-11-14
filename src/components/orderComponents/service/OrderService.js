@@ -28,6 +28,8 @@ export async function saveDataOrder(orderForm) {
         body: JSON.stringify(orderForm)
     })
         .then( async (res) => {
+            let respond =await res.json();
+            console.log(respond)
             if (res.status === 200){
                 await Swal.fire(
                     'Success!',
@@ -36,7 +38,7 @@ export async function saveDataOrder(orderForm) {
                 )
             } else await Swal.fire(
                 'Error!',
-                'Order Gagal, Melebihi Quantity',
+                '' + respond.message,
                 'error'
             )
         }).catch();
