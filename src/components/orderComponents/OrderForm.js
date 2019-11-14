@@ -63,9 +63,9 @@ class OrderForm extends Component {
         let data = event.target.value
         this.props.dispatch({...customerQuantityHandler, payload: data})
     }
-    handleOrderSubmit = (event) => {
-        event.preventDefault()
+    handleOrderSubmit = () => {
         saveDataOrder(this.props.formOrder)
+        this.props.triger()
     }
 }
 

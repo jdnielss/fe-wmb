@@ -66,7 +66,7 @@ class TableContainer extends Component {
         if(this.state.fetchResult.content !== null){
             dataTables = this.state.fetchResult.content.map((dataTables, index) => {
                 if (dataTables.status ==="AVAILABLE") {
-                    return <TableCard dataTables={dataTables} key={index} number={index}/>
+                    return <TableCard dataTables={dataTables} key={index} number={index} renderTriger={this.fetchingData}/>
                 }else if (dataTables.status ==="DINING"){
                     return <TableCardDining dataTables={dataTables} key={index} number={index}/>
                 }
