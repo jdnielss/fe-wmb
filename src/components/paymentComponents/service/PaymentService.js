@@ -7,6 +7,13 @@ export async function fetchDataTransaction(){
         })
     return data;
 }
+export async function fetchDataPayment(idTransaction){
+    const data = await fetch(`http://10.10.13.150:9090/getTable?size=10&page=${idTransaction}`, {method:'GET',})
+        .then((response) => {
+            return response.json()
+        })
+    return data;
+}
 export async function getDataTransactionDataById(idTransaction){
     const data = await fetch(`http://10.10.13.150:9090/transaction/${idTransaction}`, {method:'GET',})
         .then((response) => {
