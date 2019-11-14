@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {fetchDataPayment} from "../service/PaymentService";
 import {fetchingDataTransaction} from "../action/PaymentActions";
 import {connect} from 'react-redux'
+import NumberFormat from "react-number-format";
 class PaymentHistoryContainer extends Component {
 
     componentDidMount() {
@@ -66,9 +67,9 @@ class PaymentHistoryContainer extends Component {
                                                             <span key={index}>{element.food.foodName}</span>
                                                         </ul>
                                                     })}</td>
-                                                    <td>{element.pay}</td>
-                                                    <td>{element.change}</td>
-                                                    <td>{element.total}</td>
+                                                    <td ><NumberFormat value={element.pay} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></td>
+                                                    <td ><NumberFormat value={element.change} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></td>
+                                                    <td ><NumberFormat value={element.total} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></td>
                                                     <td key={index}>{element.paymentStatus}</td>
                                                 </tr>
                                             }

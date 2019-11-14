@@ -3,6 +3,7 @@ import '../Payment.scss'
 import {fetchDataTransaction, getDataTransactionDataById, updatePayment} from "../service/PaymentService";
 import {connect} from 'react-redux'
 import {handlePayment, fetchingSucces} from "../action/PaymentActions";
+import NumberFormat from "react-number-format";
 
 
 class PaymentContainer extends Component {
@@ -57,7 +58,7 @@ class PaymentContainer extends Component {
                                                 <td >{element.orderList.picCustomer} </td>
                                                 <td>{element.orderList.manyCustomers}</td>
                                                 <td >{element.orderList.table.numberTable}</td>
-                                                <td >{element.total}</td>
+                                                <td ><NumberFormat value={element.total}  displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></td>
                                                 <td>{element.paymentStatus}</td>
                                                 <td>
                                                     <button className="btn btn-success" type="button"
@@ -103,10 +104,7 @@ class PaymentContainer extends Component {
                                                             <label htmlFor="staticEmail"
                                                                    className="col-sm-2 col-form-label">Price</label>
                                                             <div className="col-sm-10">
-                                                                <input type="text"
-                                                                       className="form-control"
-                                                                       placeholder="Price" disabled
-                                                                       value={this.props.fetchResultTransactionById.total || ''}/>
+                                                                <NumberFormat value={this.props.fetchResultTransactionById.total || ''} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} />
                                                             </div>
                                                         </div>
                                                         <div className="form-group row">
@@ -131,7 +129,7 @@ class PaymentContainer extends Component {
                                                             return (<tr key={index}>
                                                                 <td>{index + 1}</td>
                                                                 <td>{element.food.foodName}</td>
-                                                                <td>{element.subTotal}</td>
+                                                                <td><NumberFormat value={element.subTotal} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></td>
                                                             </tr>)
                                                         })}
                                                     </table>
