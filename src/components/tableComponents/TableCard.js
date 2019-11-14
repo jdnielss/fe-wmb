@@ -8,14 +8,13 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import {red} from '@material-ui/core/colors';
+import {blue} from '@material-ui/core/colors';
 import {fetchTableById} from "./service/TableService";
 import {fetchingTableId} from "./action/TableActions";
 import {connect, Provider} from "react-redux";
 import DeleteIcon from '@material-ui/icons/Delete';
 import OrderIcon from '@material-ui/icons/ShoppingCart';
 import IconButton from "@material-ui/core/IconButton";
-import DetailIcon from "@material-ui/icons/ErrorOutline";
 import {createStore} from "redux";
 import formOrderReducer from "../orderComponents/reducer/FormOrderReducer";
 
@@ -31,7 +30,7 @@ const useStyles = (theme => ({
         paddingTop: '56.25%', // 16:9
     },
     avatar: {
-        backgroundColor: red[500],
+        backgroundColor: blue[500],
     }
 }));
 
