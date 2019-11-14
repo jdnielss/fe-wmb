@@ -10,7 +10,8 @@ const dataTable = {
         orderList: {
             picCustomer: '',
             orderDetails: []
-        }
+        },
+        tableEntities:''
     }
 }
 

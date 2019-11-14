@@ -55,8 +55,8 @@ class TableCard extends Component {
                         }
                         action={
                             <IconButton aria-label="settings">
-                                <DetailIcon data-toggle="modal" data-target="#detailModal"
-                                            onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
+                                <OrderIcon data-toggle="modal" data-target="#order"
+                                           onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
                             </IconButton>
                         }
                         title={this.props.dataTables.status}
@@ -68,10 +68,6 @@ class TableCard extends Component {
                         </Typography>
                         <IconButton>
                             <DeleteIcon data-toggle="modal" data-target="#askingPermission"/>
-                        </IconButton>
-                        <IconButton>
-                            <OrderIcon data-toggle="modal" data-target="#order"
-                                       onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
                         </IconButton>
                     </CardContent>
                     <div className="modal fade" id="detailModal" tabIndex="-1" role="dialog"

@@ -9,13 +9,12 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import {connect} from "react-redux";
 import IconButton from "@material-ui/core/IconButton";
-import DetailIcon from "@material-ui/icons/InfoOutlined";
 import PropTypes from 'prop-types';
 import DeleteIcon from '@material-ui/icons/Delete';
 import OrderIcon from '@material-ui/icons/ShoppingCart';
-import {fetchDataOrderById} from "../orderComponents/service/OrderService";
-import InfoIcon from '@material-ui/icons/Info';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import {getDataTransactionDataByTable} from "../paymentComponents/service/PaymentService";
+import NumberFormat from 'react-number-format';
 
 const useStyles =(theme => ({
     card: {
@@ -42,7 +41,7 @@ class TableCardDining extends Component {
         this.props.dispatch({ type:'FETCHING_DATA_BY_TABLE_ID', payload:resultData})
     }
     render() {
-        console.log(this.props)
+        console.log(this.props.paymentDataByTable)
         const {classes} = this.props;
         return (
             <Card className={classes.card}>
@@ -55,7 +54,7 @@ class TableCardDining extends Component {
                         }
                         action={
                             <IconButton aria-label="settings">
-                                <InfoIcon data-toggle="modal" data-target="#detailTable" onClick={() => this.fetchingOrderById(this.props.dataTables.idTable)} />
+                                <InfoOutlinedIcon data-toggle="modal" data-target="#detailTable" onClick={() => this.fetchingOrderById(this.props.dataTables.idTable)} />
                             </IconButton>
                         }
                         title={this.props.dataTables.status}
@@ -78,13 +77,36 @@ class TableCardDining extends Component {
                         <div className="modal-dialog modal-lg" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h5 className="modal-title" id="exampleModalLabel">Detail Table #{this.props.paymentDataByTable.tableEntities.numberTable}</h5>
                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                   <h3>FETCHING_DATA_BY_TABLE_ID</h3>
+                                    <table className="table">
+                                        <thead className="thead-light">
+                                        <tr>
+                                            <th>PIC Name</th>
+                                            <th>Details</th>
+                                        </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>{this.props.paymentDataByTable.orderList.picCustomer}</td>
+                                            <td>
+                                                <ul>
+                                                    <li> Many Custommer:{this.props.paymentDataByTable.orderList.manyCustomers}</li>
+                                                    <li>Food Ordered
+                                                        <ul>
+                                                            {this.props.paymentDataByTable.orderList.orderDetails.map((element,index)=>{
+                                                                return <li>{element.food.foodName}</li>
+                                                            })}
+                                                        </ul>
+                                                    </li>
+                                                    <li>Total Price:<NumberFormat value={this.props.paymentDataByTable.total} displayType={'text'} thousandSeparator={true} prefix={'Rp.'} /></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
