@@ -60,7 +60,7 @@ class MenuTableContainer extends Component {
                                 }
                                 </tbody>
                             </table>
-                            <MenuUpdate menuUpdate={this.props.menuUpdate} rerender={this.triggerData()}/>
+                            <MenuUpdate menuUpdate={this.props.menuUpdate} rerender={this.triggerData}/>
                         </div>
                     </div>
                 </div>

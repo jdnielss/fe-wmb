@@ -39,15 +39,16 @@ export async function updatePayment(paymentData) {
         body: JSON.stringify(paymentData)
     })
         .then( async (res) => {
+            let respond = await res.json();
             if (res.status === 200){
                 await Swal.fire(
                     'Success!',
-                    'Pembayaran Berhasil',
+                    'Payment Success!',
                     'success'
                 )
             } else await Swal.fire(
                 'Error!',
-                'Pembayaran Gagal',
+                ''+respond.message,
                 'error'
             )
         }).catch();

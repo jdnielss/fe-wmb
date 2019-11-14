@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 export async function fetchDataMenu(){
     const data = await fetch('http://10.10.13.150:9090/food', {method:'GET',})
         .then((response) => {
@@ -22,9 +24,20 @@ export async function updateMenu(dataMenu) {
         },
         body: JSON.stringify(dataMenu)
     })
-        .then((res) => {
-            return res.json()
-        }).catch(err => err);
+        .then( async (res) => {
+            let respond = await res.json();
+            if (res.status === 200){
+                await Swal.fire(
+                    'Success!',
+                    'Update Success!',
+                    'success'
+                )
+            } else await Swal.fire(
+                'Error!',
+                ''+respond.message,
+                'error'
+            )
+        }).catch();
 }
 
 export async function saveFoodWithImage(foodFormData, foodImage){
@@ -32,7 +45,6 @@ export async function saveFoodWithImage(foodFormData, foodImage){
     let dataMenu = JSON.stringify(foodFormData)
     data.append('file', foodImage)
     data.append('foodFormData', dataMenu)
-
     fetch("http://10.10.13.150:9090/saveFood", {
         method: 'POST',
         body: data,

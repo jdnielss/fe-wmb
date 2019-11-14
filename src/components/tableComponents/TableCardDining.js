@@ -32,7 +32,7 @@ const useStyles =(theme => ({
 }));
 class TableCardDining extends Component {
 
-    fetchingOrderById = async (idOrder) => {
+    fetchingOrderByTable = async (idOrder) => {
         const resultData = await getDataTransactionDataByTable(idOrder)
         this.props.dispatch({ type:'FETCHING_DATA_BY_TABLE_ID', payload:resultData})
     }
@@ -49,7 +49,7 @@ class TableCardDining extends Component {
                         }
                         action={
                             <IconButton aria-label="settings">
-                                <InfoOutlinedIcon data-toggle="modal" data-target="#detailTable" onClick={() => this.fetchingOrderById(this.props.dataTables.idTable)} />
+                                <InfoOutlinedIcon data-toggle="modal" data-target="#detailTable" onClick={() => this.fetchingOrderByTable(this.props.dataTables.idTable)} />
                             </IconButton>
                         }
                         title={this.props.dataTables.status}
