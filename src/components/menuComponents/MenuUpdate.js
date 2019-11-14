@@ -67,9 +67,10 @@ class MenuUpdate extends Component {
         let data = event.target.value
         this.props.dispatch({type:'HANDLE_UPDATE_TYPE_FOOD', payload: data})
     }
-    handleUpdateButton=(event)=>{
+    handleUpdateButton= async (event)=>{
         event.preventDefault();
-        updateMenu(this.props.dataMenuById)
+        await updateMenu(this.props.dataMenuById)
+        this.props.rerender()
     }
 }
 const mapStateToProps=(state)=>{

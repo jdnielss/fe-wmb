@@ -12,7 +12,7 @@ import {
     typeFood,
     handleInputMenuName
 } from "../action/MenuActions";
-
+import Swal from "sweetalert2";
 class MenuTableContainer extends Component {
     constructor(props) {
         super(props);
@@ -51,11 +51,19 @@ class MenuTableContainer extends Component {
         let images=event.target.files[0]
         this.setState({foodPicture:images})
     }
-    handleSubmitMenu = (event) => {
-        event.preventDefault()
-        saveFoodWithImage(this.props.menuForm,this.state.foodPicture)
+    handleSubmitMenu = async () => {
+       await saveFoodWithImage(this.props.menuForm,this.state.foodPicture)
+        this.submitSucces()
+        this.fetchDataMenu()
     }
 
+    submitSucces = () =>{
+        Swal.fire(
+            'Good job!',
+            'You clicked the button!',
+            'success'
+        )
+    }
     render() {
         return (
             <div className="container-fluid">
@@ -106,7 +114,7 @@ class MenuTableContainer extends Component {
                         </div>
                     </div>
                 </div>
-                <MenuTable dataMenu={this.props.fetchResultMenu}/>
+                <MenuTable dataMenu={this.props.fetchResultMenu} remote={this.fetchDataMenu}/>
             </div>
 
         );

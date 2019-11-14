@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid'
 import AddTable from '@material-ui/icons/AddBox'
 import TableCard from '../TableCard'
 import TableCardDining from "../TableCardDining";
+import Swal from "sweetalert2";
 
 class TableContainer extends Component {
     constructor(props){
@@ -48,11 +49,18 @@ class TableContainer extends Component {
         let data=event.target.value
         this.props.dispatch({...handleInputCapacity, payload: data})
     }
-    handleButtonSubmit=async ()=>{
-        saveDataTable({...this.props.tableFormData});
-        await this.fetchingData(0);
+    handleButtonSubmit= async ()=>{
+        await saveDataTable({...this.props.tableFormData});
+         this.fetchingData(0);
+         this.submitSucces()
     }
-
+    submitSucces = () =>{
+        Swal.fire(
+            'Good job!',
+            'Table Bertambah',
+            'success'
+        )
+    }
     render() {
         let dataTables, renderPageNumbers;
         if(this.state.fetchResult.content !== null){
@@ -111,7 +119,7 @@ class TableContainer extends Component {
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-primary" onClick={this.handleButtonSubmit}>Save changes</button>
+                                <button type="submit" className="btn btn-primary" data-dismiss="modal" onClick={this.handleButtonSubmit}>Save changes</button>
                             </div>
                         </div>
                     </div>

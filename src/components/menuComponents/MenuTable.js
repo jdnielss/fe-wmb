@@ -6,14 +6,6 @@ import {getDataMenuById} from "./service/MenuService";
 import MenuUpdate from "./MenuUpdate";
 import EditIcon from '@material-ui/icons/Edit';
 class MenuTableContainer extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state={
-            isLoading: true
-        }
-    }
-
     fetchingById = async (id) =>{
         const getMenuById = await getDataMenuById(id)
         this.props.dispatch({...fetchingById, payload:getMenuById})
@@ -64,7 +56,7 @@ class MenuTableContainer extends Component {
                                 }
                                 </tbody>
                             </table>
-                            <MenuUpdate menuUpdate={this.props.menuUpdate}/>
+                            <MenuUpdate menuUpdate={this.props.menuUpdate} rerender={this.props.remote}/>
                         </div>
                     </div>
                 </div>

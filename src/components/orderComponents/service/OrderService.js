@@ -4,9 +4,8 @@ import axios from "axios";
 export async function fetchDataOrder(){
     const data = await axios.get('http://10.10.13.150:9090/order')
         .then((response) => {
-            console.log(response)
             return response.json()
-        })
+        });
     return data;
 }
 
@@ -14,9 +13,8 @@ export async function fetchDataOrder(){
 export async function fetchDataOrderById(idOrder){
     const data = await axios.get(`http://10.10.13.150:9090/order/${idOrder}`)
         .then((response) => {
-            console.log(response)
             return response.json()
-        })
+        });
     return data;
 }
 

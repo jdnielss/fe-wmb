@@ -11,7 +11,6 @@ class OrderHistoryContainer extends Component {
 
     fetchingDataOrder= async ()=> {
         const resultDataOrder = await fetchDataOrder()
-        console.log(resultDataOrder, 'ini data order')
         this.props.dispatch({...fetchOrder, payload: resultDataOrder})
     }
 

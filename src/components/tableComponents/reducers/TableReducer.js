@@ -1,5 +1,11 @@
 const dataTable = {
-    fetchResult: [],
+    fetchResult: [
+        {content: [],
+            total: null,
+            per_page: null,
+            current_page: 0
+        }
+    ],
     tableFormData: {
         numberTable: null,
         status: 'AVAILABLE',
