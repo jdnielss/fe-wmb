@@ -14,6 +14,8 @@ import PropTypes from 'prop-types';
 import DeleteIcon from '@material-ui/icons/Delete';
 import OrderIcon from '@material-ui/icons/ShoppingCart';
 import {fetchDataOrderById} from "../orderComponents/service/OrderService";
+import InfoIcon from '@material-ui/icons/Info';
+import {getDataTransactionDataByTable} from "../paymentComponents/service/PaymentService";
 
 const useStyles =(theme => ({
     card: {
@@ -36,10 +38,11 @@ const useStyles =(theme => ({
 class TableCardDining extends Component {
 
     fetchingOrderById = async (idOrder) => {
-        const resultData = await fetchDataOrderById(idOrder)
-        this.props.dispatch({ type:'FETCHING_DATA_CUSTOMER', payload:resultData})
+        const resultData = await getDataTransactionDataByTable(idOrder)
+        this.props.dispatch({ type:'FETCHING_DATA_BY_TABLE_ID', payload:resultData})
     }
     render() {
+        console.log(this.props)
         const {classes} = this.props;
         return (
             <Card className={classes.card}>
@@ -52,7 +55,7 @@ class TableCardDining extends Component {
                         }
                         action={
                             <IconButton aria-label="settings">
-                                <DetailIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingOrderById(this.props.dataTables.idTable)} />
+                                <InfoIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingOrderById(this.props.dataTables.idTable)} />
                             </IconButton>
                         }
                         title={this.props.dataTables.status}
@@ -81,11 +84,7 @@ class TableCardDining extends Component {
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    <form>
-                                        {/*{*/}
-                                        {/*    this.props*/}
-                                        {/*}*/}
-                                    </form>
+                                   <h3>FETCHING_DATA_BY_TABLE_ID</h3>
                                 </div>
                             </div>
                         </div>

@@ -3,7 +3,6 @@ import '../Payment.scss'
 import {fetchDataTransaction, getDataTransactionDataById, updatePayment} from "../service/PaymentService";
 import {connect} from 'react-redux'
 import {handlePayment, fetchingSucces} from "../action/PaymentActions";
-import LoadingOverlay from 'react-loading-overlay';
 
 
 class PaymentContainer extends Component {

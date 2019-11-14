@@ -5,8 +5,6 @@ import {fetchingById} from "./action/MenuActions";
 import {getDataMenuById} from "./service/MenuService";
 import MenuUpdate from "./MenuUpdate";
 import EditIcon from '@material-ui/icons/Edit';
-import LoadingOverlay from 'react-loading-overlay';
-import {isLoading} from "sweetalert2";
 class MenuTableContainer extends Component {
 
     constructor(props) {
