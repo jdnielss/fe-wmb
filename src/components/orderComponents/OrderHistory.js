@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import LoadingOverlay from 'react-loading-overlay';
 
 class OrderHistory extends Component {
 
@@ -26,11 +25,6 @@ class OrderHistory extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <LoadingOverlay
-                                    active
-                                    spinner
-                                    text='Loading your content...'
-                                >
                                 {
                                     this.props.dataOrder.map((element, index) =>{
                                         return (
@@ -49,7 +43,6 @@ class OrderHistory extends Component {
                                         )
                                     })
                                 }
-                                </LoadingOverlay>
 
                                 </tbody>
                             </table>
