@@ -40,7 +40,7 @@ class TableCard extends Component {
         this.props.dispatch({...fetchingTableId, payload: resultData})
     }
     remoteTrigger = () => {
-        this.props.renderTriger(0)
+        this.props.renderTriger(0);
     }
     handleUpdateTable= async ()=>{
         await updateTable(this.props.fetchTableById);

@@ -10,8 +10,7 @@ import { red } from '@material-ui/core/colors';
 import {connect} from "react-redux";
 import IconButton from "@material-ui/core/IconButton";
 import PropTypes from 'prop-types';
-import DeleteIcon from '@material-ui/icons/Delete';
-import OrderIcon from '@material-ui/icons/ShoppingCart';
+import DinningLock from '@material-ui/icons/Lock';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import {getDataTransactionDataByTable} from "../paymentComponents/service/PaymentService";
 import NumberFormat from 'react-number-format';
@@ -61,10 +60,7 @@ class TableCardDining extends Component {
                             <b>Capacity : {this.props.dataTables.capacity}</b>
                         </Typography>
                         <IconButton>
-                            <DeleteIcon aria-disabled="true" hidden/>
-                        </IconButton>
-                        <IconButton>
-                            <OrderIcon aria-disabled="true" hidden/>
+                            <DinningLock aria-disabled="true"/>
                         </IconButton>
                     </CardContent>
 

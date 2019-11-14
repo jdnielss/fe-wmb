@@ -72,7 +72,6 @@ class MenuUpdate extends Component {
         await updateMenu(this.props.dataMenuById);
         this.submitSuccess();
         await this.tukangRender();
-
     }
     submitSuccess = () =>{
         Swal.fire(
