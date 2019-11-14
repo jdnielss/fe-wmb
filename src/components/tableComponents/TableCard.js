@@ -40,6 +40,9 @@ class TableCard extends Component {
         const resultData = await fetchTableById(idTransaction)
         this.props.dispatch({...fetchingTableId, payload: resultData})
     }
+    remoteTrigger=()=>{
+        this.props.renderTriger(0)
+    }
 
     render() {
         const {classes} = this.props;
@@ -120,7 +123,7 @@ class TableCard extends Component {
                                 </div>
                                 <div className="modal-body">
                                     <Provider store={createStore(reducerFormOrder)}>
-                                        <OrderForm tableId={this.props.fetchTableById.idTable}/>
+                                        <OrderForm tableId={this.props.fetchTableById.idTable} triger={this.remoteTrigger}/>
                                         {this.props.formOrder}
                                     </Provider>
                                 </div>
