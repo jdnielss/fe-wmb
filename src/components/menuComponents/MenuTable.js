@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import './assets/MenuTable.scss'
 import {fetchingById} from "./action/MenuActions";
-import {saveDataMenuById} from "./service/MenuService";
+import {getDataMenuById} from "./service/MenuService";
 import MenuUpdate from "./MenuUpdate";
+import EditIcon from '@material-ui/icons/Edit';
 class MenuTableContainer extends Component {
 
     fetchingById = async (id) =>{
-        const getMenuById = await saveDataMenuById(id)
+        const getMenuById = await getDataMenuById(id)
         this.props.dispatch({...fetchingById, payload:getMenuById})
     }
 
@@ -16,7 +17,7 @@ class MenuTableContainer extends Component {
             <div className="container-fluid">
                 <div className="card shadow mb-4">
                     <div className="card-header py-3">
-                        <h1 className="h3 mb-2 text-gray-800 text-center text-uppercase">Tables of Menu</h1>
+                        <h1 className="h3 mb-2 text-gray-800 text-center text-uppercase">List of Menu</h1>
                     </div>
                     <div className="card-body">
                         <div className="table-responsive">
@@ -46,7 +47,7 @@ class MenuTableContainer extends Component {
                                                 </td>
                                                 <td className="text-center">
                                                     <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#updateMenu" onClick={()=>{this.fetchingById(element.idFood)}}>
-                                                        Update
+                                                       <EditIcon/> Edit
                                                     </button>
                                                 </td>
 

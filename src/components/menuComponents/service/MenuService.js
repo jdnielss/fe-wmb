@@ -6,15 +6,15 @@ export async function fetchDataMenu(){
         })
     return data;
 }
-export async function saveDataMenuById(idMenu){
+export async function getDataMenuById(idMenu){
     const data = await fetch(`http://10.10.13.150:9090/food/${idMenu}`, {method:'GET',})
         .then((response) => {
             return response.json()
         })
     return data;
 }
-export async function saveDataMenu(dataMenu) {
-    return await fetch('http://10.10.13.150:9090/food', {
+export async function updateMenu(dataMenu) {
+    return await fetch('http://10.10.13.150:9090/updateFood', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
