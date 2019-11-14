@@ -45,9 +45,13 @@ export default function tableReducer(state = dataTable, action) {
             return {
                 ...state, tableFormData: {...state.tableFormData, capacity: action.payload}
             }
-        case 'HANDLE_STATUS_TABLE':
+        case 'HANDLE_UPDATE_NO_TABLE':
             return {
-                ...state, tableFormData: {...state.tableFormData, status: action.payload}
+                ...state, fetchTableById: {...state.fetchTableById, numberTable: action.payload}
+            }
+        case 'HANDLE_UPDATE_CAPACITY_TABLE':
+            return {
+                ...state, fetchTableById: {...state.fetchTableById, capacity: action.payload}
             }
         default:
             return {...state};

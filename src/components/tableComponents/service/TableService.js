@@ -25,6 +25,19 @@ export async function saveDataTable(dataTable) {
             return res.json()
         }).catch(err => err);
 }
+export async function updateTable(dataTable) {
+    return await fetch('http://10.10.13.150:9090/updateTable', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(dataTable)
+    })
+        .then((res) => {
+            return res.json()
+        }).catch(err => err);
+}
 export async function fetchDataTableAvailable(){
     const data = await fetch('http://10.10.13.150:9090/tableAvailable', {method:'GET',})
         .then((response) => {

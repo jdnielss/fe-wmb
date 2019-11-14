@@ -9,13 +9,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import {red} from '@material-ui/core/colors';
-import {fetchTableById} from "./service/TableService";
+import {fetchTableById, updateTable} from "./service/TableService";
 import {fetchingTableId} from "./action/TableActions";
 import {connect, Provider} from "react-redux";
 import DeleteIcon from '@material-ui/icons/Delete';
 import OrderIcon from '@material-ui/icons/ShoppingCart';
 import IconButton from "@material-ui/core/IconButton";
-import DetailIcon from "@material-ui/icons/ErrorOutline";
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import {createStore} from "redux";
 import formOrderReducer from "../orderComponents/reducer/FormOrderReducer";
 
@@ -40,11 +40,17 @@ class TableCard extends Component {
         const resultData = await fetchTableById(idTransaction)
         this.props.dispatch({...fetchingTableId, payload: resultData})
     }
-    remoteTrigger=()=>{
+    remoteTrigger = () => {
         this.props.renderTriger(0)
     }
+    handleUpdateTable=()=>{
+        updateTable(this.props.fetchTableById);
+        this.remoteTrigger()
+    }
+
 
     render() {
+        console.log(this.props.fetchTableById,'ini penanda')
         const {classes} = this.props;
         return (
             <Card className={classes.card}>
@@ -72,40 +78,37 @@ class TableCard extends Component {
                             <b>Capacity : {this.props.dataTables.capacity}</b>
                         </Typography>
                         <IconButton>
-                            <DeleteIcon data-toggle="modal" data-target="#askingPermission"/>
+                            <EditOutlinedIcon data-toggle="modal" data-target="#edit" onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
                         </IconButton>
                     </CardContent>
-                    <div className="modal fade" id="detailModal" tabIndex="-1" role="dialog"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog modal-lg" role="document">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div className="modal-body">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="modal fade" id="askingPermission" tabIndex="-1" role="dialog"
+                    <div className="modal fade" id="edit" tabIndex="-1" role="dialog"
                          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
+                                    <h3>Update Table #{this.props.fetchTableById.numberTable}</h3>
                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    Are you sure you want to delete this table?
+                                    <form className="user">
+                                        Number table
+                                        <div className="form-group">
+                                            <input type="number" className="form-control"
+                                                   placeholder="No. Table" onChange={(event)=>{this.props.dispatch({type:'HANDLE_UPDATE_NO_TABLE',payload: event.target.value})}}
+                                                   value={this.props.fetchTableById.numberTable} required="true"/>
+                                        </div>
+                                        <div className="form-group">
+                                            Capacity
+                                            <input type="number" className="form-control"
+                                                   placeholder="Capacity" onChange={(event)=>{this.props.dispatch({type:'HANDLE_UPDATE_CAPACITY_TABLE',payload: event.target.value})}}
+                                                   value={this.props.fetchTableById.capacity} required="true"/>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close
-                                    </button>
-                                    <button type="button" className="btn btn-primary">Save changes</button>
+                                    <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.handleUpdateTable}>Save changes</button>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +126,8 @@ class TableCard extends Component {
                                 </div>
                                 <div className="modal-body">
                                     <Provider store={createStore(formOrderReducer)}>
-                                        <OrderForm tableId={this.props.fetchTableById.idTable} triger={this.remoteTrigger}/>
+                                        <OrderForm tableId={this.props.fetchTableById.idTable}
+                                                   triger={this.remoteTrigger}/>
                                         {this.props.formOrder}
                                     </Provider>
                                 </div>
