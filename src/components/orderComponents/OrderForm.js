@@ -11,6 +11,7 @@ import MenuSelector from "../menuComponents/MenuSelector";
 
 class OrderForm extends Component {
     render() {
+        console.log(this.props.formOrder,'order')
         return (
             <div className="container-fluid">
                 <div className="card shadow mb-4">

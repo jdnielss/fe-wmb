@@ -1,5 +1,7 @@
+import Swal from "sweetalert2";
+
 export async function fetchDataTable(pagination){
-    const data = await fetch(`http://10.10.13.150:9090/getTable?size=12&page=${pagination}`, {method:'GET',})
+    const data = await fetch(`http://10.10.13.150:9090/getTable?size=16&page=${pagination}`, {method:'GET',})
         .then((response) => {
             return response.json()
         })
@@ -21,9 +23,20 @@ export async function saveDataTable(dataTable) {
         },
         body: JSON.stringify(dataTable)
     })
-        .then((res) => {
-            return res.json()
-        }).catch(err => err);
+        .then( async (res) => {
+            let respond = await res.json();
+            if (res.status === 200){
+                await Swal.fire(
+                    'Success!',
+                    'Input Data Success!',
+                    'success'
+                )
+            } else await Swal.fire(
+                'Error!',
+                ''+respond.message,
+                'error'
+            )
+        }).catch();
 }
 export async function updateTable(dataTable) {
     return await fetch('http://10.10.13.150:9090/updateTable', {
@@ -34,9 +47,20 @@ export async function updateTable(dataTable) {
         },
         body: JSON.stringify(dataTable)
     })
-        .then((res) => {
-            return res.json()
-        }).catch(err => err);
+        .then( async (res) => {
+            let respond = await res.json();
+            if (res.status === 200){
+                await Swal.fire(
+                    'Success!',
+                    'Update Table Success!',
+                    'success'
+                )
+            } else await Swal.fire(
+                'Error!',
+                ''+respond.message,
+                'error'
+            )
+        }).catch();
 }
 export async function fetchDataTableAvailable(){
     const data = await fetch('http://10.10.13.150:9090/tableAvailable', {method:'GET',})

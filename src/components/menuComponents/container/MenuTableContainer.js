@@ -60,8 +60,8 @@ class MenuTableContainer extends Component {
     }
     submitSuccess = () =>{
         Swal.fire(
-            'Good job!',
-            'You clicked the button!',
+            'Success!',
+            'Add Menu Success!',
             'success'
         )
     }
