@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {typeDrink, typeFood} from "./action/MenuActions";
 import {connect} from 'react-redux'
 import {updateMenu} from "./service/MenuService";
+import Swal from "sweetalert2";
 class MenuUpdate extends Component {
     render() {
         return (
@@ -67,12 +68,20 @@ class MenuUpdate extends Component {
         let data = event.target.value
         this.props.dispatch({type:'HANDLE_UPDATE_TYPE_FOOD', payload: data})
     }
-    handleUpdateButton= async (event)=>{
-        event.preventDefault();
-        await updateMenu(this.props.dataMenuById)
-        this.props.rerender()
+    handleUpdateButton = async ()=>{
+        await updateMenu(this.props.dataMenuById);
+        this.props.rerender();
+        this.submitSucces()
+    }
+    submitSucces = () =>{
+        Swal.fire(
+            'Data Update',
+            'Data Up to Date',
+            'success'
+        )
     }
 }
+
 const mapStateToProps=(state)=>{
     return{
         ...state

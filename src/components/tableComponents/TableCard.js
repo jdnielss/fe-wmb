@@ -17,7 +17,7 @@ import OrderIcon from '@material-ui/icons/ShoppingCart';
 import IconButton from "@material-ui/core/IconButton";
 import DetailIcon from "@material-ui/icons/ErrorOutline";
 import {createStore} from "redux";
-import reducerFormOrder from "../orderComponents/reducer/ReducerFormOrder";
+import formOrderReducer from "../orderComponents/reducer/FormOrderReducer";
 
 const useStyles = (theme => ({
     card: {
@@ -122,7 +122,7 @@ class TableCard extends Component {
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    <Provider store={createStore(reducerFormOrder)}>
+                                    <Provider store={createStore(formOrderReducer)}>
                                         <OrderForm tableId={this.props.fetchTableById.idTable} triger={this.remoteTrigger}/>
                                         {this.props.formOrder}
                                     </Provider>

@@ -10,6 +10,9 @@ class MenuTableContainer extends Component {
         const getMenuById = await getDataMenuById(id)
         this.props.dispatch({...fetchingById, payload:getMenuById})
     }
+    triggresData = () => {
+        this.props.remote()
+    }
 
     render() {
         return (
@@ -56,7 +59,7 @@ class MenuTableContainer extends Component {
                                 }
                                 </tbody>
                             </table>
-                            <MenuUpdate menuUpdate={this.props.menuUpdate} rerender={this.props.remote}/>
+                            <MenuUpdate menuUpdate={this.props.menuUpdate} rerender={this.triggresData}/>
                         </div>
                     </div>
                 </div>

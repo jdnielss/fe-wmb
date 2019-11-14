@@ -9,7 +9,7 @@ const initialDAta = {
 };
 
 
-export default function reducerFormOrder(state = initialDAta, action) {
+export default function formOrderReducer(state = initialDAta, action) {
     switch (action.type) {
         case 'FETCH_DATA_MENU':
             return {

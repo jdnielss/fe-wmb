@@ -20,16 +20,12 @@ class MenuTableContainer extends Component {
             foodPicture:''
         }
     }
-
     componentDidMount() {
         this.fetchDataMenu()
     }
-
-
     fetchDataMenu = async () => {
-        const resultData = await fetchDataMenu()
+        const resultData = await fetchDataMenu();
         this.props.dispatch({...fetchingSuccess, payload:resultData})
-        console.log(resultData, 'Data Menu')
     }
     handleInputFoodName = (event) =>{
         let data = event.target.value
@@ -48,16 +44,15 @@ class MenuTableContainer extends Component {
         this.props.dispatch({...handleTypeFood, payload: data})
     }
     handleUploadImage = (event) => {
-        let images=event.target.files[0]
+        let images=event.target.files[0];
         this.setState({foodPicture:images})
     }
     handleSubmitMenu = async () => {
-       await saveFoodWithImage(this.props.menuForm,this.state.foodPicture)
-        this.submitSucces()
-        this.fetchDataMenu()
+        await saveFoodWithImage(this.props.menuForm,this.state.foodPicture);
+        await this.submitSuccess();
+        await this.fetchDataMenu()
     }
-
-    submitSucces = () =>{
+    submitSuccess = () =>{
         Swal.fire(
             'Good job!',
             'You clicked the button!',
