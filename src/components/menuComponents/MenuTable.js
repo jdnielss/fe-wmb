@@ -5,6 +5,7 @@ import {fetchingById} from "./action/MenuActions";
 import {getDataMenuById} from "./service/MenuService";
 import MenuUpdate from "./MenuUpdate";
 import EditIcon from '@material-ui/icons/Edit';
+import NumberFormat from "react-number-format";
 class MenuTableContainer extends Component {
     fetchingById = async (id) =>{
         const getMenuById = await getDataMenuById(id)
@@ -44,7 +45,7 @@ class MenuTableContainer extends Component {
                                                         <li>Food Name : {element.foodName}</li>
                                                         <li>Food Quantity : {element.quantity}</li>
                                                         <li>Type Food : {element.typeFood}</li>
-                                                        <li>Price :  {element.price}</li>
+                                                        <li><NumberFormat value={element.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></li>
                                                     </ul>
                                                 </td>
                                                 <td className="text-center">

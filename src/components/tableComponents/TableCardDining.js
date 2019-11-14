@@ -90,7 +90,7 @@ class TableCardDining extends Component {
                                             <td>{this.props.paymentDataByTable.orderList.picCustomer}</td>
                                             <td>
                                                 <ul>
-                                                    <li> Many Custommer:{this.props.paymentDataByTable.orderList.manyCustomers}</li>
+                                                    <li> Many Customer :{this.props.paymentDataByTable.orderList.manyCustomers}</li>
                                                     <li>Food Ordered
                                                         <ul>
                                                             {this.props.paymentDataByTable.orderList.orderDetails.map((element,index)=>{
@@ -98,7 +98,7 @@ class TableCardDining extends Component {
                                                             })}
                                                         </ul>
                                                     </li>
-                                                    <li>Total Price:<NumberFormat value={this.props.paymentDataByTable.total} displayType={'text'} thousandSeparator={true} prefix={'Rp.'} /></li>
+                                                    <li>Total Price:<NumberFormat value={this.props.paymentDataByTable.total} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></li>
                                                 </ul>
                                             </td>
                                         </tr>

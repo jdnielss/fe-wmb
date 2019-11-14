@@ -58,13 +58,6 @@ class TableCard extends Component {
                                 {this.props.dataTables.numberTable}
                             </Avatar>
                         }
-                        action={
-                            <IconButton aria-label="settings">
-                                <OrderIcon data-toggle="modal" data-target="#order"
-                                           onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
-                            </IconButton>
-
-                        }
                         title={this.props.dataTables.status}
                     />
                     <CardContent>
@@ -73,6 +66,10 @@ class TableCard extends Component {
                         </Typography>
                         <IconButton>
                             <EditOutlinedIcon data-toggle="modal" data-target="#edit" onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
+                        </IconButton>
+                        <IconButton aria-label="settings">
+                            <OrderIcon data-toggle="modal" data-target="#order"
+                                       onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
                         </IconButton>
                     </CardContent>
                     <div className="modal fade" id="edit" tabIndex="-1" role="dialog"
