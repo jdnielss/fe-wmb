@@ -53,12 +53,12 @@ class PaymentContainer extends Component {
                                     <tbody className="">
                                     {this.props.fetchResult.map((element, index) => {
                                         if (element.paymentStatus === 'UNPAID') {
-                                            return <tr>
-                                                <td key={index}>{element.orderList.picCustomer} </td>
-                                                <td key={index}>{element.orderList.manyCustomers}</td>
-                                                <td key={index}>{element.orderList.table.numberTable}</td>
-                                                <td key={index}>{element.total}</td>
-                                                <td key={index}>{element.paymentStatus}</td>
+                                            return <tr key={index}>
+                                                <td >{element.orderList.picCustomer} </td>
+                                                <td>{element.orderList.manyCustomers}</td>
+                                                <td >{element.orderList.table.numberTable}</td>
+                                                <td >{element.total}</td>
+                                                <td>{element.paymentStatus}</td>
                                                 <td>
                                                     <button className="btn btn-success" type="button"
                                                             data-toggle="modal"
@@ -128,7 +128,7 @@ class PaymentContainer extends Component {
                                                         </tr>
                                                         </thead>
                                                         {this.props.fetchResultTransactionById.orderList.orderDetails.map((element, index) => {
-                                                            return (<tr>
+                                                            return (<tr key={index}>
                                                                 <td>{index + 1}</td>
                                                                 <td>{element.food.foodName}</td>
                                                                 <td>{element.subTotal}</td>

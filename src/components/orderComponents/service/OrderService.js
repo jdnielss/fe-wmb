@@ -36,6 +36,7 @@ export async function saveDataOrder(orderForm) {
                     'Order Berhasil',
                     'success'
                 )
+                console.log(res.json())
             } else await Swal.fire(
                 'Error!',
                 '' + respond.message,
