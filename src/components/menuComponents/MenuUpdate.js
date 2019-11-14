@@ -3,6 +3,8 @@ import {typeDrink, typeFood} from "./action/MenuActions";
 import {connect} from 'react-redux'
 import {updateMenu} from "./service/MenuService";
 import Swal from "sweetalert2";
+import NumberFormat from "react-number-format";
+
 class MenuUpdate extends Component {
     render() {
         return (
@@ -30,8 +32,7 @@ class MenuUpdate extends Component {
                                 </div>
                                 <div className="form-group">
                                     Price
-                                    <input type="number" className="form-control"
-                                           value={this.props.dataMenuById.price} onChange={this.handleInputPrice}/>
+                                    <NumberFormat placeholder={this.props.dataMenuById.price} className="form-control" onChange={this.handleInputPrice} thousandSeparator={true} prefix={'Rp. '} />
                                 </div>
                                 <div className="form-group">
                                     Type Food
