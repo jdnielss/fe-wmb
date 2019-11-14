@@ -1,16 +1,21 @@
 import React, {Component} from 'react';
 import '../Payment.scss'
-import {fetchDataTransaction, getDataTransactionDataById, updatePayment} from "../service/PaymentService";
+import {
+    fetchDataPayment,
+    fetchDataTransaction,
+    getDataTransactionDataById,
+    updatePayment
+} from "../service/PaymentService";
 import {connect} from 'react-redux'
 import {fetchingDataTransaction, handlePayment} from "../action/PaymentActions";
 
 class PaymentContainer extends Component {
     componentDidMount() {
-        this.fetchingData()
+        this.fetchingData(0)
     }
 
-    fetchingData = async () => {
-        const resultDataTransaction = await fetchDataTransaction()
+    fetchingData = async (pageNumbers) => {
+        const resultDataTransaction = await fetchDataPayment(pageNumbers)
         this.props.dispatch({...fetchingDataTransaction, payload: resultDataTransaction})
     }
     fetchingTrxById = async (idTransaction) => {
@@ -27,7 +32,27 @@ class PaymentContainer extends Component {
     }
 
     render() {
-        console.log(this.props.fetchResultTransactionById, 'byId')
+        let dataPayemnt, renderPageNumbers;
+        // if(this.props.fetchResultTransaction.content !== null){
+        //     dataPayemnt = this.props.fetchResultTransaction.map((element) => {
+        //         return <h1>{element.picCustomer}</h1>
+        //     })
+        // }
+        const pageNumbers = [];
+        if(this.props.fetchResultTransaction.total !== null){
+            for(let i = 0; i <= Math.ceil(this.props.fetchResultTransaction.total / this.props.fetchResultTransaction.per_page -1); i++){
+                pageNumbers.push(i);
+            }
+
+            renderPageNumbers = pageNumbers.map(numbers => {
+                let page = this.props.fetchResultTransaction.current_page === numbers ? 'active' : '';
+                return(
+                    <span key={numbers} className={page} onClick={() => this.fetchPaymentHistory(numbers)}>
+                            {numbers+1}
+                    </span>
+                )
+            })
+        }
         return (
             <div>
                 <div className="container-fluid">
@@ -41,6 +66,7 @@ class PaymentContainer extends Component {
                                        cellSpacing="0">
                                     <thead>
                                     <tr>
+                                        <th>No.</th>
                                         <th>PIC Name</th>
                                         <th>Customer Capacity</th>
                                         <th>No Table</th>
@@ -50,25 +76,29 @@ class PaymentContainer extends Component {
                                     </tr>
                                     </thead>
                                     <tbody className="">
-                                    {this.props.fetchResultTransaction.map((element, index) => {
-                                        if (element.paymentStatus === 'UNPAID') {
-                                            return <tr>
-                                                <td key={index}>{element.orderList.picCustomer} </td>
-                                                <td key={index}>{element.orderList.manyCustomers}</td>
-                                                <td key={index}>{element.orderList.table.numberTable}</td>
-                                                <td key={index}>{element.total}</td>
-                                                <td key={index}>{element.paymentStatus}</td>
-                                                <td>
-                                                    <button className="btn btn-success" type="button"
-                                                            data-toggle="modal"
-                                                            data-target="#transactionModal" onClick={() => {
-                                                        this.fetchingTrxById(element.idTransaction)
-                                                    }}>PAY NOW
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        }
-                                    })}
+                                    {
+                                        this.props.fetchResultTransaction.content.map((element, index) => {
+                                            if (element.paymentStatus === 'UNPAID'){
+                                                return <tr>
+                                                    <td>{index+1}</td>
+                                                    <td key={index}>{element.orderList.picCustomer} </td>
+                                                    <td key={index}>{element.orderList.manyCustomers}</td>
+                                                    <td key={index}>{element.orderList.table.numberTable}</td>
+
+                                                    <td>{element.total}</td>
+                                                    <td key={index}>{element.paymentStatus}</td>
+                                                    <td>
+                                                        <button className="btn btn-success" type="button"
+                                                                data-toggle="modal"
+                                                                data-target="#transactionModal" onClick={() => {
+                                                            this.fetchingTrxById(element.idTransaction)
+                                                        }}>PAY NOW
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        })
+                                    }
                                     </tbody>
                                 </table>
                                 <div>
@@ -148,6 +178,11 @@ class PaymentContainer extends Component {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="pagination fixed-sticky">
+                    <span onClick={() => this.fetchPaymentHistory(0)}>&laquo;</span>
+                    {renderPageNumbers}
+                    <span onClick={() =>  this.fetchPaymentHistory(0)} >&raquo;</span>
                 </div>
             </div>
         );

@@ -11,21 +11,14 @@ class PaymentHistoryContainer extends Component {
 
     fetchPaymentHistory = async (pageNumbers) => {
         const resultData = await fetchDataPayment(pageNumbers);
-        if(!(resultData === undefined)){
-            this.setState({
-                fetchResultTransaction: {content: resultData.content}, total: resultData.totalElements,
-                per_page: resultData.size,
-                current_page: resultData.number
-            })
-        }
         this.props.dispatch({...fetchingDataTransaction, payload:resultData})
     };
     render() {
-        console.log(this.props.fetchResultTransaction)
-        let renderPageNumbers;
+        console.log(this.props,"ddadsds")
+        let dataPayemnt, renderPageNumbers;
         // if(this.props.fetchResultTransaction.content !== null){
-        //     dataTables = this.props.fetchResultTransaction.content.map(dataPayment => {
-        //         return <h1></h1>
+        //     dataPayemnt = this.props.fetchResultTransaction.map((element) => {
+        //         return <h1>{element.picCustomer}</h1>
         //     })
         // }
         const pageNumbers = [];
@@ -55,29 +48,39 @@ class PaymentHistoryContainer extends Component {
                                 <table className="table table-bordered text-center" id="dataTable" width="100%" cellSpacing="0">
                                     <thead>
                                     <tr>
+                                        <td>No.</td>
                                         <th>PIC Name</th>
                                         <th>Customer Capacity</th>
                                         <th>No Table</th>
                                         <th>Menu</th>
+                                        <th>Pay</th>
+                                        <th>Change</th>
+                                        <th>Total</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody className="">
-                                    {/*<tr>*/}
-                                    {/*    <td>{this.props.dataTransaction.orderList.picCustomer}</td>*/}
-                                    {/*    <td>{this.props.dataTransaction.orderList.manyCustomers}</td>*/}
-                                    {/*    <td>{this.props.dataTransaction.orderList.table.numberTable}</td>*/}
-                                    {/*    <td>{this.props.dataTransaction.orderList.orderDetails.map((element, index)=>{*/}
-                                    {/*        return <ul>*/}
-                                    {/*            <span>{element.food.foodName}</span>*/}
-                                    {/*        </ul>*/}
-                                    {/*    })}</td>*/}
-                                    {/*    <td>{this.props.dataTransaction.paymentStatus}</td>*/}
-                                    {/*    <td>*/}
-                                    {/*        <button className="btn btn-success">PAY NOW</button>*/}
-                                    {/*    </td>*/}
-                                    {/*</tr>*/}
+                                    <tbody>
+                                    {
+                                        this.props.fetchResultTransaction.content.map((element, index) => {
+
+                                            return <tr>
+                                                <td>{index+1}</td>
+                                                <td key={index}>{element.orderList.picCustomer} </td>
+                                                <td key={index}>{element.orderList.manyCustomers}</td>
+                                                <td key={index}>{element.orderList.table.numberTable}</td>
+                                                <td key={index}>{element.orderList.orderDetails.map((element, index) => {
+                                                    return <ul>
+                                                        <span key={index}>{element.food.foodName}</span>
+                                                    </ul>
+                                                })}</td>
+                                                <td>{element.pay}</td>
+                                                <td>{element.change}</td>
+                                                <td>{element.total}</td>
+                                                <td key={index}>{element.paymentStatus}</td>
+                                            </tr>
+
+                                        })
+                                    }
                                     </tbody>
                                 </table>
                             </div>

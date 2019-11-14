@@ -22,7 +22,7 @@ export default function paymentReducer(state = initialState, action) {
     switch (action.type) {
         case 'FETCHING_TRANSACTION_SUCCESS':
             return {
-                ...state, fetchResultTransaction: {...state, fetchResultTransaction: action.payload.content, total: action.payload.total, per_page: action.payload.per_page, current_page: action.payload.current_page}
+                ...state, fetchResultTransaction: {...state.fetchResultTransaction, content: action.payload.content, total: action.payload.totalElements, per_page: action.payload.size, current_page: action.payload.number}
             }
         case 'FETCHING_TRANSACTION_BY_ID_SUCCESS':
             return {

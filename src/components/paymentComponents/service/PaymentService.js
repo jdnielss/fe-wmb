@@ -7,8 +7,8 @@ export async function fetchDataTransaction(){
         })
     return data;
 }
-export async function fetchDataPayment(idTransaction){
-    const data = await fetch(`http://10.10.13.150:9090/getTable?size=10&page=${idTransaction}`, {method:'GET',})
+export async function fetchDataPayment(pagination){
+    const data = await fetch(`http://10.10.13.150:9090/getTransaction?size=10&page=${pagination}`, {method:'GET',})
         .then((response) => {
             return response.json()
         })
