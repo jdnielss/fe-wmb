@@ -17,9 +17,9 @@ class OrderHistoryContainer extends Component {
 
     render() {
         return (
-            <div>
-              <OrderHistory dataOrder={this.props.addOrder.dataFetchOrder}/>
-            </div>
+                <div>
+                    <OrderHistory dataOrder={this.props.addOrder.dataFetchOrder}/>
+                </div>
         );
     }
 }

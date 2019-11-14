@@ -1,4 +1,5 @@
 const initialState = {
+    fetchResult:[],
         fetchResultTransaction: {
             content: [],
             total: null,
@@ -23,6 +24,10 @@ export default function paymentReducer(state = initialState, action) {
         case 'FETCHING_TRANSACTION_SUCCESS':
             return {
                 ...state, fetchResultTransaction: {...state.fetchResultTransaction, content: action.payload.content, total: action.payload.totalElements, per_page: action.payload.size, current_page: action.payload.number}
+            }
+        case 'FETCHING_SUCCESS':
+            return {
+                ...state, fetchResult: action.payload
             }
         case 'FETCHING_TRANSACTION_BY_ID_SUCCESS':
             return {

@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import {fetchDataPayment, fetchDataTransaction} from "../service/PaymentService";
+import {fetchDataPayment} from "../service/PaymentService";
 import {fetchingDataTransaction} from "../action/PaymentActions";
 import {connect} from 'react-redux'
-import PaymentHistory from "../PaymentHistory";
 class PaymentHistoryContainer extends Component {
 
     componentDidMount() {
-        this.fetchPaymentHistory(0)
+        this.fetchPaymentHistory(0).then(r => r )
     }
 
     fetchPaymentHistory = async (pageNumbers) => {
@@ -14,13 +13,7 @@ class PaymentHistoryContainer extends Component {
         this.props.dispatch({...fetchingDataTransaction, payload:resultData})
     };
     render() {
-        console.log(this.props,"ddadsds")
-        let dataPayemnt, renderPageNumbers;
-        // if(this.props.fetchResultTransaction.content !== null){
-        //     dataPayemnt = this.props.fetchResultTransaction.map((element) => {
-        //         return <h1>{element.picCustomer}</h1>
-        //     })
-        // }
+        let renderPageNumbers;
         const pageNumbers = [];
         if(this.props.fetchResultTransaction.total !== null){
             for(let i = 0; i <= Math.ceil(this.props.fetchResultTransaction.total / this.props.fetchResultTransaction.per_page -1); i++){
@@ -62,23 +55,23 @@ class PaymentHistoryContainer extends Component {
                                     <tbody>
                                     {
                                         this.props.fetchResultTransaction.content.map((element, index) => {
-
-                                            return <tr>
-                                                <td>{index+1}</td>
-                                                <td key={index}>{element.orderList.picCustomer} </td>
-                                                <td key={index}>{element.orderList.manyCustomers}</td>
-                                                <td key={index}>{element.orderList.table.numberTable}</td>
-                                                <td key={index}>{element.orderList.orderDetails.map((element, index) => {
-                                                    return <ul>
-                                                        <span key={index}>{element.food.foodName}</span>
-                                                    </ul>
-                                                })}</td>
-                                                <td>{element.pay}</td>
-                                                <td>{element.change}</td>
-                                                <td>{element.total}</td>
-                                                <td key={index}>{element.paymentStatus}</td>
-                                            </tr>
-
+                                            if (element.paymentStatus === 'PAID'){
+                                                return <tr>
+                                                    <td>{index+1}</td>
+                                                    <td key={index}>{element.orderList.picCustomer} </td>
+                                                    <td key={index}>{element.orderList.manyCustomers}</td>
+                                                    <td key={index}>{element.orderList.table.numberTable}</td>
+                                                    <td key={index}>{element.orderList.orderDetails.map((element, index) => {
+                                                        return <ul>
+                                                            <span key={index}>{element.food.foodName}</span>
+                                                        </ul>
+                                                    })}</td>
+                                                    <td>{element.pay}</td>
+                                                    <td>{element.change}</td>
+                                                    <td>{element.total}</td>
+                                                    <td key={index}>{element.paymentStatus}</td>
+                                                </tr>
+                                            }
                                         })
                                     }
                                     </tbody>
@@ -101,6 +94,6 @@ const mapStateToProps=(state)=>{
     return{
         ...state
     }
-}
+};
 
 export default connect(mapStateToProps)(PaymentHistoryContainer)

@@ -18,7 +18,7 @@ class MenuSelector extends Component {
                     }}>
                         <option value={null}>Chose....</option>
                         {this.props.dataMenu.map((element, index) => {
-                            return <option value={element.idFood}>{element.foodName}</option>
+                            return <option key={index} value={element.idFood}>{element.foodName}, Stock: {element.quantity}</option>
                         })}
                     </select>
                 </div>
