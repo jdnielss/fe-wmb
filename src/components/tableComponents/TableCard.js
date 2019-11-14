@@ -13,7 +13,7 @@ import {fetchTableById, updateTable} from "./service/TableService";
 import {fetchingTableId} from "./action/TableActions";
 import {connect, Provider} from "react-redux";
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import OrderIcon from '@material-ui/icons/ShoppingCart';
+import OrderIcon from '@material-ui/icons/ShoppingCartOutlined';
 import IconButton from "@material-ui/core/IconButton";
 import {createStore} from "redux";
 import formOrderReducer from "../orderComponents/reducer/FormOrderReducer";
@@ -42,19 +42,16 @@ class TableCard extends Component {
     remoteTrigger = () => {
         this.props.renderTriger(0)
     }
-    handleUpdateTable=()=>{
-        updateTable(this.props.fetchTableById);
+    handleUpdateTable= async ()=>{
+        await updateTable(this.props.fetchTableById);
         this.remoteTrigger()
     }
 
-
     render() {
-        console.log(this.props.fetchTableById,'ini penanda')
         const {classes} = this.props;
         return (
             <Card className={classes.card}>
                 <div className="card border-left-primary shadow h-100 py-2">
-
                     <CardHeader
                         avatar={
                             <Avatar aria-label="recipe" className={classes.avatar}>
@@ -68,10 +65,8 @@ class TableCard extends Component {
                             </IconButton>
 
                         }
-
                         title={this.props.dataTables.status}
                     />
-
                     <CardContent>
                         <Typography variant="body2" color="textSecondary" component="p" onChange>
                             <b>Capacity : {this.props.dataTables.capacity}</b>

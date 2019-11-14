@@ -8,7 +8,7 @@ import {
     handleInputNumber,
 } from '../action/TableActions'
 import Grid from '@material-ui/core/Grid'
-import AddTable from '@material-ui/icons/AddBox'
+import AddTable from '@material-ui/icons/AddBoxOutlined'
 import TableCard from '../TableCard'
 import TableCardDining from "../TableCardDining";
 import Swal from "sweetalert2";

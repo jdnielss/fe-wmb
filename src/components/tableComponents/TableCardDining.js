@@ -31,9 +31,6 @@ const useStyles =(theme => ({
         backgroundColor: red[500],
     }
 }));
-
-
-
 class TableCardDining extends Component {
 
     fetchingOrderById = async (idOrder) => {
@@ -41,7 +38,6 @@ class TableCardDining extends Component {
         this.props.dispatch({ type:'FETCHING_DATA_BY_TABLE_ID', payload:resultData})
     }
     render() {
-        console.log(this.props.paymentDataByTable)
         const {classes} = this.props;
         return (
             <Card className={classes.card}>
@@ -98,7 +94,7 @@ class TableCardDining extends Component {
                                                     <li>Food Ordered
                                                         <ul>
                                                             {this.props.paymentDataByTable.orderList.orderDetails.map((element,index)=>{
-                                                                return <li>{element.food.foodName}</li>
+                                                                return <li key={index}>{element.food.foodName}</li>
                                                             })}
                                                         </ul>
                                                     </li>
