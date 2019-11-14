@@ -4,11 +4,19 @@ import {fetchDataTransaction, getDataTransactionDataById, updatePayment} from ".
 import {connect} from 'react-redux'
 import {handlePayment, fetchingSucces} from "../action/PaymentActions";
 import NumberFormat from "react-number-format";
-
-
+import Loader from 'react-loader-spinner'
 class PaymentContainer extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            done: undefined
+        }
+    }
     componentDidMount() {
-        this.fetchingData()
+        setTimeout(() => {
+            this.fetchingData()
+            this.setState({ done: true });
+        }, 3000);
     }
 
     fetchingData = async () => {
@@ -39,7 +47,15 @@ class PaymentContainer extends Component {
                             <h1 className="h3 mb-2 text-gray-800 text-center text-uppercase">Payment Pending</h1>
                         </div>
                         <div className="card-body">
-                            <div className="table-responsive">
+                            <div className="table-responsive text-center ">
+                                {!this.state.done ? (
+                                    <Loader
+                                        type="Puff"
+                                        color="#00BFFF"
+                                        height={100}
+                                        width={100}
+                                        timeout={3000}/>
+                                ) : (
                                 <table className="table table-bordered text-center" id="dataTable" width="100%"
                                        cellSpacing="0">
                                     <thead>
@@ -52,6 +68,7 @@ class PaymentContainer extends Component {
                                         <th>Action</th>
                                     </tr>
                                     </thead>
+
                                     <tbody className="">
                                     {this.props.fetchResult.map((element, index) => {
                                         if (element.paymentStatus === 'UNPAID') {
@@ -74,6 +91,7 @@ class PaymentContainer extends Component {
                                     })}
                                     </tbody>
                                 </table>
+                                )}
                                 <div>
                                     <div className="modal fade" id="transactionModal" tabIndex="-1"
                                          role="dialog"

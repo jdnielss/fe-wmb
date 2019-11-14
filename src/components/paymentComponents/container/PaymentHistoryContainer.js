@@ -3,10 +3,19 @@ import {fetchDataPayment} from "../service/PaymentService";
 import {fetchingDataTransaction} from "../action/PaymentActions";
 import {connect} from 'react-redux'
 import NumberFormat from "react-number-format";
+import Loader from "react-loader-spinner";
 class PaymentHistoryContainer extends Component {
-
+    constructor(props){
+        super(props)
+        this.state = {
+            done: undefined
+        }
+    }
     componentDidMount() {
-        this.fetchPaymentHistory(0).then(r => r )
+        setTimeout(() => {
+            this.fetchPaymentHistory(0).then(r => r )
+            this.setState({ done: true });
+        }, 3000);
     }
 
     fetchPaymentHistory = async (pageNumbers) => {
@@ -38,7 +47,15 @@ class PaymentHistoryContainer extends Component {
                             <h1 className="h3 mb-2 text-gray-800 text-center text-uppercase">Transaction List</h1>
                         </div>
                         <div className="card-body">
-                            <div className="table-responsive">
+                            <div className="table-responsive text-center">
+                                {!this.state.done ? (
+                                    <Loader
+                                        type="Puff"
+                                        color="#00BFFF"
+                                        height={100}
+                                        width={100}
+                                        timeout={3000}/>
+                                ) : (
                                 <table className="table table-bordered text-center" id="dataTable" width="100%" cellSpacing="0">
                                     <thead>
                                     <tr>
@@ -77,6 +94,7 @@ class PaymentHistoryContainer extends Component {
                                     }
                                     </tbody>
                                 </table>
+                                )}
                             </div>
                         </div>
                     </div>

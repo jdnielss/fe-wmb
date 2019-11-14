@@ -26,7 +26,7 @@ class App extends Component {
                                 <Header/>
                                 <div className="container-fluid">
                                     <Switch>
-                                        <Route path="/table">
+                                        <Route exact path="/">
                                                 <TableWrapper/>
                                         </Route>
                                         <Route path="/menu">

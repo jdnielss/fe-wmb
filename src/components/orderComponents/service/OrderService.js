@@ -28,16 +28,16 @@ export async function saveDataOrder(orderForm) {
         body: JSON.stringify(orderForm)
     })
         .then( async (res) => {
+            let respond = await res.json();
             if (res.status === 200){
                 await Swal.fire(
                     'Success!',
                     'Order Berhasil',
                     'success'
                 )
-                console.log(res.json())
             } else await Swal.fire(
                 'Error!',
-                ' ' + res.message,
+                '' + respond.message,
                 'error'
             )
         }).catch();

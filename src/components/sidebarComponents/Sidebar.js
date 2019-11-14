@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import '../../App.css'
 import TableIcon from '@material-ui/icons/TableChart'
+import PaymentPending from '@material-ui/icons/CreditCardOutlined'
 import HistoryIcon from '@material-ui/icons/History'
+import FoodIcon from '@material-ui/icons/FastfoodOutlined'
 class Sidebar extends Component {
     render() {
         return (
@@ -18,40 +20,21 @@ class Sidebar extends Component {
                     <hr className="sidebar-divider my-0"/>
 
                     <li className="nav-item active">
-                        <Link to="/table" className="nav-link">
+                        <Link to="/" className="nav-link">
                             <TableIcon/><span className="text-uppercase"> Table</span>
                         </Link>
                     </li>
                     <hr className="sidebar-divider my-0"/>
                     <li className="nav-item active">
-                        <Link to="/transaction" className="nav-link">
-                            <HistoryIcon/><span className="text-uppercase"> Order History</span>
+                        <Link to="/menu-table" className="nav-link">
+                            <FoodIcon/><span className="text-uppercase"> Menu</span>
                         </Link>
                     </li>
                     <hr className="sidebar-divider my-0"/>
-
-                    <li className="nav-item">
-                        <a className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
-                           aria-expanded="true" aria-controls="collapseTwo">
-                            <i className="fa fa-fw fa-cog"/>
-                            <span>Menu</span>
-                        </a>
-                        <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo"
-                             data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
-                                <h6 className="collapse-header">Menu</h6>
-                                <li className="nav-item active">
-                                    <Link to="/menu" className="collapse-item">
-                                        <span>Menu List</span>
-                                    </Link>
-                                </li>
-                                <li className="nav-item active">
-                                    <Link to="/menu-table" className="collapse-item">
-                                        <span>Menu Table</span>
-                                    </Link>
-                                </li>
-                            </div>
-                        </div>
+                    <li className="nav-item active">
+                        <Link to="/transaction" className="nav-link">
+                            <PaymentPending/><span className="text-uppercase"> Order Pending</span>
+                        </Link>
                     </li>
                     <hr className="sidebar-divider my-0"/>
                     <li className="nav-item active">
@@ -59,7 +42,6 @@ class Sidebar extends Component {
                             <HistoryIcon/><span className="text-uppercase"> Payment History</span>
                         </Link>
                     </li>
-
                 </ul>
             </div>
         );

@@ -13,15 +13,21 @@ import {
     handleInputMenuName
 } from "../action/MenuActions";
 import Swal from "sweetalert2";
+import Loader from "react-loader-spinner";
+import NumberFormat from "react-number-format";
 class MenuTableContainer extends Component {
     constructor(props) {
         super(props);
         this.state={
-            foodPicture:''
+            foodPicture:'',
+            done: undefined
         }
     }
     componentDidMount() {
-        this.fetchDataMenu()
+        setTimeout(() => {
+            this.fetchDataMenu();
+            this.setState({ done: true });
+        }, 3000);
     }
     fetchDataMenu = async () => {
         const resultData = await fetchDataMenu();
@@ -63,11 +69,11 @@ class MenuTableContainer extends Component {
         return (
             <div className="container-fluid">
                 <div className="btn-add-table">
-                    <button className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <button className="btn btn-primary" data-toggle="modal" data-target="#modalMenu">
                         Add Menu
                     </button>
                 </div>
-                <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog"
+                <div className="modal fade" id="modalMenu" tabIndex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog " role="document">
                         <div className="modal-content">
@@ -88,8 +94,7 @@ class MenuTableContainer extends Component {
                                                 placeholder="Quantity" onChange={this.handleInputQuantity}/>
                                     </div>
                                     <div className="form-group">
-                                        <input type="number" className="form-control"
-                                                placeholder="Price" onChange={this.handleInputPrice}/>
+                                            <NumberFormat placeholder="Price" className="form-control" onChange={this.handleInputPrice} thousandSeparator={true} prefix={'Rp. '} />
                                     </div>
                                     <div className="form-group">
                                         <select name="selectStatus" id="selectStatus" className="custom-select custom-select-md mb-3" onChange={this.handleInputType}>
@@ -109,7 +114,18 @@ class MenuTableContainer extends Component {
                         </div>
                     </div>
                 </div>
-                <MenuTable dataMenu={this.props.fetchResultMenu} remote={this.fetchDataMenu}/>
+                <div>
+                    {!this.state.done ? (
+                        <Loader
+                            type="Puff"
+                            color="#00BFFF"
+                            height={100}
+                            width={100}
+                            timeout={3000}/>
+                    ) : (
+                        <MenuTable dataMenu={this.props.fetchResultMenu} remote={this.fetchDataMenu}/>
+                    )}
+                </div>
             </div>
 
         );

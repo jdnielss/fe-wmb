@@ -12,6 +12,8 @@ import AddTable from '@material-ui/icons/AddBoxOutlined'
 import TableCard from '../TableCard'
 import TableCardDining from "../TableCardDining";
 import Swal from "sweetalert2";
+import Loading from 'react-loading-screen';
+
 
 class TableContainer extends Component {
     constructor(props){
@@ -22,12 +24,16 @@ class TableContainer extends Component {
                     total: null,
                     per_page: null,
                     current_page: 0
-                }
+                },
+            done: undefined
         }
     }
 
     componentDidMount(){
-        this.fetchingData(0);
+        setTimeout(() => {
+            this.fetchingData(0);
+            this.setState({ done: true });
+        }, 5000);
     }
 
     fetchingData = async (pageNumbers) => {
@@ -96,6 +102,14 @@ class TableContainer extends Component {
                         <AddTable/> <span>Add Table</span>
                     </button>
                 </div>
+                    {!this.state.done ? (
+                        <Loading
+                            loading={true}
+                            bgColor='#f1f1f1'
+                            spinnerColor='#9ee5f8'
+                            textColor='#676767'
+                        />
+                    ) : (
                 <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog " role="document">
@@ -124,6 +138,7 @@ class TableContainer extends Component {
                         </div>
                     </div>
                 </div>
+                    )}
                 <Grid container spacing={3}>
                     {dataTables}
                 </Grid>
