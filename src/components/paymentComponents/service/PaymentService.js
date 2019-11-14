@@ -21,6 +21,13 @@ export async function getDataTransactionDataById(idTransaction){
         })
     return data;
 }
+export async function getDataTransactionDataByTable(idTable){
+    const data = await fetch(`http://10.10.13.150:9090/transactionByTable/${idTable}`, {method:'GET',})
+        .then((response) => {
+            return response.json()
+        })
+    return data;
+}
 export async function updatePayment(paymentData) {
     return await fetch('http://10.10.13.150:9090/pay', {
         method: 'POST',

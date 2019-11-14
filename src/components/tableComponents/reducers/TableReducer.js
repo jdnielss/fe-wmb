@@ -5,8 +5,13 @@ const dataTable = {
         status: 'AVAILABLE',
         capacity: null
     },
-    fetchTableById: {
-    },
+    fetchTableById: {},
+    paymentDataByTable: {
+        orderList: {
+            picCustomer: '',
+            orderDetails: []
+        }
+    }
 }
 
 export default function tableReducer(state = dataTable, action) {
@@ -16,21 +21,26 @@ export default function tableReducer(state = dataTable, action) {
                 ...state, fetchResult: action.payload
             }
         case 'FETCHING_TABLE_BY_ID':
-                return {
-                    ...state,
-                    fetchTableById: action.payload
-                }
+            return {
+                ...state,
+                fetchTableById: action.payload
+            }
+        case 'FETCHING_DATA_BY_TABLE_ID':
+            return {
+                ...state,
+                paymentDataByTable: action.payload
+            }
         case 'HANDLE_NO_TABLE':
             return {
                 ...state, tableFormData: {...state.tableFormData, numberTable: action.payload}
             }
         case 'HANDLE_CAPACITY_TABLE':
             return {
-                ...state,tableFormData: {...state.tableFormData,capacity: action.payload}
+                ...state, tableFormData: {...state.tableFormData, capacity: action.payload}
             }
         case 'HANDLE_STATUS_TABLE':
             return {
-                ...state,tableFormData: {...state.tableFormData,status: action.payload}
+                ...state, tableFormData: {...state.tableFormData, status: action.payload}
             }
         default:
             return {...state};
