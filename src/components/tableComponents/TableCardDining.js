@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import DeleteIcon from '@material-ui/icons/Delete';
 import OrderIcon from '@material-ui/icons/ShoppingCart';
 import {fetchDataOrderById} from "../orderComponents/service/OrderService";
+import InfoIcon from '@material-ui/icons/Info';
 
 const useStyles =(theme => ({
     card: {
@@ -52,7 +53,7 @@ class TableCardDining extends Component {
                         }
                         action={
                             <IconButton aria-label="settings">
-                                <DetailIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingOrderById(this.props.dataTables.idTable)} />
+                                <InfoIcon data-toggle="modal" data-target="#detailModal" onClick={() => this.fetchingOrderById(this.props.dataTables.idTable)} />
                             </IconButton>
                         }
                         title={this.props.dataTables.status}
