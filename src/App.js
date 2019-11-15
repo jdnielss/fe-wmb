@@ -1,26 +1,71 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react'
+import {BrowserRouter as Router, Route, Switch, withRouter} from 'react-router-dom'
+import SideBar from './components/sidebar/components/Sidebar'
+import './App.css'
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import Header from "./components/sidebar/components/Header";
+import MenuContainer from "./components/menu/container/MenuCardContainer";
+import MenuTableContainer from "./components/menu/container/MenuTableContainer";
+import OrderContainer from "./components/order/container/OrderContainer";
+import TransactionContainer from "./components/payment/container/PaymentPendingContainer";
+import menuReducer from "./components/menu/reducer/menuReducer";
+import orderReducer from "./components/order/reducer/OrderReducer";
+import paymentReducer from "./components/payment/reducer/PaymentReducer";
+import TableWrapper from "./components/table/components/TableWrapper";
+import PaymentHistoryWrapper from "./components/payment/components/PaymentHistoryWrapper";
+import Loading from "./components/sidebar/components/Loading";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    render() {
+        return (
+            <Router>
+                <div id="page-top">
+                    <div id="wrapper">
+                        <SideBar/>
+                        <div id="content-wrapper" className="d-flex flex-column">
+                            <div id="content">
+                                <Header/>
+                                <div className="container-fluid">
+                                    <Switch>
+                                        <Route exact path="/">
+                                            <Loading/>
+                                        </Route>
+                                        <Route path="/table">
+                                                <TableWrapper/>
+                                        </Route>
+                                        <Route path="/menu">
+                                            <Provider store={createStore(menuReducer)}>
+                                                <MenuContainer/>
+                                            </Provider>
+                                        </Route>
+                                        <Route path="/menu-table">
+                                            <Provider store={createStore(menuReducer)}>
+                                                <MenuTableContainer/>
+                                            </Provider>
+                                        </Route>
+                                        <Route path="/order">
+                                            <Provider store={createStore(orderReducer)}>
+                                                <OrderContainer/>
+                                            </Provider>
+                                        </Route>
+                                        <Route path="/transaction">
+                                            <Provider store={createStore(paymentReducer)}>
+                                                <TransactionContainer/>
+                                            </Provider>
+                                        </Route>
+                                        <Route path="/payment-history">
+                                                <PaymentHistoryWrapper/>
+                                        </Route>
+                                    </Switch>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Router>
+        )
+    }
 }
 
-export default App;
+export default App
