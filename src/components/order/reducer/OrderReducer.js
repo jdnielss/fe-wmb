@@ -17,7 +17,7 @@ export default function orderReducer(state = dataOrder, action) {
             return {
                 ...state, dataFetchOrder: action.payload
             }
-        case 'RESET-STATE':
+        case 'RESET_STATE':
             return {
                 ...state, formOrder: {picCustomer: '',
                     manyCustomers: null,

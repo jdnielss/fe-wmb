@@ -32,8 +32,14 @@ export async function saveDataOrder(orderForm) {
             if (res.status === 200){
                 await Swal.fire(
                     'Success!',
-                    'Order Berhasil',
+                    'Order Success!!',
                     'success'
+                )
+            }else if(respond.message ==="No value present"){
+                await Swal.fire(
+                    'Error!',
+                    'Please fill in correctly',
+                    'error'
                 )
             } else await Swal.fire(
                 'Error!',

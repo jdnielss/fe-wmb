@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {handlePayment, fetchingSucces, resetState} from "../action/PaymentActions";
 import NumberFormat from "react-number-format";
 import Loader from 'react-loader-spinner'
+import {handleKeypress} from '../action/Handle'
 class PaymentPendingContainer extends Component {
     constructor(props){
         super(props)
@@ -30,11 +31,11 @@ class PaymentPendingContainer extends Component {
     handlePayment = (event) => {
         const data = event.target.value
         this.props.dispatch({...handlePayment, payload: data});
-
     }
     handlePaymentSubmit = async (event) => {
         event.preventDefault()
-        await updatePayment(this.props.fetchResultTransactionById).then(this.props.dispatch({...resetState})).then(this.fetchingData())
+        await updatePayment(this.props.fetchResultTransactionById).then(this.props.dispatch({type: 'RESET_PAYMENT'}))
+        this.fetchingData()
     }
 
     render() {
@@ -129,7 +130,7 @@ class PaymentPendingContainer extends Component {
                                                             <label htmlFor="staticEmail"
                                                                    className="col-sm-2 col-form-label">Pay</label>
                                                             <div className="col-sm-10">
-                                                                <NumberFormat className="form-control" thousandSeparator={true} prefix={'Rp.'}  onChange={this.handlePayment}/>
+                                                                <NumberFormat min="1" step="1" className="form-control" thousandSeparator={true} prefix={'Rp.'}  onChange={this.handlePayment} onKeyPress={handleKeypress}/>
                                                             </div>
                                                         </div>
                                                     </form>

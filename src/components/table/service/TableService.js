@@ -31,9 +31,16 @@ export async function saveDataTable(dataTable) {
                     'Input Data Success!',
                     'success'
                 )
-            } else await Swal.fire(
+            }else if(respond.message ==="No message available"){
+                await Swal.fire(
+                    'Error!',
+                    'Please fill in correctly',
+                    'error'
+                )
+            }
+            else await Swal.fire(
                 'Error!',
-                'Table number already exists',
+                'Table number already exists'+respond.message,
                 'error'
             )
         }).catch();

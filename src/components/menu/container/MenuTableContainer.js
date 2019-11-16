@@ -26,7 +26,7 @@ class MenuTableContainer extends Component {
         return (
             <div className="container-fluid">
                 <div className="btn-add-table">
-                    <MenuAdd tukangRender={this.fetchDataMenu}/>
+                    <MenuAdd tukangRender={this.fetchDataMenu()}/>
                     <MenuTable dataMenu={this.props.fetchResultMenu} remote={this.fetchDataMenu}/>
                 </div>
             </div>

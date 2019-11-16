@@ -9,10 +9,11 @@ import {
     handleTypeFood,
     typeDrink,
     typeFood,
-    handleInputMenuName
+    handleInputMenuName, resetMenu
 } from "../action/MenuActions";
 import Swal from "sweetalert2";
 import NumberFormat from "react-number-format";
+import {handleKeypress} from "../../payment/action/Handle";
 
 export class MenuAdd extends Component {
     constructor(props) {
@@ -48,15 +49,16 @@ export class MenuAdd extends Component {
         this.setState({foodPicture: images})
     }
     handleSubmitMenu = async () => {
-        await saveFoodWithImage(this.props.menuForm, this.state.foodPicture)
-        await this.props.tukangRender()
-        await this.submitSuccess()
+        await saveFoodWithImage(this.props.menuForm, this.state.foodPicture).then(this.props.dispatch({...resetMenu})).then(this.props.tukangRender)
+        await this.props.tukangRender
+         this.submitSuccess()
     }
     submitSuccess = () => {
         Swal.fire(
             'Success!',
             'Add Menu Success!',
-            'success'
+            'success',
+
         )
     }
 
@@ -82,16 +84,16 @@ export class MenuAdd extends Component {
                                 <form className="user">
                                     <div className="form-group">
                                         <input type="text" className="form-control"
-                                               placeholder="Name Food" onChange={this.handleInputFoodName}/>
+                                               placeholder="Name Food" onChange={this.handleInputFoodName} />
                                     </div>
                                     <div className="form-group">
                                         <input type="number" className="form-control"
-                                               placeholder="Quantity" onChange={this.handleInputQuantity}/>
+                                               placeholder="Quantity" onChange={this.handleInputQuantity} onKeyPress={handleKeypress} min="0" defaultValue="0"/>
                                     </div>
                                     <div className="form-group">
                                         <NumberFormat placeholder="Price" className="form-control"
                                                       onChange={this.handleInputPrice} thousandSeparator={true}
-                                                      prefix={'Rp. '}/>
+                                                      prefix={'Rp. '} onKeyPress={handleKeypress}/>
                                     </div>
                                     <div className="form-group">
                                         <select name="selectStatus" id="selectStatus"

@@ -12,6 +12,7 @@ import AddTable from '@material-ui/icons/AddBoxOutlined'
 import TableCard from '../components/TableCard'
 import TableCardDining from "../components/TableCardDining";
 import Loader from 'react-loader-spinner'
+import {handleKeypress} from "../../payment/action/Handle";
 
 class TableContainer extends Component {
     constructor(props){
@@ -106,11 +107,11 @@ class TableContainer extends Component {
                                 <form className="user">
                                     <div className="form-group">
                                         <input type="number" className="form-control" min="1"
-                                                placeholder="No. Table" onChange={this.handleTableNumber} required="true" value={this.props.tableFormData.numberTable}/>
+                                                placeholder="No. Table" onChange={this.handleTableNumber} required="true" value={this.props.tableFormData.numberTable} onKeyPress={handleKeypress}/>
                                     </div>
                                     <div className="form-group">
                                         <input type="number" className="form-control" min="1"
-                                               placeholder="Capacity" onChange={this.handleTableCapacity} required="true" value={this.props.tableFormData.capacity}/>
+                                               placeholder="Capacity" onChange={this.handleTableCapacity} required="true" value={this.props.tableFormData.capacity} onKeyPress={handleKeypress}/>
                                     </div>
                                 </form>
                             </div>

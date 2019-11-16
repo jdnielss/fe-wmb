@@ -18,22 +18,6 @@ export class MenuTableContainer extends Component {
             deleteMenu(idFood)
             this.setState({ done: true });
         }, 2000);
-        Swal.fire({
-            title: 'Are you sure?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value) {
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
-            }
-        })
     }
     triggerData = () => {
         this.props.remote();
@@ -76,8 +60,8 @@ export class MenuTableContainer extends Component {
                                                     <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#updateMenu" onClick={()=>{this.fetchingById(element.idFood)}}>
                                                        <EditIcon/> Edit
                                                     </button>
-                                                    <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#deleteMenu" onClick={() => {this.deleteFood(element.idFood)}}>
-                                                        <DeleteIcon/> Edit
+                                                    <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#deleteMenu" onClick={(event) => {this.deleteFood(element.idFood)}}>
+                                                        <DeleteIcon/>
                                                     </button>
                                                 </td>
 

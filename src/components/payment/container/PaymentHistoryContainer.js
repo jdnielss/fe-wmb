@@ -4,6 +4,8 @@ import {fetchingDataTransaction} from "../action/PaymentActions";
 import {connect} from 'react-redux'
 import NumberFormat from "react-number-format";
 import Loader from "react-loader-spinner";
+import Moment from 'react-moment';
+
 class PaymentHistoryContainer extends Component {
     constructor(props){
         super(props)
@@ -22,6 +24,7 @@ class PaymentHistoryContainer extends Component {
         const resultData = await fetchDataPayment(pageNumbers);
         this.props.dispatch({...fetchingDataTransaction, payload:resultData})
     };
+
     render() {
         let renderPageNumbers;
         const pageNumbers = [];
@@ -39,6 +42,7 @@ class PaymentHistoryContainer extends Component {
                 )
             })
         }
+        console.log(this.props.fetchResultTransaction)
         return (
             <div>
                 <div className="container-fluid">
@@ -67,6 +71,7 @@ class PaymentHistoryContainer extends Component {
                                         <th>Pay</th>
                                         <th>Change</th>
                                         <th>Total</th>
+                                        <th>Payment Date</th>
                                         <th>Status</th>
                                     </tr>
                                     </thead>
@@ -87,6 +92,7 @@ class PaymentHistoryContainer extends Component {
                                                     <td ><NumberFormat value={element.pay} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></td>
                                                     <td ><NumberFormat value={element.change} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></td>
                                                     <td ><NumberFormat value={element.total} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></td>
+                                                    <td key={index}> <Moment format="DD/MM/YYYY">{element.paymentDate}</Moment></td>
                                                     <td key={index}>{element.paymentStatus}</td>
                                                 </tr>
                                             }

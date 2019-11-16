@@ -17,6 +17,7 @@ import OrderIcon from '@material-ui/icons/ShoppingCartOutlined';
 import IconButton from "@material-ui/core/IconButton";
 import {createStore} from "redux";
 import formOrderReducer from "../../order/reducer/FormOrderReducer";
+import {resetStateForm} from "../../order/action/OrderAction";
 
 const useStyles = (theme => ({
     card: {
@@ -88,13 +89,13 @@ class TableCard extends Component {
                                         <div className="form-group">
                                             <input type="number" className="form-control" min="1"
                                                    placeholder="No. Table" onChange={(event)=>{this.props.dispatch({type:'HANDLE_UPDATE_NO_TABLE',payload: event.target.value})}}
-                                                   childAtvalue={this.props.fetchTableById.numberTable} required="true"/>
+                                                   childAtvalue={this.props.fetchTableById.numberTable} required/>
                                         </div>
                                         <div className="form-group">
                                             Capacity
                                             <input type="number" className="form-control" min="1"
                                                    placeholder="Capacity" onChange={(event)=>{this.props.dispatch({type:'HANDLE_UPDATE_CAPACITY_TABLE',payload: event.target.value})}}
-                                                   value={this.props.fetchTableById.capacity} required="true"/>
+                                                   value={this.props.fetchTableById.capacity} required/>
                                         </div>
                                     </form>
                                 </div>
@@ -105,9 +106,9 @@ class TableCard extends Component {
                         </div>
                     </div>
 
-                    <div className="modal fade" id="order" tabIndex="-1" role="dialog"
+                    <div className="modal hide fade" data-keyboard="false" id="order" tabIndex="-1" role="dialog"
                          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div className="modal-dialog modal-lg" role="document">
+                        <div className="modal-dialog modal-lg" role="document" >
                             <div className="modal-content">
                                 <div className="modal-header">
                                     <h3>{this.props.formOrder}</h3>
@@ -121,6 +122,9 @@ class TableCard extends Component {
                                                    triger={this.remoteTrigger}/>
                                         {this.props.formOrder}
                                     </Provider>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-danger btn-block btn-user" data-dismiss="modal" onClick={this.props.dispatch({...resetStateForm})}>CANCEL</button>
                                 </div>
                             </div>
                         </div>

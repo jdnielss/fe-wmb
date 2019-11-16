@@ -2,7 +2,12 @@ const initialData = {
     dataMenu: [],
     formOrder: {
         picCustomer: '',
-        manyCustomers: null,
+        manyCustomers: 0,
+        idTable: '',
+        orderDetails: []
+    },formOrderDefault: {
+        picCustomer: '',
+        manyCustomers: 0,
         idTable: '',
         orderDetails: []
     }
@@ -23,7 +28,7 @@ export default function formOrderReducer(state = initialData, action) {
                     })}}
         case 'RESET-STATE_FORM':
             return {
-                initialData
+                ...state, formOrder: initialData.formOrderDefault
             }
         case 'HANDLE_PIC_CUSTOMER':
             return {

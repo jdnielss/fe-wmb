@@ -27,7 +27,14 @@ export default function paymentReducer(state = initialState, action) {
             }
         case 'RESET_PAYMENT':
             return {
-                ...state, fetchResultTransaction: { idTransaction: '', total: null, pay: null,}
+                ...state, fetchResultTransactionById: { idTransaction: '',
+                    total: null,
+                    paymentMethod: '',
+                    pay: null,
+                    paymentStatus: '',
+                    orderList: {
+                        orderDetails: []
+                }}
             }
         case 'FETCHING_SUCCESS':
             return {
