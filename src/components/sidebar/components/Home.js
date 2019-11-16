@@ -6,7 +6,7 @@ class Home extends Component {
         return (
             <div className="text-center">
                 <h1>Warung Makan Bahari</h1>
-                <img src={bg} alt="background"/>
+                <img src={bg} alt="background" className="bg-home"/>
             </div>
         );
     }
