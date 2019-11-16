@@ -1,19 +1,21 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import SideBar from './components/sidebarComponents/Sidebar'
+import {BrowserRouter as Router, Route, Switch, withRouter} from 'react-router-dom'
+import SideBar from './components/sidebar/components/Sidebar'
 import './App.css'
 import {Provider} from "react-redux";
 import {createStore} from "redux";
-import Header from "./components/sidebarComponents/Header";
-import MenuContainer from "./components/menuComponents/container/MenuCardContainer";
-import MenuTableContainer from "./components/menuComponents/container/MenuTableContainer";
-import OrderContainer from "./components/orderComponents/container/OrderContainer";
-import TransactionContainer from "./components/paymentComponents/container/PaymentContainer";
-import menuReducer from "./components/menuComponents/reducer/menuReducer";
-import orderReducer from "./components/orderComponents/reducer/OrderReducer";
-import paymentReducer from "./components/paymentComponents/reducer/PaymentReducer";
-import TableWrapper from "./components/tableComponents/TableWrapper";
-import PaymentHistoryWrapper from "./components/paymentComponents/PaymentHistoryWrapper";
+import Header from "./components/sidebar/components/Header";
+import MenuContainer from "./components/menu/container/MenuCardContainer";
+import MenuTableContainer from "./components/menu/container/MenuTableContainer";
+import OrderContainer from "./components/order/container/OrderContainer";
+import TransactionContainer from "./components/payment/container/PaymentPendingContainer";
+import menuReducer from "./components/menu/reducer/menuReducer";
+import orderReducer from "./components/order/reducer/OrderReducer";
+import paymentReducer from "./components/payment/reducer/PaymentReducer";
+import TableWrapper from "./components/table/components/TableWrapper";
+import PaymentHistoryWrapper from "./components/payment/components/PaymentHistoryWrapper";
+import Loading from "./components/sidebar/components/Loading";
+
 class App extends Component {
     render() {
         return (
@@ -27,6 +29,9 @@ class App extends Component {
                                 <div className="container-fluid">
                                     <Switch>
                                         <Route exact path="/">
+                                            <Loading/>
+                                        </Route>
+                                        <Route path="/table">
                                                 <TableWrapper/>
                                         </Route>
                                         <Route path="/menu">
