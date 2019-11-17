@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 export async function fetchDataOrder(){
-    const data = await axios.get('http://10.10.13.150:9090/order')
+    const data = await axios.get('http://10.10.13.150:9090/orders')
         .then((response) => {
             return response.json()
         });
@@ -32,7 +32,7 @@ export async function saveDataOrder(orderForm) {
             if (res.status === 200){
                 await Swal.fire(
                     'Success!',
-                    'Order Success!!',
+                    'Order Success!',
                     'success'
                 )
             }else if(respond.message ==="No value present"){

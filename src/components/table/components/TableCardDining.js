@@ -14,7 +14,6 @@ import DinningLock from '@material-ui/icons/Lock';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import {getDataTransactionDataByTable} from "../../payment/service/PaymentService";
 import NumberFormat from 'react-number-format';
-import  { Redirect } from 'react-router-dom'
 
 const useStyles =(theme => ({
     card: {

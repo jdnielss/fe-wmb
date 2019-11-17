@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import OrderForm from "../../order/components/OrderForm";
+import OrderForm from "../../order/components/OrderMenu";
 import '../assets/TableCard.scss'
 import {withStyles} from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import {blue} from '@material-ui/core/colors';
-import {fetchTableById, updateTable} from "../service/TableService";
+import {deleteTable, fetchTableById, updateTable} from "../service/TableService";
 import {fetchingTableId} from "../action/TableActions";
 import {connect, Provider} from "react-redux";
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
@@ -18,7 +18,8 @@ import IconButton from "@material-ui/core/IconButton";
 import {createStore} from "redux";
 import formOrderReducer from "../../order/reducer/FormOrderReducer";
 import {resetStateForm} from "../../order/action/OrderAction";
-
+import DeleteIcon from '@material-ui/icons/DeleteOutline'
+import Swal from "sweetalert2";
 const useStyles = (theme => ({
     card: {
         width: '20%',
@@ -42,11 +43,15 @@ class TableCard extends Component {
     }
     remoteTrigger = () => {
         this.props.renderTriger(0);
-    }
+    };
     handleUpdateTable= async ()=>{
         await updateTable(this.props.fetchTableById);
         this.remoteTrigger()
-    }
+    };
+    deleteTable = async (idTable) => {
+        await deleteTable(idTable);
+       await this.remoteTrigger(0);
+    };
 
     render() {
         const {classes} = this.props;
@@ -71,6 +76,10 @@ class TableCard extends Component {
                         <IconButton aria-label="settings">
                             <OrderIcon data-toggle="modal" data-target="#order"
                                        onClick={() => this.fetchingTableById(this.props.dataTables.idTable)}/>
+                        </IconButton>
+                        <IconButton aria-label="settings">
+                            <DeleteIcon
+                                       onClick={() => {this.deleteTable(this.props.dataTables.idTable)}}/>
                         </IconButton>
                     </CardContent>
                     <div className="modal fade" id="edit" tabIndex="-1" role="dialog"

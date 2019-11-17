@@ -15,18 +15,18 @@ export class MenuTableContainer extends Component {
     }
     deleteFood = async (idFood) => {
         setTimeout(() => {
-            deleteMenu(idFood)
+            deleteMenu(idFood);
             this.setState({ done: true });
         }, 100);
-        Swal.fire(
+        await Swal.fire(
             'Success!',
             'Update Success!',
             'success'
         )
-    }
+    };
     triggerData = () => {
         this.props.remote();
-    }
+    };
 
     render() {
         return (
@@ -65,7 +65,7 @@ export class MenuTableContainer extends Component {
                                                     <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#updateMenu" onClick={()=>{this.fetchingById(element.idFood)}}>
                                                        <EditIcon/> Edit
                                                     </button>
-                                                    <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#deleteMenu" onClick={(event) => {this.deleteFood(element.idFood)}}>
+                                                    <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#deleteMenu" onClick={() => {this.deleteFood(element.idFood)}}>
                                                         <DeleteIcon/>
                                                     </button>
                                                 </td>
@@ -90,6 +90,6 @@ const mapStateToProps=(state)=> {
     return{
         ...state
     }
-}
+};
 
 export default connect(mapStateToProps)(MenuTableContainer)

@@ -9,9 +9,8 @@ import {
 import {saveDataOrder} from "../service/OrderService";
 import MenuSelector from "../../menu/components/MenuSelector";
 import '../assets/Custom-Order.scss'
-export class OrderForm extends Component {
+export class OrderMenu extends Component {
     render() {
-        console.log(this.props.formOrder)
         return (
             <div className="container-fluid">
                 <div className="card shadow mb-4">
@@ -73,4 +72,4 @@ export class OrderForm extends Component {
 const mapStateToProps = (state) => {
     return {...state}
 }
-export default connect(mapStateToProps)(OrderForm)
+export default connect(mapStateToProps)(OrderMenu)

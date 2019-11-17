@@ -57,27 +57,27 @@ class MenuUpdate extends Component {
         this.props.dispatch({type:'HANDLE_UPDATE_FOOD_NAME', payload: data})
         this.props.dispatch({type:'HANDLE_UPDATE_ID_FOOD', payload: this.props.dataMenuById.idFood})
         this.props.dispatch({type:'HANDLE_UPDATE_PRICE_FOOD', payload: ""+this.props.dataMenuById.price+""})
-    }
+    };
     handleInputQuantity = (event) => {
         let data = event.target.value
         this.props.dispatch({type:'HANDLE_UPDATE_QUANTITY_FOOD', payload:data})
         this.props.dispatch({type:'HANDLE_UPDATE_PRICE_FOOD', payload: ""+this.props.dataMenuById.price+""})
-    }
+    };
     handleInputPrice = (event) =>{
         let data = event.target.value
         this.props.dispatch({type:'HANDLE_UPDATE_PRICE_FOOD', payload: data})
-    }
+    };
     handleInputType = (event) =>{
         let data = event.target.value
         this.props.dispatch({type:'HANDLE_UPDATE_TYPE_FOOD', payload: data})
         this.props.dispatch({type:'HANDLE_UPDATE_PRICE_FOOD', payload: ""+this.props.dataMenuById.price+""})
-    }
+    };
     handleUpdateButton = async ()=>{
         await  this.props.dispatch({type:'HANDLE_UPDATE_PRICE_FOOD', payload: ""+this.props.dataMenuById.price+""})
         await updateMenu(this.props.dataMenuById);
-        await this.tukangRender();
-    }
-    tukangRender = async () => {
+        await this.rendered();
+    };
+    rendered = async () => {
         await this.props.rerender();
     }
 }
@@ -86,5 +86,5 @@ const mapStateToProps=(state)=>{
     return{
         ...state
     }
-}
+};
 export default connect(mapStateToProps) (MenuUpdate);
