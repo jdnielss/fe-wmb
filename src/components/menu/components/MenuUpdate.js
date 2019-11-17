@@ -3,6 +3,7 @@ import {typeDrink, typeFood} from "../action/MenuActions";
 import {connect} from 'react-redux'
 import {updateMenu} from "../service/MenuService";
 import NumberFormat from "react-number-format";
+import {handleKeypress} from "../../payment/action/Handle";
 
 class MenuUpdate extends Component {
     render() {
@@ -22,16 +23,16 @@ class MenuUpdate extends Component {
 
                                 <div className="form-group">
                                     Food Name
-                                    <input type="text" className="form-control" value={this.props.dataMenuById.foodName} onChange={this.handleInputFoodName}/>
+                                    <input type="text" className="form-control" value={this.props.dataMenuById.foodName} onChange={this.handleInputFoodName} onKeyPress={handleKeypress}/>
                                 </div>
                                 <div className="form-group">
                                     Quantity
                                     <input type="number" className="form-control" min="0"
-                                           value={this.props.dataMenuById.quantity} onChange={this.handleInputQuantity}/>
+                                           value={this.props.dataMenuById.quantity} onChange={this.handleInputQuantity} onKeyPress={handleKeypress}/>
                                 </div>
                                 <div className="form-group">
                                     Price
-                                    <NumberFormat  min="0" placeholder={this.props.dataMenuById.price} className="form-control" onChange={this.handleInputPrice} thousandSeparator={true} prefix={'Rp. '} />
+                                    <NumberFormat  min="0" placeholder={this.props.dataMenuById.price} className="form-control" onChange={this.handleInputPrice} thousandSeparator={true} prefix={'Rp. '} onKeyPress={handleKeypress}/>
                                 </div>
                                 <div className="form-group">
                                     Type Food
@@ -56,27 +57,27 @@ class MenuUpdate extends Component {
         this.props.dispatch({type:'HANDLE_UPDATE_FOOD_NAME', payload: data})
         this.props.dispatch({type:'HANDLE_UPDATE_ID_FOOD', payload: this.props.dataMenuById.idFood})
         this.props.dispatch({type:'HANDLE_UPDATE_PRICE_FOOD', payload: ""+this.props.dataMenuById.price+""})
-    }
+    };
     handleInputQuantity = (event) => {
         let data = event.target.value
         this.props.dispatch({type:'HANDLE_UPDATE_QUANTITY_FOOD', payload:data})
         this.props.dispatch({type:'HANDLE_UPDATE_PRICE_FOOD', payload: ""+this.props.dataMenuById.price+""})
-    }
+    };
     handleInputPrice = (event) =>{
         let data = event.target.value
         this.props.dispatch({type:'HANDLE_UPDATE_PRICE_FOOD', payload: data})
-    }
+    };
     handleInputType = (event) =>{
         let data = event.target.value
         this.props.dispatch({type:'HANDLE_UPDATE_TYPE_FOOD', payload: data})
         this.props.dispatch({type:'HANDLE_UPDATE_PRICE_FOOD', payload: ""+this.props.dataMenuById.price+""})
-    }
+    };
     handleUpdateButton = async ()=>{
         await  this.props.dispatch({type:'HANDLE_UPDATE_PRICE_FOOD', payload: ""+this.props.dataMenuById.price+""})
         await updateMenu(this.props.dataMenuById);
-        await this.tukangRender();
-    }
-    tukangRender = async () => {
+        await this.rendered();
+    };
+    rendered = async () => {
         await this.props.rerender();
     }
 }
@@ -85,5 +86,5 @@ const mapStateToProps=(state)=>{
     return{
         ...state
     }
-}
+};
 export default connect(mapStateToProps) (MenuUpdate);

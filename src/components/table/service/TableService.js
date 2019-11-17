@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 
 export async function fetchDataTable(pagination){
-    const data = await fetch(`http://10.10.13.150:9090/getTable?size=16&page=${pagination}`, {method:'GET',})
+    const data = await fetch(`http://10.10.13.150:9090/tables?size=16&page=${pagination}`, {method:'GET',})
         .then((response) => {
             return response.json()
         })
@@ -31,16 +31,22 @@ export async function saveDataTable(dataTable) {
                     'Input Data Success!',
                     'success'
                 )
+            }else if (respond.message ==="No message available"){
+                await Swal.fire(
+                    'Error!',
+                    'please fill in correctly',
+                    'error'
+                )
             } else await Swal.fire(
                 'Error!',
-                'Table number already exists',
+                'Table number already exists'+respond.message,
                 'error'
             )
         }).catch();
 }
 export async function updateTable(dataTable) {
-    return await fetch('http://10.10.13.150:9090/updateTable', {
-        method: 'POST',
+    return await fetch('http://10.10.13.150:9090/table', {
+        method: 'PUT',
         headers: {
             Accept: 'application/json',
             "Content-type": "application/json"
@@ -62,10 +68,24 @@ export async function updateTable(dataTable) {
             )
         }).catch();
 }
-export async function fetchDataTableAvailable(){
-    const data = await fetch('http://10.10.13.150:9090/tableAvailable', {method:'GET',})
-        .then((response) => {
-            return response.json()
-        })
+
+export async function deleteTable(idTable) {
+    const data = await fetch(`http://10.10.13.150:9090/table/${idTable}`, {
+        method: 'DELETE'
+    })
+        .then(async (res) => {
+            let respond = await res.json();
+            if (respond.status === 200) {
+                await Swal.fire(
+                    'Success!',
+                    'Delete Success',
+                    'success'
+                )
+            } else await Swal.fire(
+                'Error!',
+                'Cannot delete when table already ordered',
+                'error'
+            )
+        }).catch(reason => reason.data)
     return data;
 }

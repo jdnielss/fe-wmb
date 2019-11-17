@@ -9,4 +9,3 @@ export const foodIdHandler ={type:'HANDLE_FOOD_ID'};
 export const foodQuantityHandler ={type:'HANDLE_FOOD_QUANTITY'};
 export const resetStateForm = {type: 'RESET_STATE_FORM'}
 export const resetState = {type: 'RESET_STATE'}
-export const resetMenu = {type: 'ORDER_DELETE_MENU_SUCCESS'}

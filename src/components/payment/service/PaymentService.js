@@ -1,14 +1,14 @@
 import Swal from 'sweetalert2'
 
 export async function fetchDataTransaction(){
-    const data = await fetch(`http://10.10.13.150:9090/transaction`, {method:'GET',})
+    const data = await fetch(`http://10.10.13.150:9090/transactions`, {method:'GET',})
         .then((response) => {
             return response.json()
         })
     return data;
 }
 export async function fetchDataPayment(pagination){
-    const data = await fetch(`http://10.10.13.150:9090/getTransaction?size=10&page=${pagination}`, {method:'GET',})
+    const data = await fetch(`http://10.10.13.150:9090/page-transactions?size=10&page=${pagination}`, {method:'GET',})
         .then((response) => {
             return response.json()
         })
@@ -22,7 +22,7 @@ export async function getDataTransactionDataById(idTransaction){
     return data;
 }
 export async function getDataTransactionDataByTable(idTable){
-    const data = await fetch(`http://10.10.13.150:9090/transactionByTable/${idTable}`, {method:'GET',})
+    const data = await fetch(`http://10.10.13.150:9090/transaction-table/${idTable}`, {method:'GET',})
         .then((response) => {
             return response.json()
         })
@@ -30,7 +30,7 @@ export async function getDataTransactionDataByTable(idTable){
 }
 export async function updatePayment(paymentData) {
     paymentData.pay = paymentData.pay.replace(/\D+/g, '');
-    return await fetch('http://10.10.13.150:9090/pay', {
+    return await fetch('http://10.10.13.150:9090/transaction', {
         method: 'POST',
         headers: {
             Accept: 'application/json',

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Route, Switch, withRouter} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import SideBar from './components/sidebar/components/Sidebar'
 import './App.css'
 import {Provider} from "react-redux";
@@ -7,14 +7,13 @@ import {createStore} from "redux";
 import Header from "./components/sidebar/components/Header";
 import MenuContainer from "./components/menu/container/MenuCardContainer";
 import MenuTableContainer from "./components/menu/container/MenuTableContainer";
-import OrderContainer from "./components/order/container/OrderContainer";
-import TransactionContainer from "./components/payment/container/PaymentPendingContainer";
+import PaymentContainer from "./components/payment/container/PaymentPendingContainer";
 import menuReducer from "./components/menu/reducer/menuReducer";
-import orderReducer from "./components/order/reducer/OrderReducer";
 import paymentReducer from "./components/payment/reducer/PaymentReducer";
 import TableWrapper from "./components/table/components/TableWrapper";
 import PaymentHistoryWrapper from "./components/payment/components/PaymentHistoryWrapper";
 import Loading from "./components/sidebar/components/Loading";
+import PaymentPendingWrapper from "./components/payment/components/PaymentPendingWrapper";
 
 class App extends Component {
     render() {
@@ -44,15 +43,8 @@ class App extends Component {
                                                 <MenuTableContainer/>
                                             </Provider>
                                         </Route>
-                                        <Route path="/order">
-                                            <Provider store={createStore(orderReducer)}>
-                                                <OrderContainer/>
-                                            </Provider>
-                                        </Route>
                                         <Route path="/transaction">
-                                            <Provider store={createStore(paymentReducer)}>
-                                                <TransactionContainer/>
-                                            </Provider>
+                                            <PaymentPendingWrapper/>
                                         </Route>
                                         <Route path="/payment-history">
                                                 <PaymentHistoryWrapper/>

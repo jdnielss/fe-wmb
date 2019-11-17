@@ -15,6 +15,7 @@ import {
 import {fetchDataMenu} from "../../menu/service/MenuService";
 import {fetchDataTableAvailable} from "../../table/service/TableService";
 import {fetchDataOrder, saveDataOrder} from "../service/OrderService";
+import {handleKeypress} from "../../payment/action/Handle";
 
 class OrderContainer extends Component {
 
@@ -93,7 +94,7 @@ class OrderContainer extends Component {
                                 return <div className="form-row" key={index}>
                                     <div className="form-group col-md-6">
                                         <label htmlFor="inputState">FOOD</label>
-                                        <select id="inputState" className="form-control" onChange={(event) => {
+                                        <select id="inputState" className="form-control" required onChange={(event) => {
                                             this.props.dispatch({
                                                 ...foodIdHandler,
                                                 index: index,
@@ -109,7 +110,7 @@ class OrderContainer extends Component {
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label htmlFor="inputCity">Quantity</label>
-                                        <input type="number" className="form-control" id="inputCity"
+                                        <input type="number" className="form-control" id="inputCity" onKeyPress={handleKeypress} required
                                                onChange={(event) => {
                                                    this.props.dispatch({
                                                        ...foodQuantityHandler,
@@ -120,7 +121,7 @@ class OrderContainer extends Component {
                                     </div>
                                 </div>
                             })}
-                            <button className="btn btn-primary btn-block btn-user" onClick={this.handleOrderSubmit}>ORDER</button>
+                            <input type="submit" className="btn btn-primary btn-block btn-user" onClick={this.handleOrderSubmit}>ORDER</input>
                         </form>
                     </div>
                 </div>

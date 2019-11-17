@@ -3,13 +3,13 @@ import {connect} from "react-redux";
 import {
     addOrderMenu,
     customerQuantityHandler,
-    PICHandler,
+    PICHandler, resetStateForm,
     tableIdHandler
 } from "../action/OrderAction";
 import {saveDataOrder} from "../service/OrderService";
 import MenuSelector from "../../menu/components/MenuSelector";
 import '../assets/Custom-Order.scss'
-export class OrderForm extends Component {
+export class OrderMenu extends Component {
     render() {
         return (
             <div className="container-fluid">
@@ -24,14 +24,14 @@ export class OrderForm extends Component {
                                 <div className="form-group col-md-12">
                                     <label htmlFor="PIC Name">PIC Name
                                     </label>
-                                    <input type="text" className="form-control" onChange={this.handlePICName} required/>
+                                    <input type="text" className="form-control" value={this.props.formOrder.picCustomer} onChange={this.handlePICName} required/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <div className="form-group col-md-12">
                                     <label htmlFor="PIC Name">Customer Capacity</label>
-                                    <input type="number" className="form-control" min="1"
-                                           onChange={this.handleCustomerQuantity} required/>
+                                    <input type="number" className="form-control" value={this.props.formOrder.manyCustomers} min="1"
+                                           onChange={this.handleCustomerQuantity} defaultValue="0"/>
                                 </div>
                             </div>
                             <div>
@@ -43,7 +43,7 @@ export class OrderForm extends Component {
                                 return <MenuSelector key={index} index={index}/>
                             })}
                         </form>
-                        <button className="btn btn-primary btn-block " data-dismiss="modal" onClick={this.handleOrderSubmit}>ORDER</button>
+                        <button className="btn btn-primary btn-block " data-dismiss="modal" onClick={()=>{this.handleOrderSubmit();this.props.dispatch({...resetStateForm})}}>ORDER</button>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@ export class OrderForm extends Component {
         this.props.dispatch({...customerQuantityHandler, payload: data})
     }
     handleOrderSubmit =async () => {
-       await saveDataOrder(this.props.formOrder)
+       await saveDataOrder(this.props.formOrder).then(this.props.dispatch({type : 'RESET-STATE_FORM'}))
         await this.props.triger(0);
     }
 }
@@ -72,4 +72,4 @@ export class OrderForm extends Component {
 const mapStateToProps = (state) => {
     return {...state}
 }
-export default connect(mapStateToProps)(OrderForm)
+export default connect(mapStateToProps)(OrderMenu)

@@ -9,10 +9,11 @@ import {
     handleTypeFood,
     typeDrink,
     typeFood,
-    handleInputMenuName
+    handleInputMenuName, resetMenu
 } from "../action/MenuActions";
 import Swal from "sweetalert2";
 import NumberFormat from "react-number-format";
+import {handleKeypress} from "../../payment/action/Handle";
 
 export class MenuAdd extends Component {
     constructor(props) {
@@ -48,15 +49,17 @@ export class MenuAdd extends Component {
         this.setState({foodPicture: images})
     }
     handleSubmitMenu = async () => {
-        await saveFoodWithImage(this.props.menuForm, this.state.foodPicture)
-        await this.props.tukangRender()
-        await this.submitSuccess()
+        this.props.dispatch({...handleInputPrice, payload: this.props.foodFormData.price})
+        await saveFoodWithImage(this.props.menuForm, this.state.foodPicture).then(this.props.dispatch({...resetMenu})).then(this.props.renderTriger)
+        await this.props.renderTriger
+         this.submitSuccess()
     }
     submitSuccess = () => {
         Swal.fire(
             'Success!',
             'Add Menu Success!',
-            'success'
+            'success',
+
         )
     }
 
@@ -81,17 +84,17 @@ export class MenuAdd extends Component {
                             <div className="modal-body">
                                 <form className="user">
                                     <div className="form-group">
-                                        <input type="text" className="form-control"
-                                               placeholder="Name Food" onChange={this.handleInputFoodName}/>
+                                        <input type="text" className="form-control" value={this.props.menuForm.foodName}
+                                               placeholder="Name Food" onChange={this.handleInputFoodName} />
                                     </div>
                                     <div className="form-group">
-                                        <input type="number" className="form-control"
-                                               placeholder="Quantity" onChange={this.handleInputQuantity}/>
+                                        <input type="number" className="form-control" value={this.props.menuForm.quantity}
+                                               placeholder="Quantity" onChange={this.handleInputQuantity} onKeyPress={handleKeypress} min="0" defaultValue="0"/>
                                     </div>
                                     <div className="form-group">
-                                        <NumberFormat placeholder="Price" className="form-control"
+                                        <NumberFormat placeholder="Price" className="form-control" value={this.props.menuForm.price}
                                                       onChange={this.handleInputPrice} thousandSeparator={true}
-                                                      prefix={'Rp. '}/>
+                                                      prefix={'Rp. '} onKeyPress={handleKeypress}/>
                                     </div>
                                     <div className="form-group">
                                         <select name="selectStatus" id="selectStatus"
@@ -103,14 +106,14 @@ export class MenuAdd extends Component {
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <input type="file" className="form-control-file" name="file"
+                                        <input type="file" className="form-control-file" name="file" 
                                                onChange={this.handleUploadImage} required={true}/>
                                     </div>
                                 </form>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-primary" onClick={this.handleSubmitMenu}
-                                        data-dismiss="modal">Save changes
+                                        data-dismiss="modal" disabled={!this.props.menuForm.foodName}>Save changes
                                 </button>
                             </div>
                         </div>

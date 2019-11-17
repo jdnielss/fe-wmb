@@ -16,8 +16,8 @@ export async function getDataMenuById(idMenu){
 }
 export async function updateMenu(dataMenu) {
     dataMenu.price = dataMenu.price.replace(/\D+/g, '');
-    return await fetch('http://10.10.13.150:9090/updateFood', {
-        method: 'POST',
+    return await fetch('http://10.10.13.150:9090/food', {
+        method: 'PUT',
         headers: {
             Accept: 'application/json',
             "Content-type": "application/json"
@@ -45,7 +45,7 @@ export async function deleteMenu(idFood) {
     })
         .then( async (res) => {
             let respond = await res.json();
-            if (res.status === 200){
+            if (respond.status === 200){
                 await Swal.fire(
                     'Success!',
                     'Update Success!',
@@ -53,7 +53,7 @@ export async function deleteMenu(idFood) {
                 )
             } else await Swal.fire(
                 'Error!',
-                ''+respond.message,
+                'Cannot delete when menu already ordered',
                 'error'
             )
         }).catch(reason => reason.data)
@@ -66,7 +66,7 @@ export async function saveFoodWithImage(foodFormData, foodImage){
     let dataMenu = JSON.stringify(foodFormData)
     data.append('file', foodImage)
     data.append('foodFormData', dataMenu)
-    fetch("http://10.10.13.150:9090/saveFood", {
+    fetch("http://10.10.13.150:9090/food", {
         method: 'POST',
         body: data,
         mode: "no-cors",

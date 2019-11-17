@@ -4,9 +4,11 @@ import {fetchingDataTransaction} from "../action/PaymentActions";
 import {connect} from 'react-redux'
 import NumberFormat from "react-number-format";
 import Loader from "react-loader-spinner";
+import Moment from 'react-moment';
+
 class PaymentHistoryContainer extends Component {
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
             done: undefined
         }
@@ -22,6 +24,7 @@ class PaymentHistoryContainer extends Component {
         const resultData = await fetchDataPayment(pageNumbers);
         this.props.dispatch({...fetchingDataTransaction, payload:resultData})
     };
+
     render() {
         let renderPageNumbers;
         const pageNumbers = [];
@@ -39,6 +42,7 @@ class PaymentHistoryContainer extends Component {
                 )
             })
         }
+        console.log(this.props.fetchResultTransaction)
         return (
             <div>
                 <div className="container-fluid">
@@ -61,12 +65,10 @@ class PaymentHistoryContainer extends Component {
                                     <tr>
                                         <td>No.</td>
                                         <th>PIC Name</th>
-                                        <th>Customer Capacity</th>
-                                        <th>No Table</th>
-                                        <th>Menu</th>
                                         <th>Pay</th>
                                         <th>Change</th>
                                         <th>Total</th>
+                                        <th>Payment Date</th>
                                         <th>Status</th>
                                     </tr>
                                     </thead>
@@ -77,17 +79,11 @@ class PaymentHistoryContainer extends Component {
                                                 return <tr>
                                                     <td>{index+1}</td>
                                                     <td key={index}>{element.orderList.picCustomer} </td>
-                                                    <td key={index}>{element.orderList.manyCustomers}</td>
-                                                    <td key={index}>{element.orderList.table.numberTable}</td>
-                                                    <td key={index}>{element.orderList.orderDetails.map((element, index) => {
-                                                        return <ul>
-                                                            <span key={index}>{element.food.foodName}</span>
-                                                        </ul>
-                                                    })}</td>
                                                     <td ><NumberFormat value={element.pay} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></td>
                                                     <td ><NumberFormat value={element.change} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></td>
                                                     <td ><NumberFormat value={element.total} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></td>
-                                                    <td key={index}>{element.paymentStatus}</td>
+                                                    <td key={index}> <Moment format="DD/MM/YYYY">{element.paymentDate}</Moment></td>
+                                                    <td><span className="badge badge-pill badge-success">{element.paymentStatus}</span></td>
                                                 </tr>
                                             }
                                         })

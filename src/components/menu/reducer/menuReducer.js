@@ -24,7 +24,7 @@ export default function menuReducer(state = dataMenu, action) {
             };
         case 'RESET_MENU':
             return {
-                ...state, menuForm: {typeFood:'', price:'', quantity:'', foodName: ''}
+                ...state, menuForm: {id: '', typeFood:'', price:'', quantity:'', foodName: ''}
             }
         case 'HANDLE_FOOD_NAME':
             return {
