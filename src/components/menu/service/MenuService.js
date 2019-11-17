@@ -53,7 +53,7 @@ export async function deleteMenu(idFood) {
                 )
             } else await Swal.fire(
                 'Error!',
-                ''+respond.message,
+                'Cannot delete when menu already ordered',
                 'error'
             )
         }).catch(reason => reason.data)

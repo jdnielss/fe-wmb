@@ -17,7 +17,12 @@ export class MenuTableContainer extends Component {
         setTimeout(() => {
             deleteMenu(idFood)
             this.setState({ done: true });
-        }, 2000);
+        }, 100);
+        Swal.fire(
+            'Success!',
+            'Update Success!',
+            'success'
+        )
     }
     triggerData = () => {
         this.props.remote();

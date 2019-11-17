@@ -83,15 +83,15 @@ export class MenuAdd extends Component {
                             <div className="modal-body">
                                 <form className="user">
                                     <div className="form-group">
-                                        <input type="text" className="form-control"
+                                        <input type="text" className="form-control" value={this.props.menuForm.foodName}
                                                placeholder="Name Food" onChange={this.handleInputFoodName} />
                                     </div>
                                     <div className="form-group">
-                                        <input type="number" className="form-control"
+                                        <input type="number" className="form-control" value={this.props.menuForm.quantity}
                                                placeholder="Quantity" onChange={this.handleInputQuantity} onKeyPress={handleKeypress} min="0" defaultValue="0"/>
                                     </div>
                                     <div className="form-group">
-                                        <NumberFormat placeholder="Price" className="form-control"
+                                        <NumberFormat placeholder="Price" className="form-control" value={this.props.menuForm.price}
                                                       onChange={this.handleInputPrice} thousandSeparator={true}
                                                       prefix={'Rp. '} onKeyPress={handleKeypress}/>
                                     </div>
@@ -105,7 +105,7 @@ export class MenuAdd extends Component {
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <input type="file" className="form-control-file" name="file"
+                                        <input type="file" className="form-control-file" name="file" 
                                                onChange={this.handleUploadImage} required={true}/>
                                     </div>
                                 </form>
