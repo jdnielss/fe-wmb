@@ -1,14 +1,14 @@
 import Swal from 'sweetalert2'
 
 export async function fetchDataTransaction(){
-    const data = await fetch(`http://10.10.13.150:9090/transaction`, {method:'GET',})
+    const data = await fetch(`http://10.10.13.150:9090/transactions`, {method:'GET',})
         .then((response) => {
             return response.json()
         })
     return data;
 }
 export async function fetchDataPayment(pagination){
-    const data = await fetch(`http://10.10.13.150:9090/getTransaction?size=10&page=${pagination}`, {method:'GET',})
+    const data = await fetch(`http://10.10.13.150:9090/page-transactions?size=10&page=${pagination}`, {method:'GET',})
         .then((response) => {
             return response.json()
         })

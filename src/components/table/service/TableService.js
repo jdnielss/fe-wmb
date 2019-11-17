@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 
 export async function fetchDataTable(pagination){
-    const data = await fetch(`http://10.10.13.150:9090/getTable?size=16&page=${pagination}`, {method:'GET',})
+    const data = await fetch(`http://10.10.13.150:9090/tables?size=16&page=${pagination}`, {method:'GET',})
         .then((response) => {
             return response.json()
         })
@@ -61,11 +61,4 @@ export async function updateTable(dataTable) {
                 'error'
             )
         }).catch();
-}
-export async function fetchDataTableAvailable(){
-    const data = await fetch('http://10.10.13.150:9090/tableAvailable', {method:'GET',})
-        .then((response) => {
-            return response.json()
-        })
-    return data;
 }

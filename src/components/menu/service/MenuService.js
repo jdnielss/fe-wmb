@@ -16,7 +16,7 @@ export async function getDataMenuById(idMenu){
 }
 export async function updateMenu(dataMenu) {
     dataMenu.price = dataMenu.price.replace(/\D+/g, '');
-    return await fetch('http://10.10.13.150:9090/updateFood', {
+    return await fetch('http://10.10.13.150:9090/food', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -66,7 +66,7 @@ export async function saveFoodWithImage(foodFormData, foodImage){
     let dataMenu = JSON.stringify(foodFormData)
     data.append('file', foodImage)
     data.append('foodFormData', dataMenu)
-    fetch("http://10.10.13.150:9090/saveFood", {
+    fetch("http://10.10.13.150:9090/food", {
         method: 'POST',
         body: data,
         mode: "no-cors",
