@@ -7,12 +7,13 @@ import {createStore} from "redux";
 import Header from "./components/sidebar/components/Header";
 import MenuContainer from "./components/menu/container/MenuCardContainer";
 import MenuTableContainer from "./components/menu/container/MenuTableContainer";
-import TransactionContainer from "./components/payment/container/PaymentPendingContainer";
+import PaymentContainer from "./components/payment/container/PaymentPendingContainer";
 import menuReducer from "./components/menu/reducer/menuReducer";
 import paymentReducer from "./components/payment/reducer/PaymentReducer";
 import TableWrapper from "./components/table/components/TableWrapper";
 import PaymentHistoryWrapper from "./components/payment/components/PaymentHistoryWrapper";
 import Loading from "./components/sidebar/components/Loading";
+import PaymentPendingWrapper from "./components/payment/components/PaymentPendingWrapper";
 
 class App extends Component {
     render() {
@@ -43,9 +44,7 @@ class App extends Component {
                                             </Provider>
                                         </Route>
                                         <Route path="/transaction">
-                                            <Provider store={createStore(paymentReducer)}>
-                                                <TransactionContainer/>
-                                            </Provider>
+                                            <PaymentPendingWrapper/>
                                         </Route>
                                         <Route path="/payment-history">
                                                 <PaymentHistoryWrapper/>

@@ -49,8 +49,9 @@ export class MenuAdd extends Component {
         this.setState({foodPicture: images})
     }
     handleSubmitMenu = async () => {
-        await saveFoodWithImage(this.props.menuForm, this.state.foodPicture).then(this.props.dispatch({...resetMenu})).then(this.props.tukangRender)
-        await this.props.tukangRender
+        this.props.dispatch({...handleInputPrice, payload: this.props.foodFormData.price})
+        await saveFoodWithImage(this.props.menuForm, this.state.foodPicture).then(this.props.dispatch({...resetMenu})).then(this.props.renderTriger)
+        await this.props.renderTriger
          this.submitSuccess()
     }
     submitSuccess = () => {
@@ -112,7 +113,7 @@ export class MenuAdd extends Component {
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-primary" onClick={this.handleSubmitMenu}
-                                        data-dismiss="modal">Save changes
+                                        data-dismiss="modal" disabled={!this.props.menuForm.foodName}>Save changes
                                 </button>
                             </div>
                         </div>

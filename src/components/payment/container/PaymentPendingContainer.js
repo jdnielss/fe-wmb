@@ -2,41 +2,41 @@ import React, {Component} from 'react';
 import '../assets/Payment.scss'
 import {fetchDataTransaction, getDataTransactionDataById, updatePayment,} from "../service/PaymentService";
 import {connect} from 'react-redux'
-import {handlePayment, fetchingSucces, resetState} from "../action/PaymentActions";
+import {handlePayment, fetchingSucces} from "../action/PaymentActions";
 import NumberFormat from "react-number-format";
 import Loader from 'react-loader-spinner'
 import {handleKeypress} from '../action/Handle'
 class PaymentPendingContainer extends Component {
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
             done: undefined
         }
     }
     componentDidMount() {
         setTimeout(() => {
-            this.fetchingData()
+            this.fetchingData();
             this.setState({ done: true });
         }, 3000);
     }
 
     fetchingData = async () => {
-        const resultDataTransaction = await fetchDataTransaction()
+        const resultDataTransaction = await fetchDataTransaction();
         this.props.dispatch({...fetchingSucces, payload: resultDataTransaction})
-    }
+    };
     fetchingTrxById = async (idTransaction) => {
-        const gettrxById = await getDataTransactionDataById(idTransaction)
-        this.props.dispatch({type: 'FETCHING_TRANSACTION_BY_ID_SUCCESS', payload: gettrxById})
+        const getTransactionById = await getDataTransactionDataById(idTransaction);
+        this.props.dispatch({type: 'FETCHING_TRANSACTION_BY_ID_SUCCESS', payload: getTransactionById})
     }
     handlePayment = (event) => {
         const data = event.target.value
         this.props.dispatch({...handlePayment, payload: data});
-    }
+    };
     handlePaymentSubmit = async (event) => {
-        event.preventDefault()
-        await updatePayment(this.props.fetchResultTransactionById).then(this.props.dispatch({type: 'RESET_PAYMENT'}))
+        event.preventDefault();
+        await updatePayment(this.props.fetchResultTransactionById).then(this.props.dispatch({type: 'RESET_PAYMENT'}));
         this.fetchingData()
-    }
+    };
 
     render() {
         return (

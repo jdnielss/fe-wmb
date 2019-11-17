@@ -19,7 +19,6 @@ import {createStore} from "redux";
 import formOrderReducer from "../../order/reducer/FormOrderReducer";
 import {resetStateForm} from "../../order/action/OrderAction";
 import DeleteIcon from '@material-ui/icons/DeleteOutline'
-import Swal from "sweetalert2";
 const useStyles = (theme => ({
     card: {
         width: '20%',
@@ -36,7 +35,7 @@ const useStyles = (theme => ({
     }
 }));
 
-class TableCard extends Component {
+export class TableCard extends Component {
     fetchingTableById = async (idTransaction) => {
         const resultData = await fetchTableById(idTransaction)
         this.props.dispatch({...fetchingTableId, payload: resultData})

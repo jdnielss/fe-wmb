@@ -6,7 +6,7 @@ import TrashIcon from '@material-ui/icons/DeleteOutline'
 import '../assets/MenuTable.scss'
 import {handleKeypress} from "../../payment/action/Handle";
 
-class MenuSelector extends Component {
+export class MenuSelector extends Component {
     render() {
         return (
             <div className="form-row">
