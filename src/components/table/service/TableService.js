@@ -31,6 +31,12 @@ export async function saveDataTable(dataTable) {
                     'Input Data Success!',
                     'success'
                 )
+            }else if (respond.message ==="No message available"){
+                await Swal.fire(
+                    'Error!',
+                    'please fill in correctly',
+                    'error'
+                )
             } else await Swal.fire(
                 'Error!',
                 'Table number already exists',
@@ -39,8 +45,8 @@ export async function saveDataTable(dataTable) {
         }).catch();
 }
 export async function updateTable(dataTable) {
-    return await fetch('http://10.10.13.150:9090/updateTable', {
-        method: 'POST',
+    return await fetch('http://10.10.13.150:9090/table', {
+        method: 'PUT',
         headers: {
             Accept: 'application/json',
             "Content-type": "application/json"
