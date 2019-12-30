@@ -1,4 +1,4 @@
-const dataTable = {
+  const dataTable = {
     fetchResult: [
         {content: [],
             total: null,
